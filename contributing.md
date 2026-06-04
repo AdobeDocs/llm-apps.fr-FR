@@ -13,9 +13,9 @@ Voici un ensemble de directives à suivre lorsque vous contribuez à ce projet.
 
 ## Code De Conduite
 
-Ce projet respecte le code de conduite dAdobe](code-of-conduct.md). [En participant,
+Ce projet respecte le code de conduite dAdobe[&#128279;](code-of-conduct.md). En participant,
 vous devez respecter ce code. Veuillez signaler tout comportement inacceptable à
-[](mailto:Grp-opensourceoffice@adobe.com).
+[&#128279;](mailto:Grp-opensourceoffice@adobe.com).
 
 ## Documentation du guide du contributeur
 
@@ -57,4 +57,4 @@ n’hésitez pas à contacter les responsables existants pour en discuter.
 
 ## Problèmes de sécurité
 
-Les problèmes de sécurité ne doivent pas être signalés dans ce dispositif de suivi de problèmes. Soumettez plutôt [ problème à nos experts en sécurité](https://helpx.adobe.com/fr/security/alertus.html)
+Les problèmes de sécurité ne doivent pas être signalés dans ce dispositif de suivi de problèmes. Soumettez plutôt [&#x200B; problème à nos experts en sécurité](https://helpx.adobe.com/fr/security/alertus.html)

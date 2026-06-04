@@ -31,7 +31,7 @@ Vous écrivez uniquement des gestionnaires. Tous les autres éléments (nom de l
 
 ## Prise en main
 
-Votre référentiel lié a besoin de la structure du projet avant de pouvoir écrire des gestionnaires. Clonez le modèle standard **[Applications Adobe LLM ](https://github.com/Adobe-AIFoundations/llm-apps-boilerplate)** pour commencer avec un point de départ vide.
+Votre référentiel lié a besoin de la structure du projet avant de pouvoir écrire des gestionnaires. Clonez le modèle standard **[Applications Adobe LLM &#x200B;](https://github.com/Adobe-AIFoundations/llm-apps-boilerplate)** pour commencer avec un point de départ vide.
 
 Envoyez le contenu au référentiel que vous avez lié lors de la création de l’application (par exemple, `your-org/your-repo`).
 

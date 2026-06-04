@@ -11,7 +11,7 @@ ht-degree: 1%
 
 # Création d’une action
 
-Ce guide vous guide tout au long de la définition d’une action dans l’interface utilisateur [!DNL LLM Apps]. Pour en savoir plus sur les actions et leur fonctionnement, voir [ Concepts de base ](/help/overview/overview.md#actions).
+Ce guide vous guide tout au long de la définition d’une action dans l’interface utilisateur [!DNL LLM Apps]. Pour en savoir plus sur les actions et leur fonctionnement, voir [&#x200B; Concepts de base &#x200B;](/help/overview/overview.md#actions).
 
 ## Ouvrez la page Actions .
 

@@ -13,9 +13,9 @@ Avant de commencer votre session d’intégration avec Adobe, vérifiez que les 
 
 ## Console de développeur Adobe
 
-Vous devez accéder au [](https://developer.adobe.com/console) avec le rôle **Développeur** (ou **Administrateur système**) dans votre organisation Adobe IMS. Vérifiez que votre organisation a accès à [[!DNL App Builder]](https://developer.adobe.com/app-builder/docs/intro_and_overview/).
+Vous devez accéder au [&#128279;](https://developer.adobe.com/console) avec le rôle **Développeur** (ou **Administrateur système**) dans votre organisation Adobe IMS. Vérifiez que votre organisation a accès à [[!DNL App Builder]](https://developer.adobe.com/app-builder/docs/intro_and_overview/).
 
-Pour vérifier, accédez à [](https://developer.adobe.com/console). Si l’écran de démarrage rapide s’affiche, vos autorisations sont correctement configurées.
+Pour vérifier, accédez à [&#128279;](https://developer.adobe.com/console). Si l’écran de démarrage rapide s’affiche, vos autorisations sont correctement configurées.
 
 ![Adobe Developer Console — Écran de démarrage rapide confirmant l’accès développeur](/help/assets/overview/dev-console-access-granted.png)
 
@@ -27,7 +27,7 @@ Si un message **Accès limité** s’affiche à la place de cette réponse, cela
 
 Vous avez besoin d’un compte [!DNL GitHub] avec les autorisations suivantes dans votre organisation :
 
-- **Créer des référentiels** — vous devez créer deux référentiels dans votre organisation : un pour le code de l’application et un pour le projet EDS. Pour vérifier, accédez à [](https://github.com/new) — si vous pouvez sélectionner votre organisation dans la liste déroulante **Propriétaire**, vous disposez de l’autorisation.
+- **Créer des référentiels** — vous devez créer deux référentiels dans votre organisation : un pour le code de l’application et un pour le projet EDS. Pour vérifier, accédez à [&#128279;](https://github.com/new) — si vous pouvez sélectionner votre organisation dans la liste déroulante **Propriétaire**, vous disposez de l’autorisation.
 
   ![GitHub, nouveau menu déroulant Propriétaire du référentiel qui affiche la sélection de l’organisation](/help/assets/overview/github-repo-owner-dropdown.png)
 
@@ -37,8 +37,8 @@ Vous avez besoin d’un compte [!DNL GitHub] avec les autorisations suivantes da
 
 Effectuez cette vérification rapide avant de rencontrer Adobe. Le résultat vous indique qui doit être dans la salle, et non si vous pouvez continuer.
 
-1. Accédez à [](https://github.com/new) sélectionnez votre organisation en tant que propriétaire, puis créez un référentiel nommé `llm-apps-test`.
-2. Accédez à la page d’installation du Vérificateur d’autorisations des applications LLM [](https://github.com/apps/adobe-llm-apps-permission-checker/installations/new) d’Adobe et installez l’application pour le référentiel `llm-apps-test` uniquement.
+1. Accédez à [&#128279;](https://github.com/new) sélectionnez votre organisation en tant que propriétaire, puis créez un référentiel nommé `llm-apps-test`.
+2. Accédez à la page d’installation du Vérificateur d’autorisations des applications LLM [&#128279;](https://github.com/apps/adobe-llm-apps-permission-checker/installations/new) d’Adobe et installez l’application pour le référentiel `llm-apps-test` uniquement.
 
 | Résultat | Ce que cela signifie | Action |
 |---|---|---|
@@ -53,7 +53,7 @@ Les widgets d’action sont hébergés sur **Adobe Experience Manager [!DNL Edge
 
 Pour vérifier, accédez à l’outil [EDS User Admin](https://tools.aem.live/tools/user-admin/index.html), saisissez le nom de votre organisation, laissez le champ **Site** vide, puis cliquez sur **Récupérer des utilisateurs**. Recherchez votre compte dans la liste et vérifiez qu’il affiche le badge **admin**.
 
-![ Outil d’administration des utilisateurs EDS présentant un utilisateur avec le rôle d’administrateur](/help/assets/overview/eds-user-admin.png)
+![&#x200B; Outil d’administration des utilisateurs EDS présentant un utilisateur avec le rôle d’administrateur](/help/assets/overview/eds-user-admin.png)
 
 Si vous n’avez pas encore d’organisation EDS, aucune action n’est nécessaire ; une organisation sera créée pour vous pendant le processus d’intégration.
 

@@ -77,7 +77,7 @@ git push -u origin main
 
 ## Étape 2 : créer une application LLM
 
-Accédez à [](https://experience.adobe.com/llm-apps/) puis cliquez sur **[!UICONTROL Créer une application LLM]**.
+Accédez à [&#128279;](https://experience.adobe.com/llm-apps/) puis cliquez sur **[!UICONTROL Créer une application LLM]**.
 
 ![Page applications — aucune application créée pour le moment](/help/assets/guide-create-app/first-load.png)
 
@@ -87,7 +87,7 @@ Renseignez les **[!UICONTROL Détails de l’application]** à l’aide des vale
 - **[!UICONTROL Description de l’application LLM]**
 - **[!UICONTROL Votre site web]**
 
-![ Boîte de dialogue Créer une application ](/help/assets/guide-create-app/app-details-1.png)
+![&#x200B; Boîte de dialogue Créer une application &#x200B;](/help/assets/guide-create-app/app-details-1.png)
 
 Sous **[!UICONTROL Région des données Analytics]**, sélectionnez la région où les données Analytics seront stockées. Ce **ne peut pas être modifié** après la création de l’application.
 
@@ -120,7 +120,7 @@ Au cours de cette étape, vous configurez le projet EDS fourni par Adobe et vous
 
 ### Étape 3.1 : connecter le référentiel EDS à [!DNL DA.live]
 
-1. Accédez à [](https://github.com/apps/aem-code-sync). Si l’application n’est pas encore installée, cliquez sur **[!UICONTROL Installer]**. S’il est déjà installé, cliquez sur **[!UICONTROL Configurer]** et ajoutez-`<your-eds-repo>` à la liste des référentiels auxquels il peut accéder.
+1. Accédez à [&#128279;](https://github.com/apps/aem-code-sync). Si l’application n’est pas encore installée, cliquez sur **[!UICONTROL Installer]**. S’il est déjà installé, cliquez sur **[!UICONTROL Configurer]** et ajoutez-`<your-eds-repo>` à la liste des référentiels auxquels il peut accéder.
 2. Après l’installation, vous accédez à une page de confirmation **[!DNL AEM Code Sync]enregistrée** Sous **Que faire ensuite → Créer votre contenu**, cliquez sur le lien [!DNL DA.live].
 3. Sur l’écran **Contenu de démonstration**, sélectionnez **Aucun** et cliquez sur **Créer quelque chose de merveilleux**.
 4. Vous accédez à la vue Auteur [!DNL DA.live] pour votre site.

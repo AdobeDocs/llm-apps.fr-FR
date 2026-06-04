@@ -135,7 +135,7 @@ npx jest test/actions/search-products        # one action only
 
 ## Déploiement
 
-Vous ne créez ni ne déployez manuellement de contenu. Pour une présentation complète du pipeline de déploiement, voir [ Déployer votre application ](/help/guides/deploy-your-app.md).
+Vous ne créez ni ne déployez manuellement de contenu. Pour une présentation complète du pipeline de déploiement, voir [&#x200B; Déployer votre application &#x200B;](/help/guides/deploy-your-app.md).
 
 Votre workflow quotidien est :
 

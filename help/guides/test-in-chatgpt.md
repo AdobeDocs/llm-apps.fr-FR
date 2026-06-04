@@ -128,7 +128,7 @@ Saisissez **@** dans l’entrée de conversation et sélectionnez votre applicat
 
 >[!NOTE]
 >
->Si vous utilisez **** une seconde fois sur la même application, vous la désélectionnez et la supprimez de la conversation.
+>Si vous utilisez **&#x200B;**&#x200B;une seconde fois sur la même application, vous la désélectionnez et la supprimez de la conversation.
 
 ![ChatGPT — @mention l&#39;application](/help/assets/guide-test-chatgpt/chatgpt-mention-app.png)
 

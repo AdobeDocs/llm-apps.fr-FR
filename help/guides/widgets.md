@@ -67,14 +67,14 @@ Si vous disposez déjà d’un projet EDS, vous ne pouvez commencer à écrire d
 
 2. Configurez les en-têtes CORS pour que la plateforme LLM puisse charger vos pages de widgets et scripts cross-origin (voir [Configurer les en-têtes CORS](#configure-cors-headers) ci-dessous).
 
-Créez ensuite votre bloc suivant le contrat de ](#the-decorateblock-bridge-contract) créez la page du widget et saisissez les URL dans la boîte de dialogue Créer une action .[`decorate(block, bridge)`
+Créez ensuite votre bloc suivant le contrat de [&#128279;](#the-decorateblock-bridge-contract) créez la page du widget et saisissez les URL dans la boîte de dialogue Créer une action .`decorate(block, bridge)`
 
 ## Configuration d’un nouveau projet EDS
 
 ### Création du référentiel
 
 1. Créez un référentiel [!DNL GitHub] basé sur le modèle [AEM standard](https://github.com/adobe/aem-boilerplate).
-2. Ajoutez l’application GitHub de synchronisation du code AEM [](https://github.com/apps/aem-code-sync) au référentiel.
+2. Ajoutez l’application GitHub de synchronisation du code AEM [&#128279;](https://github.com/apps/aem-code-sync) au référentiel.
 3. Installez l’interface de ligne de commande AEM pour le développement local : `npm install -g @adobe/aem-cli`.
 4. Installez `@adobe/llmapps-sdk`. Le script de post-installation copie `aem-embed.js` et `llmapps-sdk.js` dans `scripts/llm-apps/` :
 
@@ -82,7 +82,7 @@ Créez ensuite votre bloc suivant le contrat de ](#the-decorateblock-bridge-cont
    npm install @adobe/llmapps-sdk
    ```
 
-Pour obtenir un guide complet sur les projets EDS, consultez le [tutoriel de développement ](https://www.aem.live/developer/tutorial) et [anatomie du projet](https://www.aem.live/developer/anatomy-of-a-project).
+Pour obtenir un guide complet sur les projets EDS, consultez le [tutoriel de développement &#x200B;](https://www.aem.live/developer/tutorial) et [anatomie du projet](https://www.aem.live/developer/anatomy-of-a-project).
 
 Une fois configuré, votre site EDS est disponible à l’adresse suivante :
 

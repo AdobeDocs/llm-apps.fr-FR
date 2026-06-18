@@ -1,13 +1,15 @@
 ---
-title: Intégration de Beta
+title: Intégration de Beta pour les applications Adobe LLM
 description: Commencez avec le participant au programme Adobe LLM Apps as a Beta.
-source-git-commit: f144ccfc0ede6c556ccf4d99173f91d372add6f7
+source-git-commit: 98d5590c927bf8ffad54061ee027664452c129c1
 workflow-type: tm+mt
-source-wordcount: '1545'
+source-wordcount: '1551'
 ht-degree: 0%
 
 ---
 
+
+# Intégration de Beta {#beta-onboarding}
 
 >[!IMPORTANT]
 >

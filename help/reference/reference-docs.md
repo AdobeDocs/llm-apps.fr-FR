@@ -1,15 +1,15 @@
 ---
-title: Référence
+title: Documentation de référence pour les applications Adobe LLM
 description: Référence au niveau du champ pour la configuration d’action dans l’interface utilisateur des applications Adobe LLM.
-source-git-commit: 483a71f5f1de5caf1bd89b26f4d67d2d5a0aa15a
+source-git-commit: 98d5590c927bf8ffad54061ee027664452c129c1
 workflow-type: tm+mt
-source-wordcount: '489'
+source-wordcount: '494'
 ht-degree: 6%
 
 ---
 
 
-# Référence
+# Référence {#reference}
 
 >[!IMPORTANT]
 >

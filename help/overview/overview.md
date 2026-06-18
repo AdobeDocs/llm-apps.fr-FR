@@ -1,13 +1,15 @@
 ---
-title: Vue d’ensemble
+title: Présentation des applications Adobe LLM
 description: Découvrez ce qu’est l’application Adobe LLM, son fonctionnement et ce dont vous avez besoin pour commencer.
-source-git-commit: f144ccfc0ede6c556ccf4d99173f91d372add6f7
+source-git-commit: 98d5590c927bf8ffad54061ee027664452c129c1
 workflow-type: tm+mt
-source-wordcount: '863'
-ht-degree: 2%
+source-wordcount: '873'
+ht-degree: 1%
 
 ---
 
+
+# Applications Adobe LLM - Aperçu {#adobe-llm-apps-an-overview}
 
 >[!NOTE]
 >

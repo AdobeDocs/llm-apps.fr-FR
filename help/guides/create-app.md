@@ -1,9 +1,9 @@
 ---
 title: Création d’une application
 description: Découvrez comment créer votre première application LLM et la lier à votre référentiel GitHub.
-source-git-commit: 914b8a659e690ff47257c2c112f76816f4b0232c
+source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
 workflow-type: tm+mt
-source-wordcount: '735'
+source-wordcount: '745'
 ht-degree: 1%
 
 ---
@@ -11,23 +11,25 @@ ht-degree: 1%
 
 # Création d’une application
 
->[!NOTE]
->
->Si vous êtes un participant au programme **&#x200B;**, utilisez plutôt le [guide d’intégration de Beta](/help/beta-onboarding/beta-onboarding.md) qui couvre l’ensemble de la configuration de votre application spécifique.
-
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps] est actuellement dans Beta. Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit.
+>[!DNL Adobe LLM Apps] est actuellement dans Beta.
+>
+>Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
+
+>[!NOTE]
+>
+>Si vous êtes un participant au programme ****, utilisez plutôt le [guide d’intégration de Beta](/help/beta-onboarding/beta-onboarding.md) qui couvre l’ensemble de la configuration de votre application spécifique.
 
 >[!NOTE]
 >
 >Avant de commencer, assurez-vous que toutes les [conditions préalables](/help/overview/overview.md#prerequisites) sont remplies.
 
-Ce guide vous guide tout au long de la création de votre première application LLM, depuis l’état vide jusqu’à un projet entièrement configuré et lié à votre référentiel [!DNL GitHub].
+Ce guide vous guide tout au long de la création de votre première [!DNL Adobe LLM Apps], depuis le statut vide jusqu’à un projet entièrement configuré et lié à votre référentiel [!DNL GitHub].
 
 ## Ouvrez [!DNL LLM Apps].
 
-Accédez à [&#128279;](https://experience.adobe.com/llm-apps). Si aucune application n’a encore été créée, la page du premier chargement s’affiche avec une invite vous demandant de créer votre première application.
+Accédez à [](https://experience.adobe.com/llm-apps). Si aucune application n’a encore été créée, la page du premier chargement s’affiche avec une invite vous demandant de créer votre première application.
 
 ![Page applications — aucune application créée pour le moment](/help/assets/guide-create-app/first-load.png)
 
@@ -37,7 +39,7 @@ La barre latérale gauche vous permet de naviguer entre **[!UICONTROL Applicatio
 
 La boîte de dialogue Créer une application s’ouvre en plein écran.
 
-![&#x200B; Boîte de dialogue Créer une application &#x200B;](/help/assets/guide-create-app/app-details-1.png)
+![ Boîte de dialogue Créer une application ](/help/assets/guide-create-app/app-details-1.png)
 
 Entrez la commande suivante :
 

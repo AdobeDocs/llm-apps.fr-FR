@@ -1,9 +1,9 @@
 ---
 title: Configuration du widget (EDS)
 description: Découvrez comment configurer un projet de widget Edge Delivery Services et implémenter le contrat de bloc pour le rendu des réponses visuelles dans les plateformes LLM.
-source-git-commit: 483a71f5f1de5caf1bd89b26f4d67d2d5a0aa15a
+source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
 workflow-type: tm+mt
-source-wordcount: '1214'
+source-wordcount: '1226'
 ht-degree: 1%
 
 ---
@@ -13,7 +13,9 @@ ht-degree: 1%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps] est actuellement dans Beta. Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit.
+>[!DNL Adobe LLM Apps] est actuellement dans Beta.
+>
+>Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
 
 Ce guide explique comment créer un widget EDS de bout en bout : de la configuration de votre action dans l’interface utilisateur de [!DNL LLM Apps] à la configuration de votre projet EDS, en passant par l’écriture du code de bloc qui effectue le rendu de vos données dans la plateforme LLM. Pour une présentation générale, voir [Concepts de base](/help/overview/overview.md#widgets-eds).
 
@@ -65,14 +67,14 @@ Si vous disposez déjà d’un projet EDS, vous ne pouvez commencer à écrire d
 
 2. Configurez les en-têtes CORS pour que la plateforme LLM puisse charger vos pages de widgets et scripts cross-origin (voir [Configurer les en-têtes CORS](#configure-cors-headers) ci-dessous).
 
-Créez ensuite votre bloc suivant le contrat de [&#128279;](#the-decorateblock-bridge-contract) créez la page du widget et saisissez les URL dans la boîte de dialogue Créer une action .`decorate(block, bridge)`
+Créez ensuite votre bloc suivant le contrat de ](#the-decorateblock-bridge-contract) créez la page du widget et saisissez les URL dans la boîte de dialogue Créer une action .[`decorate(block, bridge)`
 
 ## Configuration d’un nouveau projet EDS
 
 ### Création du référentiel
 
 1. Créez un référentiel [!DNL GitHub] basé sur le modèle [AEM standard](https://github.com/adobe/aem-boilerplate).
-2. Ajoutez l’application GitHub de synchronisation du code AEM [&#128279;](https://github.com/apps/aem-code-sync) au référentiel.
+2. Ajoutez l’application GitHub de synchronisation du code AEM [](https://github.com/apps/aem-code-sync) au référentiel.
 3. Installez l’interface de ligne de commande AEM pour le développement local : `npm install -g @adobe/aem-cli`.
 4. Installez `@adobe/llmapps-sdk`. Le script de post-installation copie `aem-embed.js` et `llmapps-sdk.js` dans `scripts/llm-apps/` :
 
@@ -80,7 +82,7 @@ Créez ensuite votre bloc suivant le contrat de [&#128279;](#the-decorateblock-b
    npm install @adobe/llmapps-sdk
    ```
 
-Pour obtenir un guide complet sur les projets EDS, consultez le [tutoriel de développement &#x200B;](https://www.aem.live/developer/tutorial) et [anatomie du projet](https://www.aem.live/developer/anatomy-of-a-project).
+Pour obtenir un guide complet sur les projets EDS, consultez le [tutoriel de développement ](https://www.aem.live/developer/tutorial) et [anatomie du projet](https://www.aem.live/developer/anatomy-of-a-project).
 
 Une fois configuré, votre site EDS est disponible à l’adresse suivante :
 

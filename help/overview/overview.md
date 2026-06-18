@@ -1,7 +1,7 @@
 ---
 title: Présentation des applications Adobe LLM
 description: Découvrez ce qu’est l’application Adobe LLM, son fonctionnement et ce dont vous avez besoin pour commencer.
-source-git-commit: 98d5590c927bf8ffad54061ee027664452c129c1
+source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
 workflow-type: tm+mt
 source-wordcount: '873'
 ht-degree: 1%
@@ -11,9 +11,11 @@ ht-degree: 1%
 
 # Applications Adobe LLM - Aperçu {#adobe-llm-apps-an-overview}
 
->[!NOTE]
+>[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps] est actuellement dans Beta. Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
+>[!DNL Adobe LLM Apps] est actuellement dans Beta.
+>
+>Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
 
 ## Qu’est-ce qu’[!DNL Adobe LLM Apps] ?
 
@@ -81,9 +83,9 @@ Le diagramme ci-dessous montre comment les différents éléments s’imbriquent
 
 ### Console de développeur Adobe
 
-Vous devez accéder au [&#128279;](https://developer.adobe.com/console) avec le rôle **Développeur** (ou **Administrateur système**) dans votre organisation Adobe IMS. Vérifiez que votre organisation a accès à [[!DNL App Builder]](https://developer.adobe.com/app-builder/docs/intro_and_overview/).
+Vous devez accéder au [](https://developer.adobe.com/console) avec le rôle **Développeur** (ou **Administrateur système**) dans votre organisation Adobe IMS. Vérifiez que votre organisation a accès à [[!DNL App Builder]](https://developer.adobe.com/app-builder/docs/intro_and_overview/).
 
-Pour vérifier, accédez à [&#128279;](https://developer.adobe.com/console). Si l’écran de démarrage rapide s’affiche, vos autorisations sont correctement configurées.
+Pour vérifier, accédez à [](https://developer.adobe.com/console). Si l’écran de démarrage rapide s’affiche, vos autorisations sont correctement configurées.
 
 ![Adobe Developer Console — Écran de démarrage rapide confirmant l’accès développeur](/help/assets/overview/dev-console-access-granted.png)
 
@@ -95,7 +97,7 @@ Si un message **Accès limité** s’affiche à la place de cette réponse, cela
 
 Vous avez besoin d’un compte [!DNL GitHub] avec les autorisations suivantes dans votre organisation :
 
-- **Créer des référentiels** — vous devez créer deux référentiels dans votre organisation : un pour le code de l’application et un pour le projet EDS. Pour vérifier, accédez à [&#128279;](https://github.com/new) — si vous pouvez sélectionner votre organisation dans la liste déroulante **Propriétaire**, vous disposez de l’autorisation.
+- **Créer des référentiels** — vous devez créer deux référentiels dans votre organisation : un pour le code de l’application et un pour le projet EDS. Pour vérifier, accédez à [](https://github.com/new) — si vous pouvez sélectionner votre organisation dans la liste déroulante **Propriétaire**, vous disposez de l’autorisation.
 
   ![GitHub, nouveau menu déroulant Propriétaire du référentiel qui affiche la sélection de l’organisation](/help/assets/overview/github-repo-owner-dropdown.png)
 
@@ -107,7 +109,7 @@ Les widgets d’action sont hébergés sur **Adobe Experience Manager [!DNL Edge
 
 Pour vérifier, accédez à l’outil [EDS User Admin](https://tools.aem.live/tools/user-admin/index.html), saisissez le nom de votre organisation, laissez le champ **Site** vide, puis cliquez sur **Récupérer des utilisateurs**. Recherchez votre compte dans la liste et vérifiez qu’il affiche le badge **admin**.
 
-![&#x200B; Outil d’administration des utilisateurs EDS présentant un utilisateur avec le rôle d’administrateur](/help/assets/overview/eds-user-admin.png)
+![ Outil d’administration des utilisateurs EDS présentant un utilisateur avec le rôle d’administrateur](/help/assets/overview/eds-user-admin.png)
 
 ### Plateforme LLM (pour les tests)
 
@@ -120,5 +122,5 @@ Choisissez le chemin qui correspond à votre situation :
 | | **participant** | **Disponibilité générale** |
 |---|---|---|
 | **Vous l&#39;avez fait** | Vous participez au programme Beta et avez reçu une archive du code de l’application, une archive de projet EDS et une référence de configuration d’application d’Adobe | Un cas d’utilisation en tête : Adobe vous guide tout au long de la création et du déploiement de votre application |
-| **Commencer ici** | [Intégration de &#x200B;](/help/beta-onboarding/beta-onboarding.md) | [Créer une application](/help/guides/create-app.md) |
+| **Commencer ici** | [Intégration de ](/help/beta-onboarding/beta-onboarding.md) | [Créer une application](/help/guides/create-app.md) |
 

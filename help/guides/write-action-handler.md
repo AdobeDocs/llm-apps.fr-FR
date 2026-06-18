@@ -1,9 +1,9 @@
 ---
 title: Écrire le gestionnaire d’actions
 description: Découvrez comment créer un gestionnaire d’action pour votre application LLM Adobe, y compris le contrat du gestionnaire, le contenu structuré et un exemple de travail.
-source-git-commit: 483a71f5f1de5caf1bd89b26f4d67d2d5a0aa15a
+source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
 workflow-type: tm+mt
-source-wordcount: '714'
+source-wordcount: '719'
 ht-degree: 0%
 
 ---
@@ -13,9 +13,11 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->**Clause de non-responsabilité :** il s’agit d’une version bêta de [!DNL LLM Apps]. Les fonctionnalités, les workflows et l’interface utilisateur présentés ici ne représentent pas nécessairement l’état final de l’application ou du produit.
+>[!DNL Adobe LLM Apps] est actuellement dans Beta.
+>
+>Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
 
-Après avoir créé une action dans l’interface utilisateur, les métadonnées sont stockées dans l’API [!DNL LLM Apps], mais il n’y a pas encore de code derrière. Ce guide vous guide tout au long de l’écriture de la fonction de gestionnaire qui s’exécute lorsqu’une plateforme LLM (telle que [!DNL ChatGPT] ou Claude) appelle votre action.
+Après avoir créé une action dans l’interface utilisateur de [!DNL Adobe LLM Apps], les métadonnées sont stockées dans l’API [!DNL LLM Apps], mais il n’y a pas encore de code derrière. Ce guide vous guide tout au long de l’écriture de la fonction de gestionnaire qui s’exécute lorsqu’une plateforme LLM (telle que [!DNL ChatGPT] ou Claude) appelle votre action.
 
 Pour plus d’informations sur la disposition du projet, le développement local et les tests, voir [Développement](/help/reference/development.md).
 

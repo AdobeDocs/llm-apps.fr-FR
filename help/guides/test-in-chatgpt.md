@@ -1,9 +1,9 @@
 ---
 title: Tester dans ChatGPT
 description: Découvrez comment ajouter votre application Adobe LLM déployée à ChatGPT et la tester dans une conversation réelle.
-source-git-commit: 483a71f5f1de5caf1bd89b26f4d67d2d5a0aa15a
+source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
 workflow-type: tm+mt
-source-wordcount: '798'
+source-wordcount: '804'
 ht-degree: 2%
 
 ---
@@ -13,13 +13,15 @@ ht-degree: 2%
 
 >[!IMPORTANT]
 >
->**Clause de non-responsabilité :** il s’agit d’une version bêta de [!DNL LLM Apps]. Les fonctionnalités, les workflows et l’interface utilisateur présentés ici ne représentent pas nécessairement l’état final de l’application ou du produit.
+>[!DNL Adobe LLM Apps] est actuellement dans Beta.
+>
+>Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
 
 >[!NOTE]
 >
 >Ce guide utilise [!DNL ChatGPT] comme exemple. Les étapes générales (enregistrement d’une URL de serveur MCP et test dans une conversation) s’appliquent également à d’autres plateformes LLM, bien que le flux de configuration et l’interface utilisateur varient.
 
-Après un déploiement réussi, votre application s’exécute sur [!DNL Adobe I/O Runtime] et expose une URL de serveur MCP. Ce guide vous explique comment l’ajouter à [!DNL ChatGPT] et la tester dans une conversation réelle.
+Après un déploiement réussi avec [!DNL Adobe LLM Apps], votre application s’exécute sur [!DNL Adobe I/O Runtime] et expose une URL de serveur MCP. Ce guide vous explique comment l’ajouter à [!DNL ChatGPT] et la tester dans une conversation réelle.
 
 ## Planifier les exigences
 

@@ -1,17 +1,23 @@
 ---
 title: Conditions préalables pour les applications Adobe LLM
 description: Ce que vous devez configurer avant votre session d’intégration Adobe LLM Apps Beta.
-source-git-commit: 98d5590c927bf8ffad54061ee027664452c129c1
+source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
 workflow-type: tm+mt
-source-wordcount: '539'
-ht-degree: 2%
+source-wordcount: '571'
+ht-degree: 1%
 
 ---
 
 
 # Conditions préalables pour les applications Adobe LLM {#prerequisites-for-adobe-llm-apps}
 
-Avant de commencer votre session d’intégration avec Adobe, vérifiez que les éléments suivants sont en place. Dans la mesure du possible, exécutez les étapes de vérification ci-dessous — les résultats vous indiquent qui doit être dans la salle, et non si vous pouvez continuer.
+>[!IMPORTANT]
+>
+>[!DNL Adobe LLM Apps] est actuellement dans Beta.
+>
+>Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
+
+Avant de commencer votre [!DNL Adobe LLM Apps] session d’intégration à Adobe, vérifiez que les éléments suivants sont en place. Dans la mesure du possible, exécutez les étapes de vérification ci-dessous — les résultats vous indiquent qui doit être dans la salle, et non si vous pouvez continuer.
 
 ## Console de développeur Adobe
 

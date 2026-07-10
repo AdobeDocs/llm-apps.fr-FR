@@ -1,10 +1,10 @@
 ---
 title: Présentation des applications Adobe LLM
 description: Découvrez ce qu’est l’application Adobe LLM, son fonctionnement et ce dont vous avez besoin pour commencer.
-source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
+source-git-commit: 344c5457eb79a19b1dae823732a1cd9866dcd9dc
 workflow-type: tm+mt
-source-wordcount: '873'
-ht-degree: 1%
+source-wordcount: '831'
+ht-degree: 2%
 
 ---
 
@@ -117,10 +117,5 @@ Pour tester votre application déployée, vous avez besoin d’un niveau d’abo
 
 ## Commencer
 
-Choisissez le chemin qui correspond à votre situation :
-
-| | **participant** | **Disponibilité générale** |
-|---|---|---|
-| **Vous l&#39;avez fait** | Vous participez au programme Beta et avez reçu une archive du code de l’application, une archive de projet EDS et une référence de configuration d’application d’Adobe | Un cas d’utilisation en tête : Adobe vous guide tout au long de la création et du déploiement de votre application |
-| **Commencer ici** | [Intégration de &#x200B;](/help/beta-onboarding/beta-onboarding.md) | [Créer une application](/help/guides/create-app.md) |
+En gardant à l’esprit un cas d’utilisation, [créez une application](/help/guides/create-app.md) pour commencer à créer et déployer votre expérience [!DNL LLM Apps].
 

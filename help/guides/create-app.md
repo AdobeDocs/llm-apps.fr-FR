@@ -25,7 +25,7 @@ Ce guide vous guide tout au long de la création de votre première [!DNL Adobe 
 
 ## Ouvrez [!DNL LLM Apps].
 
-Accédez à [](https://experience.adobe.com/llm-apps). Si aucune application n’a encore été créée, la page du premier chargement s’affiche avec une invite vous demandant de créer votre première application.
+Accédez à [&#128279;](https://experience.adobe.com/llm-apps). Si aucune application n’a encore été créée, la page du premier chargement s’affiche avec une invite vous demandant de créer votre première application.
 
 ![Page applications — aucune application créée pour le moment](/help/assets/guide-create-app/first-load.png)
 
@@ -35,7 +35,7 @@ La barre latérale gauche vous permet de naviguer entre **[!UICONTROL Applicatio
 
 La boîte de dialogue Créer une application s’ouvre en plein écran.
 
-![ Boîte de dialogue Créer une application ](/help/assets/guide-create-app/app-details-1.png)
+![&#x200B; Boîte de dialogue Créer une application &#x200B;](/help/assets/guide-create-app/app-details-1.png)
 
 Entrez la commande suivante :
 

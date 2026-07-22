@@ -17,7 +17,7 @@ ht-degree: 1%
 >
 >Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
 
-Ce guide vous guide tout au long de la définition d’une action dans l’interface utilisateur [!DNL LLM Apps]. Pour en savoir plus sur les actions et leur fonctionnement, voir [ Concepts de base ](/help/overview/overview.md#actions).
+Ce guide vous guide tout au long de la définition d’une action dans l’interface utilisateur [!DNL LLM Apps]. Pour en savoir plus sur les actions et leur fonctionnement, voir [&#x200B; Concepts de base &#x200B;](/help/overview/overview.md#actions).
 
 ## Ouvrez la page Actions .
 

@@ -35,7 +35,7 @@ En [!DNL LLM Apps] :
 
 ## Ajouter le connecteur personnalisé
 
-1. Ouvrez [](https://claude.ai/new?modal=add-custom-connector#settings/customize-connectors). Cela ouvre directement la boîte de dialogue **[!UICONTROL Ajouter un connecteur personnalisé]**.
+1. Ouvrez [&#128279;](https://claude.ai/new?modal=add-custom-connector#settings/customize-connectors). Cela ouvre directement la boîte de dialogue **[!UICONTROL Ajouter un connecteur personnalisé]**.
 2. Enter :
    - **[!UICONTROL Nom]** : nom du connecteur.
    - **[!UICONTROL URL du serveur MCP distant]** : URL du serveur MCP que vous avez copiée.

@@ -1,11 +1,11 @@
 ---
 user-guide-title: Guide des applications LLM
 breadcrumb-title: Applications LLM
-user-guide-description: Créez, déployez et mesurez des expériences de marque interactives dans les assistants d’IA tels que les plateformes LLM (ChatGPT, Claude) à l’aide des applications LLM Adobe.
-source-git-commit: 344c5457eb79a19b1dae823732a1cd9866dcd9dc
+user-guide-description: Créez, personnalisez, déployez et testez des expériences interactives sur les plateformes LLM prises en charge, telles que ChatGPT avec les applications Adobe LLM.
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '54'
-ht-degree: 11%
+source-wordcount: '100'
+ht-degree: 4%
 
 ---
 
@@ -13,14 +13,20 @@ ht-degree: 11%
 # Guide d’[!DNL LLM Apps] {#using}
 
 + [Vue d’ensemble](/help/overview/overview.md)
-+ Guides pratiques {#guides}
-   + [Création d’une application](/help/guides/create-app.md)
-   + [Création d’une action](/help/guides/create-action.md)
-   + [Configuration du widget (EDS)](/help/guides/widgets.md)
-   + [Écrire le gestionnaire d’actions](/help/guides/write-action-handler.md)
-   + [Déploiement De L’Application](/help/guides/deploy-your-app.md)
-   + [Tester dans ChatGPT](/help/guides/test-in-chatgpt.md)
++ Créer et lancer votre première application {#build-first-app}
+  + [Création Automatique De Votre Première Application](/help/guides/create-app.md)
++ Personnaliser l’application générée {#customize-generated-app}
+  + [Personnaliser un gestionnaire généré](/help/guides/customize-handler.md)
+  + [Personnaliser un widget généré](/help/guides/widgets.md)
++ Ajouter une nouvelle action {#add-new-action}
+  + [Création d’une action à partir de zéro](/help/guides/create-action.md)
++ Connecter un projet EDS existant {#connect-existing-eds}
+  + [Apportez votre propre projet EDS](/help/guides/bring-your-own-eds.md)
++ Déployer et tester {#deploy-and-test}
+  + [Déploiement De L’Application](/help/guides/deploy-your-app.md)
+  + [Testez votre application LLM en tant que plug-in ChatGPT](/help/guides/test-in-chatgpt.md)
+  + [Testez votre application LLM en tant que connecteur Claude](/help/guides/test-in-claude.md)
 + Référence {#reference}
-   + [Développement](/help/reference/development.md)
-   + [Référence](/help/reference/reference-docs.md)
-   + [Résolution des problèmes](/help/reference/troubleshooting.md)
+  + [Développement et test des gestionnaires locaux](/help/reference/development.md)
+  + [Champs d’action et de widget](/help/reference/reference-docs.md)
+  + [Résolution des problèmes](/help/reference/troubleshooting.md)

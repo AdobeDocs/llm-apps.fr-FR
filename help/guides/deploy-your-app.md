@@ -1,15 +1,15 @@
 ---
-title: Déploiement De L’Application
+title: Déploiement de l’application
 description: Découvrez comment déployer votre application LLM Adobe vers les environnements d’évaluation et de production à l’aide de l’interface utilisateur des applications LLM.
-source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '359'
+source-wordcount: '322'
 ht-degree: 0%
 
 ---
 
 
-# Déploiement De L’Application
+# Déploiement De L’Application {#deploy-your-app}
 
 >[!IMPORTANT]
 >
@@ -19,26 +19,24 @@ ht-degree: 0%
 
 Une fois que vous avez écrit votre code de gestionnaire et que vous l’avez envoyé à votre référentiel lié, vous pouvez déployer l’application à partir de l’interface utilisateur de [!DNL LLM Apps].
 
+Il s’agit d’une étape partagée pour chaque parcours. Après le déploiement, continuez à [tester le plug-in ChatGPT](/help/guides/test-in-chatgpt.md) ou [tester le connecteur Claude](/help/guides/test-in-claude.md).
+
 ## Démarrer le déploiement
 
-Accédez à la page Détails de l’application. Cliquez sur le bouton **[!UICONTROL Déployer]** dans le coin supérieur droit :
+Ouvrez la page Détails de l’application et sélectionnez **[!UICONTROL Déployer]**.
 
-![Détails de l’application : prêt à être déployé](/help/assets/guide-deploy/app-detail-deploy-ready.png)
+Sélectionnez l’environnement cible, puis sélectionnez **[!UICONTROL Déployer]**.
 
-La boîte de dialogue de déploiement s’ouvre. Sélectionnez l’environnement cible dans la liste déroulante :
+![Déployer — sélectionner l&#39;environnement cible](/help/assets/guide-onboarding-agent/deploy-stage.png)
 
-![Boîte de dialogue Déployer — Sélectionner l’environnement cible](/help/assets/guide-deploy/deploy-pipeline-dropdown.png)
+Le déploiement s’exécute en quatre étapes :
 
-Cliquez sur **[!UICONTROL Déployer]** pour démarrer le pipeline. Les quatre étapes sont les suivantes :
+1. **Préparation** — récupère la configuration requise pour déployer l&#39;application.
+2. **Démarrer le déploiement** — lance le processus de déploiement en arrière-plan.
+3. **Générer une application** — installe les dépendances et génère le code de référentiel le plus récent.
+4. **Publier** — publie l&#39;application sur [!DNL Adobe I/O Runtime].
 
-1. **Collecter les informations d’identification** — lit les métadonnées de l’application, génère un jeton [!DNL GitHub] et récupère les informations d’identification d’exécution à partir de l’API de console.
-2. **Déclencher le pipeline de création** — envoie tous les paramètres au pipeline de création.
-3. **Cloner et créer** : le pipeline clone votre référentiel, génère des `actions.json` à partir des métadonnées de l’interface utilisateur, exécute `npm install` et webpack pour produire des `dist/index.js`.
-4. **Déployer au moment de l’exécution** — déploie le bundle dans l’espace de noms [!DNL Adobe I/O Runtime] de votre application.
-
-Une fois démarré, le pipeline s’exécute automatiquement et affiche la progression en temps réel :
-
-![Exécution du pipeline de déploiement](/help/assets/guide-deploy/deploy-pipeline-deploying.png)
+![Déployer — Pipeline de déploiement en cours d’exécution](/help/assets/guide-onboarding-agent/deploy-running.png)
 
 >[!NOTE]
 >
@@ -46,20 +44,25 @@ Une fois démarré, le pipeline s’exécute automatiquement et affiche la progr
 
 ## Après un déploiement réussi
 
-Une fois toutes les étapes terminées, la boîte de dialogue affiche une confirmation **Déploiement réussi** avec l’URL déployée et les détails de l’artefact :
+Une fois toutes les étapes terminées, la boîte de dialogue affiche **Déploiement réussi**.
 
-![Déploiement réussi](/help/assets/guide-deploy/app-detail-deploy-finish.png)
+![Déploiement — déploiement réussi](/help/assets/guide-onboarding-agent/deploy-successful.png)
 
 Cliquez sur **Fermer** pour fermer la boîte de dialogue. Faites défiler l’écran jusqu’à la section **[!UICONTROL Tester l’application]** de la page Détails de l’application :
 
-![Tester l’application — URL déployées](/help/assets/guide-deploy/test-app-deployed.png)
+![Détails de l&#39;application — Copiez l&#39;URL du serveur MCP](/help/assets/guide-onboarding-agent/app-mcp-url.png)
 
-Chaque environnement (**Évaluation** et **Production**) affiche l’URL du serveur MCP sur [!DNL Adobe I/O Runtime]. Il s’agit de l’URL que vous fournissez à la plateforme LLM lors de l’enregistrement de votre application. Cliquez sur **Copier l’URL** pour la copier dans le presse-papiers.
+Chaque environnement déployé affiche une URL de serveur MCP. Sélectionnez **[!UICONTROL Copier l’URL]** et utilisez-la pour créer un module externe dans la plateforme LLM cible.
 
-La section **Historique de déploiement** ci-dessous conserve un journal complet de chaque déploiement dans les environnements :
+La section **Historique de déploiement** affiche les 10 derniers déploiements :
 
 ![Historique de déploiement](/help/assets/guide-deploy/deployment-history.png)
 
 Chaque ligne affiche la date cible **Environnement** (d’évaluation ou de production), **Statut** (de réussite ou d’échec) et la date **Déployé à**. Vous pouvez utiliser ce tableau pour suivre le moment où les déploiements se sont produits et vérifier que les
 dernier déploiement réussi.
+
+## Étape suivante
+
+- [Testez l’application déployée en tant que plug-in ChatGPT](/help/guides/test-in-chatgpt.md).
+- [Testez l’application déployée en tant que connecteur Claude](/help/guides/test-in-claude.md).
 

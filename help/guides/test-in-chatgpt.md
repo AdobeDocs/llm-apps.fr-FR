@@ -1,15 +1,15 @@
 ---
-title: Tester dans ChatGPT
-description: Découvrez comment ajouter votre application Adobe LLM déployée à ChatGPT et la tester dans une conversation réelle.
-source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
+title: Tester votre application LLM en tant que plug-in ChatGPT
+description: Créez un plug-in ChatGPT à partir de l’URL de votre serveur MCP Applications LLM Adobe et testez-le dans une conversation.
+source-git-commit: b7199fbb387d91a5c77deac47a2bc883381931c1
 workflow-type: tm+mt
-source-wordcount: '804'
-ht-degree: 2%
+source-wordcount: '335'
+ht-degree: 1%
 
 ---
 
 
-# Test en [!DNL ChatGPT]
+# Tester votre application LLM en tant que plug-in [!DNL ChatGPT] {#test-in-chatgpt}
 
 >[!IMPORTANT]
 >
@@ -17,143 +17,68 @@ ht-degree: 2%
 >
 >Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
 
->[!NOTE]
->
->Ce guide utilise [!DNL ChatGPT] comme exemple. Les étapes générales (enregistrement d’une URL de serveur MCP et test dans une conversation) s’appliquent également à d’autres plateformes LLM, bien que le flux de configuration et l’interface utilisateur varient.
+Après le déploiement, votre application LLM expose une URL de serveur MCP. Ajoutez cette URL à [!DNL ChatGPT] en tant que plug-in, puis testez les actions et widgets générés.
 
-Après un déploiement réussi avec [!DNL Adobe LLM Apps], votre application s’exécute sur [!DNL Adobe I/O Runtime] et expose une URL de serveur MCP. Ce guide vous explique comment l’ajouter à [!DNL ChatGPT] et la tester dans une conversation réelle.
+Il s’agit de l’étape de vérification finale après la création, la personnalisation ou l’extension d’une application.
 
 ## Planifier les exigences
 
-L’ajout d’applications de développement personnalisées à [!DNL ChatGPT] est régi par les niveaux d’abonnement d’OpenAI. Il ne s’agit pas d’une limitation de [!DNL LLM Apps], mais plutôt de la manière dont OpenAI gère actuellement l’accès aux applications MCP personnalisées.
-
-| Plan [!DNL ChatGPT] | Applications MCP personnalisées |
-|--------------|-----------------|
-| Libre | Non disponible |
-| Aller | Non disponible |
-| Plus | Non disponible |
-| Pro | Disponible |
-| Entreprise | Disponible |
-| Entreprise / Edu | Disponible |
-
->[!NOTE]
->
->Si vous bénéficiez d’un plan Free, Go ou Plus, vous **ne pourrez pas ajouter votre application déployée** à [!DNL ChatGPT]. Effectuez la mise à niveau vers **Pro** ou demandez à l’administrateur de votre organisation de l’activer dans un espace de travail **Entreprise** ou **Entreprise**.
+Le mode Développeur est disponible sur le web pour les comptes Pro, Plus, Business, Enterprise et Education. Les administrateurs et administratrices de Workspace peuvent restreindre l’accès.
 
 ## Activer le mode Développeur
 
-Pour ajouter une application MCP personnalisée, le **mode développeur** doit être activé dans votre compte [!DNL ChatGPT]. S’abonner
-pour vérifier et activer, procédez comme suit.
+En [!DNL ChatGPT] :
 
-### Ouvrir les paramètres
+1. Ouvrez **[!UICONTROL Paramètres] → [!UICONTROL Sécurité et connexion]**.
+2. Activez le **[!UICONTROL mode Développeur]**.
 
-Cliquez sur l’avatar de votre profil dans le coin inférieur gauche, puis sur **[!UICONTROL Paramètres]**.
+Le bouton Plus de la page Modules externes crée des modules externes pris en charge par MCP uniquement après l’activation du mode Développeur. Voir [Mode Développeur GPT de conversation](https://developers.openai.com/api/docs/guides/developer-mode).
 
-![ChatGPT — Menu Paramètres](/help/assets/guide-test-chatgpt/chatgpt-settings-menu.png)
+## Copier l’URL du serveur MCP
 
-### Accéder aux applications
+En [!DNL LLM Apps] :
 
-Dans la boîte de dialogue Paramètres, sélectionnez **[!UICONTROL Applications]** dans la barre latérale gauche. Cliquez sur **[!UICONTROL Paramètres avancés]** dans la partie inférieure.
+1. Ouvrez la page Détails de l’application .
+2. Recherchez **[!UICONTROL Tester l’application]**.
+3. Sous **[!UICONTROL Environnement d’évaluation]**, sélectionnez **[!UICONTROL Copier l’URL]**.
 
-![ChatGPT — Paramètres des applications](/help/assets/guide-test-chatgpt/chatgpt-apps-settings.png)
+## Création du plug-in
 
-### Activer le mode Développeur
+1. Ouvrez [&#128279;](https://chatgpt.com/plugins).
+2. Dans l’onglet **[!UICONTROL Plugins]**, sélectionnez **+** en regard du champ de recherche.
 
-Assurez-vous que le bouton (bascule) **[!UICONTROL Mode Développeur]** est activé (bleu). Vous pouvez ainsi enregistrer des URL de serveur MCP personnalisées et non vérifiées.
+   ![Page ChatGPT — Modules externes](/help/assets/guide-onboarding-agent/chatgpt-plugins-page.png)
 
->[!NOTE]
->
->Le mode Développeur est étiqueté *Risque élevé* car il autorise les applications qui n’ont pas été examinées par OpenAI. [!DNL ChatGPT] désactive automatiquement la mémoire pour les conversations qui utilisent les applications en mode développeur.
+3. Dans **[!UICONTROL Nouveau plug-in]**, saisissez :
+   - **[!UICONTROL Nom]** — nom du module externe.
+   - **[!UICONTROL Description]** — facultatif.
+   - **[!UICONTROL Connexion]** — sélectionnez **[!UICONTROL URL du serveur]** et collez l&#39;URL du serveur MCP.
+   - **[!UICONTROL Authentification]** — sélectionnez **[!UICONTROL Aucune authentification]**.
+4. Sélectionnez **[!UICONTROL Je comprends et je souhaite continuer]**.
+5. Sélectionnez **[!UICONTROL Créer]**.
 
-![ChatGPT — Mode Développeur activé](/help/assets/guide-test-chatgpt/chatgpt-developer-mode.png)
+   ![ChatGPT — Créez un plug-in avec l&#39;URL du serveur MCP](/help/assets/guide-onboarding-agent/chatgpt-new-plugin.png)
 
-## Ajouter votre application à [!DNL ChatGPT]
+6. Dans la boîte de dialogue de confirmation, sélectionnez **[!UICONTROL Connexion]**.
 
-### Copier l’URL du serveur MCP
+   ![ChatGPT — Connectez le nouveau plug-in](/help/assets/guide-onboarding-agent/chatgpt-plugin-connect.png)
 
-Accédez à la page **Détails de l’application** dans [!DNL LLM Apps] et recherchez la section **[!UICONTROL Tester l’application]**. Copiez l’URL **Évaluation** ou **Production** : elle ressemble à ceci :
+## Tester le plug-in
 
-```
-https://<namespace>.adobeioruntime.net/api/v1/web/llm-apps/mcp
-```
+1. Commencez une nouvelle conversation.
+2. Dans le menu Plus , choisissez **[!UICONTROL mode Développeur]** et sélectionnez le module externe.
+3. Posez une question correspondant à l’une des actions générées. Par exemple : *Montrez-moi du café.*
 
-### Ouvrir la page Applications
+![ChatGPT — réponse du plug-in de l&#39;application LLM générée](/help/assets/guide-onboarding-agent/chatgpt-generated-app.png)
 
-Dans [!DNL ChatGPT], accédez à **[!UICONTROL Paramètres] → [!UICONTROL Applications]**.
+Vérifiez que :
 
-![Page ChatGPT — Applications](/help/assets/guide-test-chatgpt/chatgpt-apps-page.png)
-
-### Création d’une application
-
-Cliquez sur **[!UICONTROL Créer une application]** dans la ligne Paramètres avancés.
-
-![ChatGPT — Boîte de dialogue Créer une application](/help/assets/guide-test-chatgpt/chatgpt-create-app.png)
-
-Renseignez les champs suivants :
-
-| Champ | Valeur |
-|-------|-------|
-| **Icône** | Facultatif — Chargez un fichier PNG de 128 x 128 Ko (max. 10 Ko) |
-| **Nom** | Un nom d’affichage pour votre application (par exemple, *My Brand App*) |
-| **Description** | Brève description de la fonction de l’application |
-| **URL du serveur MCP** | Collez l’URL depuis [!DNL LLM Apps] |
-| **[!UICONTROL Authentication]** | Sélectionnez *Aucune authentification* |
-
-Cochez la case **Je comprends et souhaite continuer** — cela signifie que le serveur MCP
-n&#39;a pas été examiné par OpenAI — et cliquez sur **Créer**.
-
-### Vérifiez que l’application est activée.
-
-Une fois créée, votre application s’affiche sous **[!UICONTROL Applications activées]** avec un badge **[!UICONTROL DEV]**, confirmant qu’elle est active.
-
->[!NOTE]
->
->Votre application apparaît également sous **Brouillons** — il s’agit d’applications privées que vous avez créées en mode développeur et qui ne sont visibles que par votre compte.
-
-Votre application est maintenant prête à être utilisée dans les conversations [!DNL ChatGPT].
-
-![ChatGPT — application activée](/help/assets/guide-test-chatgpt/chatgpt-app-enabled.png)
-
-## Tester dans une conversation
-
-Une fois l’application activée, démarrez une nouvelle conversation dans [!DNL ChatGPT]. Avant de poser une question, joignez votre application à l’aide de l’une des deux méthodes suivantes.
-
-### Option 1 — Sélectionner dans le menu
-
-Cliquez sur le bouton **+** dans l’entrée de conversation, puis **Plus** pour développer la liste complète des outils disponibles. Sélectionnez votre application dans la liste pour la joindre à la conversation en cours.
-
-![ChatGPT — sélectionnez l&#39;application dans le menu](/help/assets/guide-test-chatgpt/chatgpt-select-app.png)
-
-### Option 2 — Utiliser @mention
-
-Saisissez **@** dans l’entrée de conversation et sélectionnez votre application dans la liste déroulante. L’application est jointe en ligne et vous pouvez continuer à saisir votre question dans le même message.
-
->[!NOTE]
->
->Si vous utilisez **&#x200B;**&#x200B;une seconde fois sur la même application, vous la désélectionnez et la supprimez de la conversation.
-
-![ChatGPT — @mention l&#39;application](/help/assets/guide-test-chatgpt/chatgpt-mention-app.png)
-
-Une fois sélectionnée, l’application est jointe en ligne et vous pouvez saisir votre question dans le même message :
-
-![ChatGPT — application jointe via @mention](/help/assets/guide-test-chatgpt/chatgpt-mention.png)
-
-### Consulter le résultat
-
-Une fois l’application jointe, saisissez une question alignée sur l’une de vos actions configurées, par exemple *« Afficher vos produits »*. [!DNL ChatGPT] la fait correspondre à l’action appropriée, extrait les paramètres d’entrée, appelle votre gestionnaire sur [!DNL Adobe I/O Runtime] et effectue le rendu du résultat :
-
-![ChatGPT — résultat de l&#39;action](/help/assets/guide-test-chatgpt/chatgpt-response.png)
-
-La réponse inclut :
-
-- **Le widget EDS** — un composant d’IU riche avec des images, des évaluations et des boutons d’action.
-- **La réponse texte** — sous le widget, [!DNL ChatGPT] utilise le `content` renvoyé par votre gestionnaire
-pour formuler un résumé en langage naturel des résultats.
-- **Indicateur de statut** — Le texte *Statut appelé* que vous avez configuré dans la boîte de dialogue Créer une action.
+- [!DNL ChatGPT] appelle l’action attendue.
+- Le widget affiche les exemples de données attendus.
+- La réponse textuelle correspond au widget.
+- Les contrôles de widget fonctionnent comme prévu.
 
 ## Prochaines étapes
 
-- **Ajouter d’autres actions** — Définissez des actions supplémentaires dans l’interface utilisateur, écrivez leurs gestionnaires et redéployez.
-- **Déployer en production** — si vous avez effectué un test dans l’environnement intermédiaire, déployez en production pour l’expérience en direct.
-- **Partager avec votre équipe** — Utilisez **Copier l’URL** sur la page Détails de l’application pour partager l’URL du serveur MCP avec vos coéquipiers.
-
+- [Personnaliser les widgets générés](/help/guides/widgets.md).
+- [Créer une action à partir de zéro](/help/guides/create-action.md).

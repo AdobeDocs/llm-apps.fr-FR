@@ -45,7 +45,7 @@ Si la production entre en conflit avec la source ou les plans, indiquez la produ
 - Distinguer le modèle automatique généré de l’intégration prête pour la production.
 - Évitez les noms de programmes de travail internes, les champs de base de données, les tickets d’implémentation et les détails de pipelines instables.
 - Ne dupliquez pas les tableaux de champs dans les guides ; liez-les à des références.
-- Préservez le matériel et les directives d’Experience League : `[!DNL]`, ``, `[!IMPORTANT]`, `[!NOTE]` et `[!TIP]`.
+- Préservez le matériel et les directives d’Experience League : `[!DNL]`, &grave;&grave;, `[!IMPORTANT]`, `[!NOTE]` et `[!TIP]`.
 - Utilisez des liens internes relatifs à la racine : `/help/...`.
 - Utilisez la casse de phrase pour les titres et les en-têtes sauf si une étiquette de produit en exige autrement.
 - Utilisez un texte secondaire d’image descriptive qui explique l’écran et le statut.

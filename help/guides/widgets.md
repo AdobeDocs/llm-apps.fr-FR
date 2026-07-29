@@ -70,7 +70,7 @@ Vous n’importez pas le SDK dans le bloc . Le `bridge` connecté est fourni aut
 - Appelez une autre action avec `bridge.callTool()`.
 - Conserver sa taille synchronisée avec les `bridge.autoResize()`.
 
-Ce guide couvre les méthodes de pont courantes. Voir le package [`@adobe/llmapps-sdk` pour ](https://www.npmjs.com/package/@adobe/llmapps-sdk)’API complète.
+Ce guide couvre les méthodes de pont courantes. Voir le package [`@adobe/llmapps-sdk` pour &#x200B;](https://www.npmjs.com/package/@adobe/llmapps-sdk)’API complète.
 
 ## Comprendre le contrat de données
 

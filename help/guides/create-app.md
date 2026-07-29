@@ -27,7 +27,7 @@ Compter environ 15 minutes pour la génération. À la fin de ce tutoriel, vous 
 
 Renseignez toutes les [exigences relatives aux applications LLM](/help/overview/overview.md#requirements) avant de commencer ce tutoriel.
 
-Ce tutoriel crée une application LLM pour [ Frescopa Coffee ](https://frescopa.coffee/).
+Ce tutoriel crée une application LLM pour [&#x200B; Frescopa Coffee &#x200B;](https://frescopa.coffee/).
 
 ## Créer deux référentiels vides
 
@@ -36,7 +36,7 @@ L’agent d’intégration a besoin de deux référentiels vides. Créez les deu
 - **Référentiel de gestionnaires** — stocke les gestionnaires d&#39;actions et les tests. Par exemple, `my-brand-llm-app`.
 - **Référentiel EDS** — stocke les blocs de widgets et les styles générés. Par exemple, `my-brand-llm-app-eds`.
 
-Accédez à [](https://github.com/new) pour chaque référentiel.
+Accédez à [&#128279;](https://github.com/new) pour chaque référentiel.
 
 N’initialisez aucun référentiel avec une licence README, `.gitignore` ou . L’agent d’intégration prépare la structure de projet requise.
 

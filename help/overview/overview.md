@@ -103,7 +103,7 @@ Remplissez toutes les conditions requises suivantes avant de créer une applicat
 
 Votre organisation Adobe IMS doit avoir accès à [[!DNL App Builder]](https://developer.adobe.com/app-builder/docs/intro_and_overview/). Vous avez besoin du rôle **Développeur** ou **Administrateur système**.
 
-Pour vérifier votre accès, ouvrez [](https://developer.adobe.com/console). L’écran de démarrage rapide confirme que vous disposez de l’accès requis.
+Pour vérifier votre accès, ouvrez [&#128279;](https://developer.adobe.com/console). L’écran de démarrage rapide confirme que vous disposez de l’accès requis.
 
 ![Adobe Developer Console — Écran de démarrage rapide confirmant l’accès développeur](/help/assets/overview/dev-console-access-granted.png)
 
@@ -119,7 +119,7 @@ Vous avez besoin d’un compte [!DNL GitHub] qui peut :
 - Installez ou demandez l’installation de l’application Adobe LLM Apps [!DNL GitHub].
 - Installez ou demandez l’installation de la synchronisation du code AEM pour le référentiel EDS.
 
-Pour vérifier l’accès à la création du référentiel, ouvrez [](https://github.com/new) et vérifiez que le compte ou l’organisation prévu s’affiche sous **Propriétaire**.
+Pour vérifier l’accès à la création du référentiel, ouvrez [&#128279;](https://github.com/new) et vérifiez que le compte ou l’organisation prévu s’affiche sous **Propriétaire**.
 
 ![GitHub — Sélectionnez un propriétaire de référentiel](/help/assets/overview/github-repo-owner-dropdown.png)
 
@@ -139,7 +139,7 @@ N’utilisez pas un site web qui expose des informations confidentielles ou dont
 
 ### [!DNL ChatGPT] pour les tests
 
-Pour suivre le tutoriel de prise en main, utilisez un plan de [!DNL ChatGPT] pris en charge et activez le mode Développeur. Les administrateurs et administratrices de Workspace peuvent restreindre l’accès. Voir [ Test dans ChatGPT](/help/guides/test-in-chatgpt.md#plan-requirements).
+Pour suivre le tutoriel de prise en main, utilisez un plan de [!DNL ChatGPT] pris en charge et activez le mode Développeur. Les administrateurs et administratrices de Workspace peuvent restreindre l’accès. Voir [&#x200B; Test dans ChatGPT](/help/guides/test-in-chatgpt.md#plan-requirements).
 
 ## Choisissez votre parcours {#choose-your-journey}
 

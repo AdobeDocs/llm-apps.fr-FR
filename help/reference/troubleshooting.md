@@ -1,10 +1,10 @@
 ---
-title: Dépannage pour les applications Adobe LLM
-description: Solutions aux problèmes courants de création, de déploiement et de test des applications Adobe LLM.
-source-git-commit: 1a99e2e80e50a3bcf9ce6fb910365202bf06e113
+title: Dépannage des applications Adobe LLM
+description: Résolvez les problèmes courants liés au référentiel, à l’intégration, au gestionnaire, au widget, au déploiement et au plug-in ChatGPT.
+source-git-commit: eec74b87457bc852d7a8dd0e46c2a4385a93ae0a
 workflow-type: tm+mt
-source-wordcount: '451'
-ht-degree: 0%
+source-wordcount: '632'
+ht-degree: 1%
 
 ---
 
@@ -17,47 +17,55 @@ ht-degree: 0%
 >
 >Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
 
-Cette section fournit des informations de dépannage lors de l’utilisation de [!DNL Adobe LLM Apps].
+Commencez par les symptômes que vous pouvez voir. Ne partagez pas les informations d’identification, les jetons, les URL MCP privées ou les résultats de gestionnaires sensibles lors de la résolution des problèmes.
 
-## Problèmes courants
+## Création et intégration d’applications
 
-| Symptôme | Cause possible | Quoi essayer |
-|---------|----------------|-------------|
-| L’application n’apparaît pas sur la plateforme LLM. | Votre abonnement à la plateforme LLM ne prend pas en charge les applications MCP personnalisées ou le mode Développeur n&#39;est pas activé | Vérifiez que votre plan prend en charge les applications MCP personnalisées. Activez le mode Développeur dans **Paramètres → Applications → Paramètres avancés** |
-| Erreur « Échec de connexion » dans la plateforme LLM | L’URL du serveur MCP est incorrecte ou le déploiement a échoué. | Vérifiez deux fois l’URL dans la page Détails de l’application. Rechercher les échecs dans l’historique de déploiement |
-| Action non appelée | La plateforme LLM n&#39;a pas pu faire correspondre la question de l&#39;utilisateur à votre action | Utilisez `@YourApp` pour l’appeler explicitement. Améliorez la description de l’action pour aider le modèle à correspondre à l’intention |
-| Le widget n’est pas rendu | Les URL de widget EDS ou les domaines CSP sont mal configurés. | Vérifiez l’URL du script et l’URL incorporée du widget dans la boîte de dialogue Créer une action . Vérifiez que la ressource CSP et les domaines de connexion incluent votre origine EDS. |
-| Réponse vide ou d’erreur | Le gestionnaire présente un bogue ou est manquant | Testez localement avec `npm start` en premier. Voir [&#x200B; Développement local &#x200B;](/help/reference/development.md#local-development) |
-| Le widget se charge mais n’affiche aucune donnée. | La forme `structuredContent` ne correspond pas à ce que le bloc attend | Enregistrez `bridge.toolResult` dans la fonction `decorate` de votre bloc et comparez-la à la sortie du gestionnaire |
-| Échec du déploiement à « Cloner et créer » | `npm install` ou erreur de build webpack dans votre référentiel | Exécutez `npm install && npm run build` localement pour reproduire l’erreur |
-| Échec du déploiement à « Collecter les informations d’identification » | Référentiel non lié ou projet Developer Console mal configuré | Vérifiez que le référentiel est lié sur la page Paramètres des détails de l’application . |
-| Erreur CORS lors du chargement du widget | En-têtes de `access-control-allow-origin` manquants sur le site EDS | Configuration des en-têtes CORS via `admin.hlx.page` |
-| L’éditeur d’en-têtes HTTP renvoie `404 Error updating config: config not found` lors de l’enregistrement des en-têtes CORS | Il manque une section `headers` à la configuration du site | Consultez [&#x200B; Initialisation des en-têtes de configuration de site EDS &#x200B;](#initialize-the-eds-site-config-headers-section) ci-dessous |
-| Le widget est rendu dans l’aperçu, mais pas dans la plateforme LLM. | Le bloc retourne aux données d’exemple en mode aperçu, mais échoue avec les données actives | Testez avec des `structuredContent` réelles en utilisant l&#39;Inspecteur MCP ou curl |
+| Symptôme | Quoi essayer |
+|---------|-------------|
+| Les nouveaux référentiels n’apparaissent pas | Sélectionnez **Gérer les référentiels sur GitHub**, accordez à l’application GitHub des applications LLM Adobe l’accès aux deux référentiels, revenez à la boîte de dialogue et actualisez les listes |
+| Le référentiel EDS nécessite la synchronisation du code AEM. | Installez la synchronisation du code AEM pour le référentiel EDS, puis revenez à la boîte de dialogue Créer une application LLM . |
+| La validation EDS indique que vous n’êtes pas un administrateur | Sélectionnez **Ouvrir l’administration AEM Live**, ajoutez-vous en tant qu’administrateur du site EDS, puis actualisez le référentiel |
+| L’intégration est toujours en cours | Compter environ 15 minutes. Vous pouvez quitter la page et revenir ultérieurement |
+| Échec des rapports d’intégration | Vérifiez que les deux référentiels sont accessibles et que le site web est public via HTTPS, puis contactez l’équipe Beta avec le message d’erreur visible |
 
-## Initialisez la section En-têtes de configuration de site EDS .
+## Actions et gestionnaires
 
-Si l’éditeur d’en-têtes HTTP renvoie `404 Error updating config: config not found`, il manque une section `headers` à la configuration du site. Corrigez-le manuellement :
+| Symptôme | Quoi essayer |
+|---------|-------------|
+| Action non appelée | Joignez le plug-in ChatGPT, vérifiez **Exposer au modèle d’IA** est activé, améliorez la description de l’action et redéployez les modifications apportées aux métadonnées. |
+| Réponse vide ou d’erreur | Exécutez `npm test`, puis appelez le gestionnaire avec MCP Inspector ou `curl`. Voir [Développement et test des gestionnaires locaux](/help/reference/development.md) |
+| Le gestionnaire fonctionne localement, mais pas après le déploiement | Vérifiez que la dernière validation a été transmise, que la configuration d’exécution est présente et que l’identifiant du code d’action correspond à `actions/<code-identifier>/index.js` |
+| L’action générée ne peut pas être marquée comme révisée. | La génération du gestionnaire et du widget de confirmation a réussi. Vérifiez les demandes d’extraction générées à la recherche de conflits de fusion, rechargez l’action et sélectionnez à nouveau **Marquer comme révisé** |
 
-1. Accédez à [tools.aem.live/tools/headers-edit/index.html](https://tools.aem.live/tools/headers-edit/index.html), saisissez votre organisation et votre site, puis cliquez sur **[!UICONTROL Récupérer]**.
-2. Ouvrez le navigateur DevTools (onglet Network) et copiez la valeur de l’en-tête `x-auth-token` à partir de la requête Fetch.
-3. Récupérez la configuration actuelle du site :
+## Widgets
 
-   ```bash
-   curl -H "x-auth-token: $TOKEN" \
-     https://admin.hlx.page/config/<your-github-org>/sites/<your-eds-repo>.json > config.json
-   ```
+| Symptôme | Quoi essayer |
+|---------|-------------|
+| Le widget n’est pas rendu | Vérifiez l’URL du script, l’URL du widget, le HTTPS, la publication EDS, les domaines CSP et les en-têtes CORS |
+| Le widget s’affiche mais n’affiche aucune donnée. | Appelez le gestionnaire avec MCP Inspector et comparez sa forme `structuredContent` avec les champs lus depuis `bridge.toolResult` |
+| Le widget fonctionne en prévisualisation directe, mais pas dans le ChatGPT | L’aperçu direct peut utiliser des données d’exemple. Testez le résultat du gestionnaire déployé et vérifiez que l’origine EDS est autorisée par CORS et CSP. |
+| Requête du navigateur bloquée | Ajoutez uniquement l’origine requise au champ CSP correct et redéployez |
+| L’éditeur d’en-têtes HTTP ne peut pas enregistrer la configuration | Utilisez le [service de configuration ](https://aem.live/docs/config-service-setup) ou demandez à l’administrateur EDS d’initialiser la configuration des en-têtes de site |
 
-4. Ouvrez `config.json` et ajoutez des `"headers": {}` à l’objet JSON.
-5. PUBLIEZ la configuration mise à jour :
+Ne consignez pas les valeurs de `bridge.toolResult` complètes lorsqu’elles peuvent contenir des données personnelles ou sensibles.
 
-   ```bash
-   curl -X POST \
-     -H "x-auth-token: $TOKEN" \
-     -H "Content-Type: application/json" \
-     -d @config.json \
-     "https://admin.hlx.page/config/<your-github-org>/sites/<your-eds-repo>.json"
-   ```
+## Déploiement
 
-6. Rechargez l’éditeur d’en-têtes et enregistrez l’en-tête `Access-Control-Allow-Origin` normalement.
+| Symptôme | Quoi essayer |
+|---------|-------------|
+| Le déploiement échoue lors de la **préparation** | Vérifiez que le référentiel du gestionnaire est lié et que votre accès Adobe Developer Console est toujours valide. |
+| Le déploiement échoue pendant **création de l’application** | Exécutez `npm install`, `npm test` et `npm run build` localement. Correction des échecs de dépendance, de syntaxe ou de test et transmission des modifications |
+| Le déploiement a réussi mais les modifications sont manquantes. | Vérifiez que la validation attendue a été envoyée et redéployée dans le même environnement. |
+| L’action reste **non déployée** | Effectuez un nouveau déploiement après avoir examiné l’action ou modifié ses métadonnées |
 
+## Plug-ins ChatGPT
+
+| Symptôme | Quoi essayer |
+|---------|-------------|
+| Le plug-in n’apparaît pas | Activez le mode Développeur, ouvrez [](https://chatgpt.com/plugins) vérifiez que le plug-in existe et sélectionnez **Connect** |
+| Échec de la création du plug-in | Vérifiez que le mode Développeur est activé, copiez à nouveau l’URL du serveur MCP depuis **Tester l’application**, puis utilisez **URL du serveur** avec **Aucune authentification**. |
+| Le plug-in se connecte, mais ne peut pas appeler d’actions. | Vérifiez que le plug-in est associé au chat, que les actions sont exposées au modèle et que la dernière version est déployée |
+| Le plug-in utilise un environnement incorrect. | Modifiez ou recréez le module externe avec l’URL du serveur MCP d’évaluation ou de production prévue |
+
+Si le problème persiste, enregistrez le nom de l’application, l’environnement, l’étape d’échec, l’heure et le message d’erreur visible avant de contacter l’équipe Beta. N’incluez pas de secrets ou de données client sensibles.

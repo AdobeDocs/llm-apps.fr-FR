@@ -1,9 +1,9 @@
 ---
 title: Personnaliser un gestionnaire d’actions généré
 description: Comprenez le contrat du gestionnaire d’applications Adobe LLM, remplacez les données d’exemple générées et assurez-vous que la sortie du gestionnaire est alignée sur son widget.
-source-git-commit: eec74b87457bc852d7a8dd0e46c2a4385a93ae0a
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '542'
+source-wordcount: '541'
 ht-degree: 0%
 
 ---
@@ -17,7 +17,7 @@ ht-degree: 0%
 >
 >Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
 
-L’agent d’intégration crée un gestionnaire fonctionnel pour chaque action générée. Le gestionnaire renvoie initialement des données d’exemple afin que vous puissiez tester l’expérience complète.
+La plateforme crée un gestionnaire fonctionnel pour chaque action générée. Le gestionnaire renvoie initialement des données d’exemple afin que vous puissiez tester l’expérience complète.
 
 Utilisez ce guide pour comprendre le contrat du gestionnaire et remplacer les exemples de données par vos API ou vos sources de données.
 

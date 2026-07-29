@@ -1,9 +1,9 @@
 ---
 title: Création d’une action à partir de zéro
 description: Définissez des métadonnées d’action, implémentez son gestionnaire, connectez un widget EDS, testez-le et déployez-le avec les applications Adobe LLM.
-source-git-commit: 4c259a4587c0a84bb634a9a56c043dfe1cfc31fb
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '1141'
+source-wordcount: '1137'
 ht-degree: 1%
 
 ---
@@ -21,11 +21,11 @@ ht-degree: 1%
 >
 >Ce guide suppose des connaissances de base d’Adobe Edge Delivery Services (EDS). Si vous êtes nouveau dans EDS, lisez d’abord le tutoriel de développement [EDS](https://www.aem.live/developer/tutorial) et [Exploration des blocs](https://www.aem.live/docs/exploring-blocks) pour en savoir plus sur l’essentiel (les blocs, la fonction `decorate` et la structure du projet EDS) avant de connecter un widget.
 
-Utilisez ce guide pour ajouter une fonctionnalité que l’agent d’intégration n’a pas créée. Vous devez définir l’action dans [!DNL LLM Apps], écrire son gestionnaire dans le référentiel lié, ajouter un widget si nécessaire, le tester et le déployer.
+Utilisez ce guide pour ajouter une fonctionnalité que la plateforme n’a pas créée. Vous devez définir l’action dans [!DNL LLM Apps], écrire son gestionnaire dans le référentiel lié, ajouter un widget si nécessaire, le tester et le déployer.
 
 **Parcours :** planifiez l’action → créer ses métadonnées → écrire le gestionnaire → connecter le widget → tester localement → déployer et tester le plug-in.
 
-Pour votre première application, commencez par [créer votre première application avec l’agent d’intégration](/help/guides/create-app.md).
+Pour votre première application, commencez par [Créer votre première application automatiquement](/help/guides/create-app.md).
 
 ## Avant de commencer
 

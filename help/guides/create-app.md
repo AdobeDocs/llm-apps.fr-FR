@@ -1,15 +1,15 @@
 ---
-title: Créer votre première application LLM avec l’agent d’intégration
-description: Créez une application Adobe LLM à partir de votre site web, passez en revue les actions générées, déployez-la et testez-la dans ChatGPT.
-source-git-commit: b9242903f930aa1770a999a2665e1e80d64d56b6
+title: Créer automatiquement votre première application LLM
+description: Créez une application Adobe LLM à partir de votre site web, passez en revue les actions générées, déployez-la et testez-la sur une plateforme LLM prise en charge, telle que ChatGPT.
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '1219'
+source-wordcount: '1217'
 ht-degree: 0%
 
 ---
 
 
-# Création de votre première application avec l’agent d’intégration {#create-first-app}
+# Création Automatique De Votre Première Application {#create-first-app}
 
 >[!IMPORTANT]
 >
@@ -17,9 +17,9 @@ ht-degree: 0%
 >
 >Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
 
-L’agent d’intégration transforme votre site web en modèle automatique d’application opérationnelle. Il propose des actions, écrit du code de gestionnaire et des tests, crée des widgets EDS et envoie les fichiers générés aux deux référentiels [!DNL GitHub] que vous détenez.
+La plateforme transforme votre site web en modèle automatique d’application opérationnelle. Il propose des actions, écrit du code de gestionnaire et des tests, crée des widgets EDS et envoie les fichiers générés aux deux référentiels [!DNL GitHub] que vous détenez.
 
-Compter environ 15 minutes pour la génération. À la fin de ce tutoriel, vous disposez d’une application déployée que vous pouvez tester dans [!DNL ChatGPT].
+Compter environ 15 minutes pour la génération. À la fin de ce tutoriel, vous disposez d’une application déployée que vous pouvez tester sur une plateforme LLM prise en charge, telle que [!DNL ChatGPT].
 
 **Parcours :** confirmer les exigences → créer deux référentiels → créer l’application → passer en revue les actions générées → déployer dans l’environnement d’évaluation → tester le plug-in → connecter les systèmes de production.
 
@@ -27,18 +27,18 @@ Compter environ 15 minutes pour la génération. À la fin de ce tutoriel, vous 
 
 Renseignez toutes les [exigences relatives aux applications LLM](/help/overview/overview.md#requirements) avant de commencer ce tutoriel.
 
-Ce tutoriel crée une application LLM pour [&#x200B; Frescopa Coffee &#x200B;](https://frescopa.coffee/).
+Ce tutoriel crée une application LLM pour [ Frescopa Coffee ](https://frescopa.coffee/).
 
 ## Créer deux référentiels vides
 
-L’agent d’intégration a besoin de deux référentiels vides. Créez les deux sous le même compte ou la même organisation [!DNL GitHub] :
+La plateforme a besoin de deux référentiels vides. Créez les deux sous le même compte ou la même organisation [!DNL GitHub] :
 
 - **Référentiel de gestionnaires** — stocke les gestionnaires d&#39;actions et les tests. Par exemple, `my-brand-llm-app`.
 - **Référentiel EDS** — stocke les blocs de widgets et les styles générés. Par exemple, `my-brand-llm-app-eds`.
 
-Accédez à [&#128279;](https://github.com/new) pour chaque référentiel.
+Accédez à [](https://github.com/new) pour chaque référentiel.
 
-N’initialisez aucun référentiel avec une licence README, `.gitignore` ou . L’agent d’intégration prépare la structure de projet requise.
+N’initialisez aucun référentiel avec une licence README, `.gitignore` ou . La plateforme prépare la structure de projet requise.
 
 >[!TIP]
 >
@@ -55,7 +55,7 @@ N’initialisez aucun référentiel avec une licence README, `.gitignore` ou . L
    >La région Analytics ne peut pas être modifiée une fois l’application créée.
 
 4. Dans **[!UICONTROL Créer mon application]**, sélectionnez **[!UICONTROL Créer mon application automatiquement]**.
-5. Dans **[!UICONTROL votre site web]**, saisissez l’URL de votre site web, y compris le protocole `https://`. L’agent d’intégration analyse ce site afin de déterminer les actions utiles et les exemples de résultats représentatifs.
+5. Dans **[!UICONTROL votre site web]**, saisissez l’URL de votre site web, y compris le protocole `https://`. La plateforme analyse ce site afin de déterminer des actions utiles et des exemples de résultats représentatifs.
 
 ![Créer une application LLM — détails de l&#39;application et activation de Créer mon application](/help/assets/guide-onboarding-agent/app-details-onboarding.png)
 
@@ -118,13 +118,13 @@ Vous devez être administrateur du site EDS. Si la boîte de dialogue indique qu
 
 3. Revenez à [!DNL LLM Apps], actualisez le référentiel EDS, puis sélectionnez à nouveau **[!UICONTROL Créer une application]**.
 
-Une fois le référentiel et l’administrateur vérifiés, [!DNL LLM Apps] crée l’application et démarre l’agent d’intégration.
+Une fois le référentiel et l’administrateur vérifiés, [!DNL LLM Apps] crée l’application et commence à générer des actions.
 
 ## Attente de la génération des actions
 
 Accédez à la page **[!UICONTROL Actions]** à partir de la gauche. La page Actions affiche **Découverte d’actions pour votre expérience de conversation** pendant que l’agent analyse le site web et génère l’application. La génération prend généralement environ 15 minutes. Vous pouvez quitter cette page et revenir ultérieurement.
 
-![Actions — L’agent d’intégration génère des recommandations](/help/assets/guide-onboarding-agent/actions-generating.png)
+![Actions — génération de recommandations](/help/assets/guide-onboarding-agent/actions-generating.png)
 
 Pendant la génération, [!DNL LLM Apps] :
 
@@ -205,5 +205,5 @@ L’application générée utilise des exemples de données. Avant de l’utilis
 6. **Vérifier dans l’environnement intermédiaire** — redéployez et testez chaque action via le plug-in [!DNL ChatGPT].
 7. **Déployer en production** — Une fois les tests d’évaluation réussis, déployez en production et créez ou mettez à jour le plug-in avec l’URL du serveur MCP de production.
 
-Pour ajouter une fonctionnalité que l’agent d’intégration n’a pas créée, voir [Créer une action à partir de zéro](/help/guides/create-action.md).
+Pour ajouter une fonctionnalité que la plateforme n’a pas créée, voir [Créer une action à partir de zéro](/help/guides/create-action.md).
 

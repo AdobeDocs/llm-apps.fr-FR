@@ -1,7 +1,7 @@
 ---
-source-git-commit: eec74b87457bc852d7a8dd0e46c2a4385a93ae0a
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '695'
+source-wordcount: '696'
 ht-degree: 0%
 
 ---
@@ -76,7 +76,7 @@ L’utilisateur doit capturer les états pertinents du manifeste, notamment :
 1. Créez une application avant la connexion de GitHub.
 2. Sélection de l’accès au référentiel de l’application GitHub.
 3. **Créer automatiquement mon application** activé avec les deux référentiels sélectionnés.
-4. Création d’application ou démarrage de l’agent d’intégration.
+4. Création d’application ou démarrage automatique de la génération d’application.
 5. Actions en cours de génération.
 6. Actions générées prêtes pour la révision.
 7. Métadonnées, gestionnaire et widget d’une action représentative.

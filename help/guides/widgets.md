@@ -1,9 +1,9 @@
 ---
 title: Personnaliser un widget EDS généré
-description: Découvrez et personnalisez le widget Edge Delivery Services créé par l’agent d’intégration des applications Adobe LLM.
-source-git-commit: 4c259a4587c0a84bb634a9a56c043dfe1cfc31fb
+description: Découvrez et personnalisez le widget Edge Delivery Services créé automatiquement par les applications Adobe LLM.
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '650'
+source-wordcount: '646'
 ht-degree: 0%
 
 ---
@@ -21,7 +21,7 @@ ht-degree: 0%
 >
 >Ce guide suppose des connaissances de base d’Adobe Edge Delivery Services (EDS). Si vous êtes nouveau dans EDS, lisez d’abord le tutoriel de développement [EDS](https://www.aem.live/developer/tutorial) et [Exploration des blocs](https://www.aem.live/docs/exploring-blocks) pour en savoir plus sur l’essentiel (les blocs, la fonction `decorate` et la structure du projet EDS) avant de personnaliser un widget.
 
-L’agent d’intégration crée un widget EDS pour chaque action générée. Le widget reçoit déjà le résultat de l’action, effectue le rendu des exemples de données, applique le style de l’hôte et est lié à l’action dans [!DNL LLM Apps].
+La plateforme crée un widget EDS pour chaque action générée. Le widget reçoit déjà le résultat de l’action, effectue le rendu des exemples de données, applique le style de l’hôte et est lié à l’action dans [!DNL LLM Apps].
 
 Commencez par tester le widget généré. Personnalisez ensuite son contrat de données, son interaction et sa conception visuelle.
 
@@ -42,7 +42,7 @@ blocks/
 - Le fichier CSS contrôle la disposition, le comportement réactif et la conception visuelle.
 - La requête de tirage générée affiche les fichiers exacts créés pour l’action.
 
-L’agent d’intégration configure également les URL des widgets et les fichiers SDK pris en charge. Vous n’avez pas besoin de créer un second projet EDS ni de saisir à nouveau ces valeurs pour personnaliser un widget généré.
+La plateforme configure également les URL des widgets et les fichiers SDK pris en charge. Vous n’avez pas besoin de créer un second projet EDS ni de saisir à nouveau ces valeurs pour personnaliser un widget généré.
 
 ## Comment le SDK des applications LLM connecte le widget
 
@@ -70,7 +70,7 @@ Vous n’importez pas le SDK dans le bloc . Le `bridge` connecté est fourni aut
 - Appelez une autre action avec `bridge.callTool()`.
 - Conserver sa taille synchronisée avec les `bridge.autoResize()`.
 
-Ce guide couvre les méthodes de pont courantes. Voir le package [`@adobe/llmapps-sdk` pour &#x200B;](https://www.npmjs.com/package/@adobe/llmapps-sdk)’API complète.
+Ce guide couvre les méthodes de pont courantes. Voir le package [`@adobe/llmapps-sdk` pour ](https://www.npmjs.com/package/@adobe/llmapps-sdk)’API complète.
 
 ## Comprendre le contrat de données
 
@@ -196,4 +196,4 @@ Déployez ensuite l’application pour l’évaluation et le test avec des `stru
 
 ## Autres configurations EDS
 
-Si vous n’avez pas utilisé l’agent d’intégration ou souhaitez intégrer un site EDS existant, reportez-vous à la section [Apporter votre propre projet EDS](/help/guides/bring-your-own-eds.md).
+Si vous n’avez pas créé l’application automatiquement ou si vous souhaitez intégrer un site EDS existant, reportez-vous à la section [ Apporter votre propre projet EDS ](/help/guides/bring-your-own-eds.md).

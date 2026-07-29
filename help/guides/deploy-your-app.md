@@ -1,9 +1,9 @@
 ---
 title: Déploiement de l’application
 description: Découvrez comment déployer votre application LLM Adobe vers les environnements d’évaluation et de production à l’aide de l’interface utilisateur des applications LLM.
-source-git-commit: eec74b87457bc852d7a8dd0e46c2a4385a93ae0a
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '309'
+source-wordcount: '322'
 ht-degree: 0%
 
 ---
@@ -19,7 +19,7 @@ ht-degree: 0%
 
 Une fois que vous avez écrit votre code de gestionnaire et que vous l’avez envoyé à votre référentiel lié, vous pouvez déployer l’application à partir de l’interface utilisateur de [!DNL LLM Apps].
 
-Il s’agit d’une étape partagée pour chaque parcours. Après le déploiement, continuez à [tester le plug-in ChatGPT](/help/guides/test-in-chatgpt.md).
+Il s’agit d’une étape partagée pour chaque parcours. Après le déploiement, continuez à [tester le plug-in ChatGPT](/help/guides/test-in-chatgpt.md) ou [tester le connecteur Claude](/help/guides/test-in-claude.md).
 
 ## Démarrer le déploiement
 
@@ -63,5 +63,6 @@ dernier déploiement réussi.
 
 ## Étape suivante
 
-[Testez l’application déployée en tant que plug-in ChatGPT](/help/guides/test-in-chatgpt.md).
+- [Testez l’application déployée en tant que plug-in ChatGPT](/help/guides/test-in-chatgpt.md).
+- [Testez l’application déployée en tant que connecteur Claude](/help/guides/test-in-claude.md).
 

@@ -1,5 +1,5 @@
 ---
-source-git-commit: eec74b87457bc852d7a8dd0e46c2a4385a93ae0a
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
 source-wordcount: '398'
 ht-degree: 0%
@@ -39,7 +39,7 @@ Les noms de fichier Source ne doivent pas nécessairement correspondre aux noms 
 
 - État : page Actions lorsque l’intégration est active.
 - Inclure : message de progression et étapes de génération.
-- Texte de remplacement : `Actions — Onboarding Agent generating recommendations`
+- Texte de remplacement : `Actions — generating recommendations`
 
 ### `actions-ready-for-review.png`
 
@@ -103,7 +103,7 @@ Les noms de fichier Source ne doivent pas nécessairement correspondre aux noms 
 ### `chatgpt-plugin-connect.png`
 
 - État : confirmation après la création du plug-in.
-- Inclure : **Ajouter <plugin> vers ChatGPT &#x200B;** et **&#x200B; Connect &#x200B;**.
+- Inclure : **Ajouter <plugin> vers ChatGPT **et** Connect **.
 - Masque : URL du navigateur et identifiants de connecteur.
 - Texte de remplacement : `ChatGPT — connect the new plugin`
 

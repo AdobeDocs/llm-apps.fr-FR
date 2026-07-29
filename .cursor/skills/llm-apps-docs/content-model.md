@@ -1,7 +1,7 @@
 ---
-source-git-commit: eec74b87457bc852d7a8dd0e46c2a4385a93ae0a
+source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
 workflow-type: tm+mt
-source-wordcount: '387'
+source-wordcount: '436'
 ht-degree: 0%
 
 ---
@@ -59,7 +59,6 @@ Commence par un symptôme observable.
 
 - **Applications Adobe LLM** — nom complet du produit sur la première mention.
 - **Application LLM** : une application gérée par le produit.
-- **Agent d’intégration** — Fonction qui crée le modèle automatique initial.
 - **Générer mon application** — Section de l’interface utilisateur dans la boîte de dialogue de création d’application.
 - **Créer mon application automatiquement** — libellé exact de la case à cocher.
 - **Action** — capacité exposée à la plateforme LLM.
@@ -74,10 +73,12 @@ Commence par un symptôme observable.
 
 Évitez de basculer entre « outil » et « action » dans une prose destinée à l’utilisateur, sauf en expliquant les détails d’un protocole MCP.
 
+Le produit est indépendant de la plateforme : son serveur MCP fonctionne avec n&#39;importe quelle plateforme LLM prise en charge, pas seulement ChatGPT. Utilisez « une plateforme LLM prise en charge, telle que ChatGPT » (ou une plateforme similaire) pour des affirmations générales ou illustratives. Nommez ChatGPT uniquement dans le contenu qui est véritablement spécifique à ChatGPT aujourd’hui : le guide Test dans ChatGPT, ses liens directs et le contenu de référence ou de dépannage spécifique à ChatGPT.
+
 ## Parcours de lecteur recommandé
 
 1. Présentation et conditions préalables.
-2. Créez une application avec l’agent d’intégration.
+2. Créer automatiquement une application.
 3. Examinez les actions générées.
 4. Déployez sur l’environnement d’évaluation et testez le plug-in ChatGPT.
 5. Personnalisez les gestionnaires et widgets générés.

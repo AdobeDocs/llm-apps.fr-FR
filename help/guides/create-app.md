@@ -1,9 +1,9 @@
 ---
 title: Créer automatiquement votre première application LLM
 description: Créez une application Adobe LLM à partir de votre site web, passez en revue les actions générées, déployez-la et testez-la sur une plateforme LLM prise en charge, telle que ChatGPT.
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: f91bb73a39cc5aacf44979ee55dd0ab5f69d4c81
 workflow-type: tm+mt
-source-wordcount: '1217'
+source-wordcount: '1272'
 ht-degree: 0%
 
 ---
@@ -17,7 +17,7 @@ ht-degree: 0%
 >
 >Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
 
-La plateforme transforme votre site web en modèle automatique d’application opérationnelle. Il propose des actions, écrit du code de gestionnaire et des tests, crée des widgets EDS et envoie les fichiers générés aux deux référentiels [!DNL GitHub] que vous détenez.
+La plateforme transforme votre site web en une application entièrement fonctionnelle. Il propose des actions, écrit du code de gestionnaire et des tests, crée des widgets EDS et envoie les fichiers générés aux deux référentiels [!DNL GitHub] que vous détenez.
 
 Compter environ 15 minutes pour la génération. À la fin de ce tutoriel, vous disposez d’une application déployée que vous pouvez tester sur une plateforme LLM prise en charge, telle que [!DNL ChatGPT].
 
@@ -27,7 +27,7 @@ Compter environ 15 minutes pour la génération. À la fin de ce tutoriel, vous 
 
 Renseignez toutes les [exigences relatives aux applications LLM](/help/overview/overview.md#requirements) avant de commencer ce tutoriel.
 
-Ce tutoriel crée une application LLM pour [&#x200B; Frescopa Coffee &#x200B;](https://frescopa.coffee/).
+Ce tutoriel crée une application LLM pour [ Frescopa Coffee ](https://frescopa.coffee/).
 
 ## Créer deux référentiels vides
 
@@ -36,7 +36,7 @@ La plateforme a besoin de deux référentiels vides. Créez les deux sous le mê
 - **Référentiel de gestionnaires** — stocke les gestionnaires d&#39;actions et les tests. Par exemple, `my-brand-llm-app`.
 - **Référentiel EDS** — stocke les blocs de widgets et les styles générés. Par exemple, `my-brand-llm-app-eds`.
 
-Accédez à [&#128279;](https://github.com/new) pour chaque référentiel.
+Accédez à [](https://github.com/new) pour chaque référentiel.
 
 N’initialisez aucun référentiel avec une licence README, `.gitignore` ou . La plateforme prépare la structure de projet requise.
 
@@ -103,6 +103,11 @@ Lorsque le référentiel EDS sélectionné est vide, [!DNL LLM Apps] l’initial
 
 1. Dans le message situé sous le référentiel EDS, sélectionnez **[!UICONTROL Installer la synchronisation du code AEM]**.
 2. Sur [!DNL GitHub], installez la synchronisation du code AEM et accordez-lui l’accès au référentiel EDS.
+
+   Sur la page de confirmation **Synchronisation du code AEM enregistrée**, sous **[!UICONTROL Utilisateurs du site]**, sélectionnez **[!UICONTROL + Ajouter un utilisateur]** et ajoutez l’adresse e-mail que vous utilisez pour vous connecter à [!DNL LLM Apps] avec le rôle **[!UICONTROL admin]**. Sélectionnez ensuite **[!UICONTROL Terminer la configuration]** au bas de la page.
+
+   ![Synchronisation du code AEM enregistrée : ajoutez-vous en tant qu’utilisateur du site avec le rôle d’administrateur](/help/assets/guide-onboarding-agent/aem-code-sync-site-users-admin.png)
+
 3. Revenez à la boîte de dialogue Créer une application LLM .
 
 ![Créer une application LLM : référentiel EDS vide initialisé et synchronisation du code AEM requise](/help/assets/guide-onboarding-agent/install-aem-code-sync.png)
@@ -191,7 +196,7 @@ Posez une question correspondant à l’une des actions générées. Vérifiez q
 
 ![ChatGPT — réponse du plug-in de l&#39;application LLM générée](/help/assets/guide-onboarding-agent/chatgpt-generated-app.png)
 
-Vous disposez désormais d’un modèle de bout en bout fonctionnel.
+Vous disposez désormais d’une application de bout en bout entièrement fonctionnelle et fonctionnelle.
 
 ## Préparation de l’application pour la production
 

@@ -1,10 +1,10 @@
 ---
 title: Présentation des applications Adobe LLM
 description: Découvrez ce qu’est l’application Adobe LLM, son fonctionnement et ce dont vous avez besoin pour commencer.
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: 1d677c4e21963d1b126abb6287fccedfc1933c1a
 workflow-type: tm+mt
-source-wordcount: '970'
-ht-degree: 1%
+source-wordcount: '938'
+ht-degree: 2%
 
 ---
 
@@ -109,23 +109,20 @@ Si vous voyez **Accès limité**, contactez l’administrateur de votre organisa
 
 ### [!DNL GitHub]
 
-Vous avez besoin d’un compte [!DNL GitHub] qui peut :
+Vous avez besoin d’un compte [!DNL GitHub] qui **peut** comme suit. Il s’agit d’une vérification des autorisations — n’installez rien pour le moment :
 
 - Créez deux référentiels dans le compte ou l’organisation propriétaire de l’application.
-- Installez ou demandez l’installation de l’application Adobe LLM Apps [!DNL GitHub].
-- Installez ou demandez l’installation de la synchronisation du code AEM pour le référentiel EDS.
+- Installez les applications [!DNL GitHub] ultérieurement au cours du processus de configuration ou demandez à un administrateur de l’organisation de les approuver.
 
 Pour vérifier l’accès à la création du référentiel, ouvrez [&#128279;](https://github.com/new) et vérifiez que le compte ou l’organisation prévu s’affiche sous **Propriétaire**.
 
 ![GitHub — Sélectionnez un propriétaire de référentiel](/help/assets/overview/github-repo-owner-dropdown.png)
 
-Pour les référentiels appartenant à l’organisation, un administrateur de l’organisation peut avoir besoin d’approuver les applications [!DNL GitHub]. Accordez à chaque application l’accès uniquement aux référentiels utilisés par l’application LLM.
+Pour les référentiels appartenant à l’organisation, un administrateur de l’organisation peut avoir besoin d’approuver les applications [!DNL GitHub].
 
-### AEM Sites avec Edge Delivery Services
-
-Votre entreprise a besoin d’une licence Adobe Experience Manager Sites qui inclut Edge Delivery Services (EDS). Vous devez également disposer d’un accès administrateur au site EDS créé à partir du référentiel de widgets.
-
-Pour vérifier l’accès, ouvrez l’outil d’administration des utilisateurs [EDS](https://tools.aem.live/tools/user-admin/index.html), saisissez le nom de l’organisation et récupérez les utilisateurs. Vérifiez que votre compte possède le badge **admin**.
+>[!NOTE]
+>
+>Il s’agit d’une vérification des autorisations, pas d’une étape de configuration. N’installez pas encore d’applications [!DNL GitHub] : [Créer automatiquement votre première application](/help/guides/create-app.md) vous guide tout au long de l’installation de chacune d’elles, en fonction des référentiels exacts que vous créez, au point où cela est nécessaire.
 
 ### Site Web
 

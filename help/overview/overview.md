@@ -1,10 +1,10 @@
 ---
 title: Présentation des applications Adobe LLM
 description: Découvrez ce qu’est l’application Adobe LLM, son fonctionnement et ce dont vous avez besoin pour commencer.
-source-git-commit: 1d677c4e21963d1b126abb6287fccedfc1933c1a
+source-git-commit: e066f66b37914e2f747176e865e26dcc074bff20
 workflow-type: tm+mt
-source-wordcount: '938'
-ht-degree: 2%
+source-wordcount: '973'
+ht-degree: 1%
 
 ---
 
@@ -60,38 +60,24 @@ Point d’entrée exposé après le déploiement. Une plateforme LLM prise en ch
 
 ## Fonctionnement
 
-Le diagramme ci-dessous montre comment les différents éléments s’imbriquent, de la définition d’une application dans l’interface utilisateur à l’affichage des résultats en direct dans la plateforme LLM.
+À un niveau élevé, trois choses se produisent : vous [!DNL LLM Apps] dites quelle est votre marque
+offre , cela en fait quelque chose sur lequel un assistant d’IA peut agir, et votre
+le client obtient une vraie réponse, directement dans le chat.
 
 ```
-┌─────────────────────────────────────────────────────────────┐
-│                      LLM Apps UI                            │
-│  ┌──────────┐   ┌──────────┐   ┌───────────────────────┐    │
-│  │   App    │──▶│ Actions  │──▶│ Metadata + Widget cfg │    │
-│  └──────────┘   └──────────┘   └───────────┬───────────┘    │
-└─────────────────────────────────────────── │ ────────────-──┘
-                                             │ deploy
-                                             ▼
-┌─────────────────────────────────────────────────────────────┐
-│                  Adobe I/O Runtime                          │
-│               MCP Server (auto-generated)                   │
-│  ┌───────────────┐ ┌──────────────────┐ ┌───────────────┐   │
-│  │ search-       │ │ get-product-     │ │ find-where-   │   │
-│  │ products      │ │ details          │ │ to-buy        │   │
-│  └───────────────┘ └──────────────────┘ └───────────────┘   │
-└──────────────────────────────┬──────────────────────────────┘
-                               │ MCP protocol
-                               ▼
-┌─────────────────────────────────────────────────────────────┐
-│                        ChatGPT                              │
-│  Conversation                                               │
-│  ┌───────────────────────────────────────────────────────┐  │
-│  │  EDS Widget                                           │  │
-│  │  Product carousel, store locator, detail card ...     │  │
-│  └───────────────────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────┘
+┌────────────────────┐          ┌────────────────────┐          ┌────────────────────┐
+│     Your brand     │          │      LLM Apps      │          │    AI assistant    │
+│                    │          │                    │          │                    │
+│   What you offer   │   ───▶   │  Turns that into   │   ───▶   │ Answers with your  │
+│  and how you help  │          │    something AI    │          │    brand, live     │
+│  customers today   │          │     can act on     │          │  inside the chat   │
+└────────────────────┘          └────────────────────┘          └────────────────────┘
 ```
 
-## Exigences {#requirements}
+Vous souhaitez connaître les détails techniques : ce que vous créez et comment les pièces s’assemblent-elles ?
+Voir [Comment une application est connectée](/help/overview/app-architecture.md).
+
+## Conditions requises {#requirements}
 
 Remplissez toutes les conditions requises suivantes avant de créer une application.
 
@@ -99,7 +85,7 @@ Remplissez toutes les conditions requises suivantes avant de créer une applicat
 
 Votre organisation Adobe IMS doit avoir accès à [[!DNL App Builder]](https://developer.adobe.com/app-builder/docs/intro_and_overview/). Vous avez besoin du rôle **Développeur** ou **Administrateur système**.
 
-Pour vérifier votre accès, ouvrez [&#128279;](https://developer.adobe.com/console). L’écran de démarrage rapide confirme que vous disposez de l’accès requis.
+Pour vérifier votre accès, ouvrez [](https://developer.adobe.com/console). L’écran de démarrage rapide confirme que vous disposez de l’accès requis.
 
 ![Adobe Developer Console — Écran de démarrage rapide confirmant l’accès développeur](/help/assets/overview/dev-console-access-granted.png)
 
@@ -114,7 +100,7 @@ Vous avez besoin d’un compte [!DNL GitHub] qui **peut** comme suit. Il s’agi
 - Créez deux référentiels dans le compte ou l’organisation propriétaire de l’application.
 - Installez les applications [!DNL GitHub] ultérieurement au cours du processus de configuration ou demandez à un administrateur de l’organisation de les approuver.
 
-Pour vérifier l’accès à la création du référentiel, ouvrez [&#128279;](https://github.com/new) et vérifiez que le compte ou l’organisation prévu s’affiche sous **Propriétaire**.
+Pour vérifier l’accès à la création du référentiel, ouvrez [](https://github.com/new) et vérifiez que le compte ou l’organisation prévu s’affiche sous **Propriétaire**.
 
 ![GitHub — Sélectionnez un propriétaire de référentiel](/help/assets/overview/github-repo-owner-dropdown.png)
 

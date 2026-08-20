@@ -1,9 +1,9 @@
 ---
 title: Présentation des applications Adobe LLM
 description: Découvrez ce qu’est l’application Adobe LLM, son fonctionnement et ce dont vous avez besoin pour commencer.
-source-git-commit: e066f66b37914e2f747176e865e26dcc074bff20
+source-git-commit: 2f3480b3667a6ab7c4ed65b999eed4638c383edb
 workflow-type: tm+mt
-source-wordcount: '973'
+source-wordcount: '969'
 ht-degree: 1%
 
 ---
@@ -60,9 +60,7 @@ Point d’entrée exposé après le déploiement. Une plateforme LLM prise en ch
 
 ## Fonctionnement
 
-À un niveau élevé, trois choses se produisent : vous [!DNL LLM Apps] dites quelle est votre marque
-offre , cela en fait quelque chose sur lequel un assistant d’IA peut agir, et votre
-le client obtient une vraie réponse, directement dans le chat.
+À un niveau élevé, trois choses se produisent : vous [!DNL LLM Apps] dites ce que votre marque offre, cela devient quelque chose sur lequel un assistant d&#39;IA peut agir, et votre client obtient une vraie réponse, directement dans le chat.
 
 ```
 ┌────────────────────┐          ┌────────────────────┐          ┌────────────────────┐
@@ -74,8 +72,7 @@ le client obtient une vraie réponse, directement dans le chat.
 └────────────────────┘          └────────────────────┘          └────────────────────┘
 ```
 
-Vous souhaitez connaître les détails techniques : ce que vous créez et comment les pièces s’assemblent-elles ?
-Voir [Comment une application est connectée](/help/overview/app-architecture.md).
+Vous souhaitez connaître les détails techniques : ce que vous créez et comment les pièces s’assemblent-elles ? Voir [Comment une application est connectée](/help/guides/app-architecture.md).
 
 ## Conditions requises {#requirements}
 
@@ -85,7 +82,7 @@ Remplissez toutes les conditions requises suivantes avant de créer une applicat
 
 Votre organisation Adobe IMS doit avoir accès à [[!DNL App Builder]](https://developer.adobe.com/app-builder/docs/intro_and_overview/). Vous avez besoin du rôle **Développeur** ou **Administrateur système**.
 
-Pour vérifier votre accès, ouvrez [&#128279;](https://developer.adobe.com/console). L’écran de démarrage rapide confirme que vous disposez de l’accès requis.
+Pour vérifier votre accès, ouvrez [](https://developer.adobe.com/console). L’écran de démarrage rapide confirme que vous disposez de l’accès requis.
 
 ![Adobe Developer Console — Écran de démarrage rapide confirmant l’accès développeur](/help/assets/overview/dev-console-access-granted.png)
 
@@ -100,7 +97,7 @@ Vous avez besoin d’un compte [!DNL GitHub] qui **peut** comme suit. Il s’agi
 - Créez deux référentiels dans le compte ou l’organisation propriétaire de l’application.
 - Installez les applications [!DNL GitHub] ultérieurement au cours du processus de configuration ou demandez à un administrateur de l’organisation de les approuver.
 
-Pour vérifier l’accès à la création du référentiel, ouvrez [&#128279;](https://github.com/new) et vérifiez que le compte ou l’organisation prévu s’affiche sous **Propriétaire**.
+Pour vérifier l’accès à la création du référentiel, ouvrez [](https://github.com/new) et vérifiez que le compte ou l’organisation prévu s’affiche sous **Propriétaire**.
 
 ![GitHub — Sélectionnez un propriétaire de référentiel](/help/assets/overview/github-repo-owner-dropdown.png)
 

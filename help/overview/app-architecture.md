@@ -20,7 +20,7 @@ ht-degree: 0%
 ## En une seule phrase
 
 Une application **LLM** est un ensemble d’**actions** (chacune étant un outil exposé sur le **modèle
-Protocole contextuel** ou **MCP**) que vous publiez sur un seul point d’entrée. Un hôte de chat
+Protocole contextuel **&#x200B; ou &#x200B;** MCP**) que vous publiez sur un seul point d’entrée. Un hôte de chat
 like [!DNL ChatGPT] détecte ces outils, les appelle mid-conversation et effectue le rendu
 un **widget interactif** avec le résultat, directement dans le chat.
 

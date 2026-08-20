@@ -2,10 +2,10 @@
 user-guide-title: Guide des applications LLM
 breadcrumb-title: Applications LLM
 user-guide-description: Créez, personnalisez, déployez et testez des expériences interactives sur les plateformes LLM prises en charge, telles que ChatGPT avec les applications Adobe LLM.
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: b1d44a4911e1169b53ff01adb695142a98673c00
 workflow-type: tm+mt
-source-wordcount: '100'
-ht-degree: 4%
+source-wordcount: '106'
+ht-degree: 3%
 
 ---
 
@@ -15,6 +15,7 @@ ht-degree: 4%
 + [Vue d’ensemble](/help/overview/overview.md)
 + Créer et lancer votre première application {#build-first-app}
   + [Création Automatique De Votre Première Application](/help/guides/create-app.md)
+  + [Comment une application est connectée ensemble](/help/guides/app-architecture.md)
 + Personnaliser l’application générée {#customize-generated-app}
   + [Personnaliser un gestionnaire généré](/help/guides/customize-handler.md)
   + [Personnaliser un widget généré](/help/guides/widgets.md)

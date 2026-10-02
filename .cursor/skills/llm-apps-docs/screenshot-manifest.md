@@ -1,19 +1,22 @@
 ---
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: 03c918b1643d9c4e8ebee40fd67694acb6751a14
 workflow-type: tm+mt
-source-wordcount: '398'
+source-wordcount: '1080'
 ht-degree: 0%
-
 ---
-# Manifeste de capture d’écran d’intégration
+# Manifeste de capture d’écran
 
 Boîte de réception de capture : `docs-captures/<YYYY-MM-DD>/`
-
-Répertoire de sortie : `help/assets/guide-onboarding-agent/`
 
 Capturez uniquement les points de contrôle qui aident matériellement l’utilisateur à prendre une décision ou à vérifier l’état.
 
 Les noms de fichier Source ne doivent pas nécessairement correspondre aux noms de fichier finaux. Les compétences font des captures d’écran par état visible de l’interface utilisateur, préservent les fichiers bruts et créent des copies assainies à l’aide des noms ci-dessous.
+
+Chaque guide ci-dessous déclare son propre répertoire de sortie. Utilisez celui de la section à laquelle appartient la capture.
+
+# Guide d’intégration
+
+Répertoire de sortie : `help/assets/guide-onboarding-agent/`
 
 ## Captures requises
 
@@ -103,7 +106,7 @@ Les noms de fichier Source ne doivent pas nécessairement correspondre aux noms 
 ### `chatgpt-plugin-connect.png`
 
 - État : confirmation après la création du plug-in.
-- Inclure : **Ajouter <plugin> vers ChatGPT &#x200B;** et **&#x200B; Connect &#x200B;**.
+- Inclure : **Ajouter <plugin> vers ChatGPT **et** Connect **.
 - Masque : URL du navigateur et identifiants de connecteur.
 - Texte de remplacement : `ChatGPT — connect the new plugin`
 
@@ -123,3 +126,91 @@ Ajoutez une capture uniquement lorsque la prose ne peut pas expliquer clairement
 - Chargement de l’icône du plug-in.
 
 N’ajoutez pas de captures d’écran pour les listes de champs statiques qui sont déjà effacées en prose.
+
+# Guide d’authentification
+
+Répertoire de sortie : `help/assets/guide-authentication/`
+
+Référencé par [authentication.md](../../../help/guides/authentication.md).
+
+L’étape **[!UICONTROL Copier l’identifiant de la ressource]** réutilise l’du guide d’intégration
+`app-mcp-url.png`. Ne le capturez plus.
+
+Chaque capture de cette section affiche la configuration de sécurité. Masque avant enregistrement :
+
+- L’URL **[!UICONTROL Émetteur]** et tout nom d’hôte qui identifie le fournisseur d’identité ou son fournisseur.
+- L’URL complète du serveur MCP, où elle apparaît.
+- Identifiants client, client et organisation.
+- Nom du compte, avatar et adresse électronique.
+
+Utilisez des valeurs d’espace réservé neutres où un champ doit rester lisible (par exemple, un émetteur de
+`https://auth.example.com`. Les noms de portée doivent être lus comme des exemples génériques, tels que `orders:read`.
+
+## Captures requises
+
+### `auth-core-settings.png`
+
+- État : **[!UICONTROL Paramètres]** > **[!UICONTROL Authentification]** avec **[!UICONTROL Activer l’authentification]** activé et **[!UICONTROL Paramètres principaux]** renseigné.
+- Inclure : le sélecteur **** affichant **[!UICONTROL Phase]**, **[!UICONTROL Activer l’authentification]** dans son propre état, **[!UICONTROL Émetteur]** et **[!UICONTROL Portées prises en charge]** contenant au moins deux portées.
+- Insérez le contrôle réduit **[!UICONTROL Paramètres avancés]** afin que le lecteur puisse voir que **[!UICONTROL URI JWKS]** est facultatif et qu’il se trouve à cet emplacement.
+- Masque : nom d’hôte de l’émetteur.
+- Texte de remplacement : `Authentication — enable authentication and complete the core settings`
+
+Capturé le 25 août 2026. Recadré pour déposer la zone de travail vide ; aucun masquage n’est nécessaire, car
+**[!UICONTROL Émetteur]** a été défini sur `https://auth.example.com` dans le produit avant le
+capture. Préférez-le à la modification de l’image par la suite. **[!UICONTROL Portées prises en charge]** contient
+une portée (`read:all`) ; deux illustreraient mieux le champ, mais cela ne vaut pas la peine
+se refaire une place par lui-même.
+
+### `auth-per-action.png`
+
+- État : **[!UICONTROL configuration par action]** après l’activation de l’authentification, avec les modes délibérément mixtes.
+- Inclure : au moins trois actions, une par mode — **[!UICONTROL Aucune]**, **[!UICONTROL Obligatoire]** et **[!UICONTROL Facultatif]** — et la colonne **[!UICONTROL Portées]** renseignée sur les points de contrôle.
+- Inclure : **[!UICONTROL exiger une authentification sur toutes les actions]**, idéalement dans son état indéterminé, ce qui est ce qu’une configuration mixte produit.
+- Utilisez uniquement des noms d&#39;actions d&#39;installation.
+- Texte de remplacement : `Authentication — set an auth mode and scopes for each action`
+
+Capturé le 25 août 2026. Recadré uniquement, rien à masquer. Affiche les trois modes, une valeur renseignée
+**[!UICONTROL Portées]** cellule et **[!UICONTROL Exiger une authentification sur toutes les actions]** dans son
+état indéterminé, avec `Test Action 1/2/3` comme noms d&#39;élément.
+
+Recadrez **à l’intérieur** la bordure du conteneur du panneau des paramètres : une règle de 1px pleine hauteur se trouve à chaque niveau
+côté de la capture, et laisser l&#39;un ou l&#39;autre dans frame se lit comme une ligne perdue le long du bord de la capture
+image.
+
+L’avertissement du produit concernant l’application d’[!DNL Claude] authentification par connecteur était le suivant :
+**non observé sur cet onglet lors de deux rondes de capture**, il n’est donc pas obligatoire ici. Le
+Le guide indique plutôt ce comportement en prose. Si l’avertissement existe dans une version ultérieure,
+capturez-le en tant que `auth-claude-warning.png` et ajoutez une entrée .
+
+### `chatgpt-authentication-mode.png`
+
+- État : la boîte de dialogue **[!UICONTROL Nouveau module externe]** avec le menu déroulant **[!UICONTROL Authentification]** s’ouvre.
+- Inclure : les trois valeurs — **[!UICONTROL Aucune authentification]**, **[!UICONTROL Mixte]** et **[!UICONTROL OAuth]** — de sorte que le tableau de mappage du guide puisse être vérifié par rapport au contrôle réel.
+- Masque : l’URL du serveur MCP et tout identifiant de connecteur figurant dans l’URL du navigateur.
+- Texte de remplacement : `ChatGPT — select the authentication mode for the plugin`
+
+Encadrez-le de la même manière que le `chatgpt-new-plugin.png` du guide d’intégration : la carte de dialogue avec .
+une marge de la page toujours visible autour, environ 40px à gauche et en haut. Ne pas recadrer le vidage vers
+la carte.
+
+Capturé le 25 août 2026, en mode clair, pour correspondre à toutes les autres captures dans la documentation. Le
+La liste déroulante occulte le champ **[!UICONTROL URL du serveur]**, de sorte que l’URL MCP n’est pas lisible, mais
+son matériau translucide laisse passer une image floue du contenu de ce champ à côté du
+options. Les trois lignes non mises en surbrillance ont été recouvertes avec le remplissage du panneau et leurs étiquettes
+rendu à nouveau, ce qui le supprime. Vérifier par prélèvement, et non par œil : le saignement est suffisamment faible pour
+manquant et il s’agit de l’URL du serveur MCP.
+
+Notez que le contrôle en direct offre **quatre** valeurs — **[!UICONTROL OAuth]**, **[!UICONTROL Access
+jeton/clé API]**, **[!UICONTROL Aucune authentification]** et **[!UICONTROL Mixte]**. Mappage du guide
+le tableau couvre uniquement les trois vers lesquels les modes d’authentification d’une application peuvent mapper, ce qui est correct, mais pas
+décrivez la liste déroulante comme ayant trois options.
+
+## Captures facultatives
+
+Ajouter seulement si la prose s&#39;avère insuffisante :
+
+- `auth-scope-blocked.png` — **[!UICONTROL Enregistrement]** bloqué car une action nécessite une portée manquante dans **[!UICONTROL Portées prises en charge]**. Utile pour l’entrée de dépannage.
+- L’invite de connexion en milieu de conversation déclenche une action **[!UICONTROL Facultatif]**. Interface utilisateur de Platform qui change souvent et qui est déjà décrite en prose.
+
+Ne capturez pas la propre page de connexion du fournisseur d’identité. Il identifie le fournisseur, que cette documentation ne nomme pas.

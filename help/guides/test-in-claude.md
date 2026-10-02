@@ -1,13 +1,11 @@
 ---
 title: Tester votre application LLM en tant que connecteur Claude
 description: Créez un connecteur Claude à partir de l’URL de votre serveur MCP Applications LLM Adobe et testez-le dans une conversation.
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: fd41dbcabc4db0cae766de19cb042d7c85d8b7aa
 workflow-type: tm+mt
-source-wordcount: '399'
+source-wordcount: '448'
 ht-degree: 1%
-
 ---
-
 
 # Tester votre application LLM en tant que connecteur [!DNL Claude] {#test-in-claude}
 
@@ -20,6 +18,8 @@ ht-degree: 1%
 Après le déploiement, votre application LLM expose une URL de serveur MCP. Ajoutez cette URL à [!DNL Claude] en tant que connecteur personnalisé, puis testez les actions et widgets générés.
 
 Il s’agit de l’étape de vérification finale après la création, la personnalisation ou l’extension d’une application.
+
+Ce guide suppose que les actions de l’application sont publiques. Si l’authentification de l’utilisateur final est activée pour l’application, [!DNL Claude] vous demande de vous connecter avec le fournisseur d’identité de l’application avant de pouvoir utiliser le connecteur. Aucun outil n’est répertorié tant que vous ne l’avez pas fait. Voir [ Authentifier les utilisateurs finaux avec votre propre fournisseur d’identité](/help/guides/authentication.md).
 
 ## Planifier les exigences
 
@@ -35,7 +35,7 @@ En [!DNL LLM Apps] :
 
 ## Ajouter le connecteur personnalisé
 
-1. Ouvrez [&#128279;](https://claude.ai/new?modal=add-custom-connector#settings/customize-connectors). Cela ouvre directement la boîte de dialogue **[!UICONTROL Ajouter un connecteur personnalisé]**.
+1. Ouvrez [](https://claude.ai/new?modal=add-custom-connector#settings/customize-connectors). Cela ouvre directement la boîte de dialogue **[!UICONTROL Ajouter un connecteur personnalisé]**.
 2. Enter :
    - **[!UICONTROL Nom]** : nom du connecteur.
    - **[!UICONTROL URL du serveur MCP distant]** : URL du serveur MCP que vous avez copiée.

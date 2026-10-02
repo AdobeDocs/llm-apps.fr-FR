@@ -1,13 +1,11 @@
 ---
 title: Tester votre application LLM en tant que plug-in ChatGPT
 description: Créez un plug-in ChatGPT à partir de l’URL de votre serveur MCP Applications LLM Adobe et testez-le dans une conversation.
-source-git-commit: b7199fbb387d91a5c77deac47a2bc883381931c1
+source-git-commit: fd41dbcabc4db0cae766de19cb042d7c85d8b7aa
 workflow-type: tm+mt
-source-wordcount: '335'
+source-wordcount: '378'
 ht-degree: 1%
-
 ---
-
 
 # Tester votre application LLM en tant que plug-in [!DNL ChatGPT] {#test-in-chatgpt}
 
@@ -54,6 +52,11 @@ En [!DNL LLM Apps] :
    - **[!UICONTROL Description]** — facultatif.
    - **[!UICONTROL Connexion]** — sélectionnez **[!UICONTROL URL du serveur]** et collez l&#39;URL du serveur MCP.
    - **[!UICONTROL Authentification]** — sélectionnez **[!UICONTROL Aucune authentification]**.
+
+   >[!NOTE]
+   >
+   >**[!UICONTROL Aucune authentification]** s’applique lorsque chaque action de l’application est publique. Si vous avez activé l’authentification de l’utilisateur final, sélectionnez **[!UICONTROL OAuth]** lorsque chaque action est définie sur **[!UICONTROL Obligatoire]** et **[!UICONTROL Mixte]** pour toute autre combinaison. Voir [Authentifier les utilisateurs finaux avec votre propre fournisseur d’identité](/help/guides/authentication.md).
+
 4. Sélectionnez **[!UICONTROL Je comprends et je souhaite continuer]**.
 5. Sélectionnez **[!UICONTROL Créer]**.
 

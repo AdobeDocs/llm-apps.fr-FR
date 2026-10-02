@@ -1,9 +1,8 @@
 ---
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: 03c918b1643d9c4e8ebee40fd67694acb6751a14
 workflow-type: tm+mt
-source-wordcount: '696'
+source-wordcount: '703'
 ht-degree: 0%
-
 ---
 # Procédure de capture d’écran de production
 
@@ -102,7 +101,7 @@ Lorsque l’utilisateur demande à mettre à jour la documentation d’un dossie
    - les informations sensibles ;
    - Comportement de production incompatible avec la documentation.
 6. Ne modifiez pas les captures source.
-7. Pour chaque image acceptée, créez une copie assainie avec le nom de fichier de manifeste stable sous `help/assets/guide-onboarding-agent/`.
+7. Pour chaque image acceptée, créez une copie assainie avec le nom de fichier de manifeste stable sous le répertoire de sortie que sa section de manifeste déclare.
 8. Recadrer uniquement lorsque l’interface utilisateur qui l’entoure n’ajoute aucun contexte utile.
 9. Masquez les valeurs sensibles. Si le port du masque n&#39;est pas possible, demandez une récupération.
 10. Mettez à jour l’article et le texte secondaire pour qu’ils correspondent au workflow capturé.

@@ -14,7 +14,7 @@ Les noms de fichier Source ne doivent pas nécessairement correspondre aux noms 
 
 Chaque guide ci-dessous déclare son propre répertoire de sortie. Utilisez celui de la section à laquelle appartient la capture.
 
-# Guide d’intégration
+&#x200B;# Guide d’intégration
 
 Répertoire de sortie : `help/assets/guide-onboarding-agent/`
 
@@ -106,7 +106,7 @@ Répertoire de sortie : `help/assets/guide-onboarding-agent/`
 ### `chatgpt-plugin-connect.png`
 
 - État : confirmation après la création du plug-in.
-- Inclure : **Ajouter <plugin> vers ChatGPT **et** Connect **.
+- Inclure : **Ajouter <plugin> vers ChatGPT &#x200B;** et **&#x200B; Connect &#x200B;**.
 - Masque : URL du navigateur et identifiants de connecteur.
 - Texte de remplacement : `ChatGPT — connect the new plugin`
 
@@ -127,7 +127,7 @@ Ajoutez une capture uniquement lorsque la prose ne peut pas expliquer clairement
 
 N’ajoutez pas de captures d’écran pour les listes de champs statiques qui sont déjà effacées en prose.
 
-# Guide d’authentification
+&#x200B;# Guide d’authentification
 
 Répertoire de sortie : `help/assets/guide-authentication/`
 
@@ -151,7 +151,7 @@ Utilisez des valeurs d’espace réservé neutres où un champ doit rester lisib
 ### `auth-core-settings.png`
 
 - État : **[!UICONTROL Paramètres]** > **[!UICONTROL Authentification]** avec **[!UICONTROL Activer l’authentification]** activé et **[!UICONTROL Paramètres principaux]** renseigné.
-- Inclure : le sélecteur **** affichant **[!UICONTROL Phase]**, **[!UICONTROL Activer l’authentification]** dans son propre état, **[!UICONTROL Émetteur]** et **[!UICONTROL Portées prises en charge]** contenant au moins deux portées.
+- Inclure : le sélecteur **&#x200B;**&#x200B;affichant **[!UICONTROL Phase]**, **[!UICONTROL Activer l’authentification]** dans son propre état, **[!UICONTROL Émetteur]** et **[!UICONTROL Portées prises en charge]** contenant au moins deux portées.
 - Insérez le contrôle réduit **[!UICONTROL Paramètres avancés]** afin que le lecteur puisse voir que **[!UICONTROL URI JWKS]** est facultatif et qu’il se trouve à cet emplacement.
 - Masque : nom d’hôte de l’émetteur.
 - Texte de remplacement : `Authentication — enable authentication and complete the core settings`
@@ -201,8 +201,8 @@ options. Les trois lignes non mises en surbrillance ont été recouvertes avec l
 rendu à nouveau, ce qui le supprime. Vérifier par prélèvement, et non par œil : le saignement est suffisamment faible pour
 manquant et il s’agit de l’URL du serveur MCP.
 
-Notez que le contrôle en direct offre **quatre** valeurs — **[!UICONTROL OAuth]**, **[!UICONTROL Access
-jeton/clé API]**, **[!UICONTROL Aucune authentification]** et **[!UICONTROL Mixte]**. Mappage du guide
+Notez que le contrôle en direct offre **quatre** valeurs — **[!UICONTROL OAuth]**, **Access
+jeton/clé API&rbrack;**, &#x200B;** [!UICONTROL Aucune authentification] **&#x200B; et &#x200B;** [!UICONTROL Mixte]**. Mappage du guide
 le tableau couvre uniquement les trois vers lesquels les modes d’authentification d’une application peuvent mapper, ce qui est correct, mais pas
 décrivez la liste déroulante comme ayant trois options.
 

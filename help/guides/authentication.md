@@ -53,7 +53,7 @@ L’authentification est configurée **par environnement**. **[!UICONTROL Évalu
 
 ## Avant de commencer
 
-- Un fournisseur d’identité OAuth 2.1 ou OpenID Connect qui émet des jetons d’accès **JWT** signés avec un algorithme asymétrique. Les jetons opaques et les jetons signés HMAC ne sont pas pris en charge. Voir [ Exigences en matière de jetons ](/help/reference/authentication-reference.md#token-requirements).
+- Un fournisseur d’identité OAuth 2.1 ou OpenID Connect qui émet des jetons d’accès **JWT** signés avec un algorithme asymétrique. Les jetons opaques et les jetons signés HMAC ne sont pas pris en charge. Voir [&#x200B; Exigences en matière de jetons &#x200B;](/help/reference/authentication-reference.md#token-requirements).
 - Un accès administrateur à ce fournisseur d’identité, afin que vous puissiez enregistrer une API et un client.
 - Votre application a été déployée au moins une fois dans l’environnement que vous êtes en train de configurer. L’URL du serveur MCP déployé est la valeur sur laquelle vos jetons doivent être inclus.
 
@@ -89,7 +89,7 @@ Les étapes exactes diffèrent selon le fournisseur, mais chaque fournisseur a b
 ## Activer l’authentification
 
 1. Dans le volet de navigation de gauche, sélectionnez **[!UICONTROL Paramètres]**, puis ouvrez l’onglet **[!UICONTROL Authentification]**.
-2. Dans ****, choisissez **[!UICONTROL Évaluation]** ou **[!UICONTROL Production]**.
+2. Dans **&#x200B;**, choisissez **[!UICONTROL Évaluation]** ou **[!UICONTROL Production]**.
 3. Activez **[!UICONTROL Activer l’authentification]**.
 4. Sous **[!UICONTROL Paramètres principaux]**, saisissez :
    - **[!UICONTROL Émetteur]** : URL de l’émetteur de votre fournisseur d’identité, qui correspond également à la valeur qu’il place dans la réclamation `iss` de chaque jeton. Ce code est obligatoire, doit être au format HTTPS et est également publié en tant que serveur d’autorisation de votre application afin que les plateformes LLM puissent découvrir où envoyer les utilisateurs. Un seul fournisseur d’identité est pris en charge par application.
@@ -200,7 +200,7 @@ Ne défiez que lorsque l’identité dont vous avez besoin est réellement manqu
 >
 >Le [!DNL ChatGPT], une connexion levée de cette manière demande à l’utilisateur de reconnecter le connecteur plutôt que d’accorder une autorisation supplémentaire. Une [!DNL Claude], l’utilisateur se connecte avant l’exécution de toute action. Par conséquent, une action n’a jamais besoin d’en déclencher une.
 
-Conserver l’identité côté serveur. Transmettez uniquement ce dont le widget a besoin dans `structuredContent`, et n’y placez jamais le jeton d’accès. Voir [ Personnaliser un gestionnaire généré](/help/guides/customize-handler.md).
+Conserver l’identité côté serveur. Transmettez uniquement ce dont le widget a besoin dans `structuredContent`, et n’y placez jamais le jeton d’accès. Voir [&#x200B; Personnaliser un gestionnaire généré](/help/guides/customize-handler.md).
 
 Pour le contrat complet, voir [API d’authentification de gestionnaire](/help/reference/authentication-reference.md#handler-auth-api).
 

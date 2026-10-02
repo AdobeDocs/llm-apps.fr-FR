@@ -44,7 +44,7 @@ Commencez par les symptômes que vous pouvez voir. Ne partagez pas les informati
 | Le widget s’affiche mais n’affiche aucune donnée. | Appelez le gestionnaire avec MCP Inspector et comparez sa forme `structuredContent` avec les champs lus depuis `bridge.toolResult` |
 | Le widget fonctionne en prévisualisation directe, mais pas dans le ChatGPT | L’aperçu direct peut utiliser des données d’exemple. Testez le résultat du gestionnaire déployé et vérifiez que l’origine EDS est autorisée par CORS et CSP. |
 | Requête du navigateur bloquée | Ajoutez uniquement l’origine requise au champ CSP correct et redéployez |
-| L’éditeur d’en-têtes HTTP ne peut pas enregistrer la configuration | Utilisez le [service de configuration ](https://aem.live/docs/config-service-setup) ou demandez à l’administrateur EDS d’initialiser la configuration des en-têtes de site |
+| L’éditeur d’en-têtes HTTP ne peut pas enregistrer la configuration | Utilisez le [service de configuration &#x200B;](https://aem.live/docs/config-service-setup) ou demandez à l’administrateur EDS d’initialiser la configuration des en-têtes de site |
 
 Ne consignez pas les valeurs de `bridge.toolResult` complètes lorsqu’elles peuvent contenir des données personnelles ou sensibles.
 
@@ -59,12 +59,12 @@ Ne consignez pas les valeurs de `bridge.toolResult` complètes lorsqu’elles pe
 
 ## Authentification {#authentication}
 
-S’applique lorsque l’option **[!UICONTROL Activer l’authentification]** est activée. Voir [ Authentifier les utilisateurs finaux avec votre propre fournisseur d’identité](/help/guides/authentication.md).
+S’applique lorsque l’option **[!UICONTROL Activer l’authentification]** est activée. Voir [&#x200B; Authentifier les utilisateurs finaux avec votre propre fournisseur d’identité](/help/guides/authentication.md).
 
 | Symptôme | Quoi essayer |
 |---------|-------------|
 | Les actions sont toujours publiques après l’enregistrement des paramètres | Déployez à nouveau l’application dans cet environnement. Les modifications d’authentification prennent effet lors du prochain déploiement |
-| Les paramètres ne s’affichent pas correctement après le changement d’environnement | Vérifiez que le sélecteur **** affiche l’environnement souhaité. **[!UICONTROL Évaluation]** et **[!UICONTROL Production]** sont configurés indépendamment |
+| Les paramètres ne s’affichent pas correctement après le changement d’environnement | Vérifiez que le sélecteur **&#x200B;**&#x200B;affiche l’environnement souhaité. **[!UICONTROL Évaluation]** et **[!UICONTROL Production]** sont configurés indépendamment |
 | La connexion ne démarre pas | Vérifiez que l’application a été déployée depuis que vous avez activé l’authentification et que l’action que vous appelez est définie sur **[!UICONTROL Obligatoire]**. Une action **[!UICONTROL facultative]** s’affiche uniquement lorsque son gestionnaire demande la connexion |
 | La plateforme envoie l’utilisateur vers une page de connexion incorrecte | Vérifiez que **[!UICONTROL Émetteur]** correspond exactement à l’URL de l’émetteur de votre fournisseur d’identité et qu’il est accessible via HTTPS public |
 | Connexion réussie mais chaque appel est toujours rejeté | Confirmez que votre fournisseur d’identité émet des jetons dont l’audience est l’URL du serveur MCP de l’application pour cet environnement et que le jeton est un jeton JWT signé avec un algorithme asymétrique. Voir [Exigences en matière de jetons](/help/reference/authentication-reference.md#token-requirements) |
@@ -84,7 +84,7 @@ Ne collez pas de jetons d’accès, de jeux de réclamations ou de secrets clien
 
 | Symptôme | Quoi essayer |
 |---------|-------------|
-| Le plug-in n’apparaît pas | Activez le mode Développeur, ouvrez [](https://chatgpt.com/plugins) vérifiez que le plug-in existe et sélectionnez **Connect** |
+| Le plug-in n’apparaît pas | Activez le mode Développeur, ouvrez [&#128279;](https://chatgpt.com/plugins) vérifiez que le plug-in existe et sélectionnez **Connect** |
 | Échec de la création du plug-in | Vérifiez que le mode Développeur est activé, copiez à nouveau l’URL du serveur MCP depuis **Tester l’application**, puis utilisez **URL du serveur** avec **Aucune authentification**. |
 | Le plug-in se connecte, mais ne peut pas appeler d’actions. | Vérifiez que le plug-in est associé au chat, que les actions sont exposées au modèle et que la dernière version est déployée |
 | Le plug-in utilise un environnement incorrect. | Modifiez ou recréez le module externe avec l’URL du serveur MCP d’évaluation ou de production prévue |

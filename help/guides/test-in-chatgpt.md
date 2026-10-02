@@ -42,7 +42,7 @@ En [!DNL LLM Apps] :
 
 ## Création du plug-in
 
-1. Ouvrez [](https://chatgpt.com/plugins).
+1. Ouvrez [&#128279;](https://chatgpt.com/plugins).
 2. Dans l’onglet **[!UICONTROL Plugins]**, sélectionnez **+** en regard du champ de recherche.
 
    ![Page ChatGPT — Modules externes](/help/assets/guide-onboarding-agent/chatgpt-plugins-page.png)

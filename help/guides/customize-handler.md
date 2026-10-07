@@ -1,13 +1,11 @@
 ---
 title: Personnaliser un gestionnaire d’actions généré
 description: Comprenez le contrat du gestionnaire d’applications Adobe LLM, remplacez les données d’exemple générées et assurez-vous que la sortie du gestionnaire est alignée sur son widget.
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: 2d8f44f4f258bf217992131de9d9450a4023560d
 workflow-type: tm+mt
-source-wordcount: '541'
+source-wordcount: '537'
 ht-degree: 0%
-
 ---
-
 
 # Personnaliser un gestionnaire généré {#customize-generated-handler}
 
@@ -15,7 +13,7 @@ ht-degree: 0%
 >
 >[!DNL Adobe LLM Apps] est actuellement dans Beta.
 >
->Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
+>Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à `llm-apps-beta@adobe.com`.
 
 La plateforme crée un gestionnaire fonctionnel pour chaque action générée. Le gestionnaire renvoie initialement des données d’exemple afin que vous puissiez tester l’expérience complète.
 

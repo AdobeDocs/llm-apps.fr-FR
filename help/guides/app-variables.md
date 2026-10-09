@@ -59,7 +59,7 @@ Ce guide utilise une variable nommée `GREETING_PREFIX` avec la valeur `Good day
 
 
 
-3. Dans ****, sélectionnez **[!UICONTROL Évaluation]** ou **[!UICONTROL Production]**.
+3. Dans **&#x200B;**, sélectionnez **[!UICONTROL Évaluation]** ou **[!UICONTROL Production]**.
 4. Sélectionnez **[!UICONTROL Ajouter]**.
 
    ![Variables et secrets : videz l’espace de travail d’étape avec le bouton Ajouter](/help/assets/guide-app-variables/variables-empty.png)
@@ -115,7 +115,7 @@ Lorsque les modifications apportées au gestionnaire sont prêtes, validez-les e
 2. Appelez l’action depuis une plateforme LLM prise en charge avec `name` défini sur `Ada`. Voir [Test du plug-in ChatGPT](/help/guides/test-in-chatgpt.md) ou [Test du connecteur Claude](/help/guides/test-in-claude.md).
 3. Vérifiez que la réponse est `Good day, Ada!`. Cela confirme que le gestionnaire lit votre variable configurée et remplace son message d’accueil par défaut.
 
-Pour configurer l’autre environnement, sélectionnez-le dans ****, répétez l’installation avec la valeur appropriée, puis déployez et vérifiez-le.
+Pour configurer l’autre environnement, sélectionnez-le dans **&#x200B;**, répétez l’installation avec la valeur appropriée, puis déployez et vérifiez-le.
 
 
 >[!NOTE]

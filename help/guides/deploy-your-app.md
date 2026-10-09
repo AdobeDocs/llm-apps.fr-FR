@@ -1,13 +1,11 @@
 ---
 title: Déploiement de l’application
 description: Découvrez comment déployer votre application LLM Adobe vers les environnements d’évaluation et de production à l’aide de l’interface utilisateur des applications LLM.
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: 4e447562c5d38f68c209ded7370e9d384a7c9701
 workflow-type: tm+mt
-source-wordcount: '322'
+source-wordcount: '352'
 ht-degree: 0%
-
 ---
-
 
 # Déploiement De L’Application {#deploy-your-app}
 
@@ -26,6 +24,8 @@ Il s’agit d’une étape partagée pour chaque parcours. Après le déploiemen
 Ouvrez la page Détails de l’application et sélectionnez **[!UICONTROL Déployer]**.
 
 Sélectionnez l’environnement cible, puis sélectionnez **[!UICONTROL Déployer]**.
+
+Si vos gestionnaires utilisent des [variables d’application](/help/guides/app-variables.md), configurez-les pour l’environnement cible avant de procéder au déploiement. Les variables ajoutées, mises à jour ou supprimées prennent effet dans ce déploiement. Les variables d’évaluation et de production ont des valeurs indépendantes.
 
 ![Déployer — sélectionner l&#39;environnement cible](/help/assets/guide-onboarding-agent/deploy-stage.png)
 
@@ -65,4 +65,3 @@ dernier déploiement réussi.
 
 - [Testez l’application déployée en tant que plug-in ChatGPT](/help/guides/test-in-chatgpt.md).
 - [Testez l’application déployée en tant que connecteur Claude](/help/guides/test-in-claude.md).
-

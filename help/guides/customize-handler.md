@@ -1,9 +1,9 @@
 ---
 title: Personnaliser un gestionnaire d’actions généré
 description: Comprenez le contrat du gestionnaire d’applications Adobe LLM, remplacez les données d’exemple générées et assurez-vous que la sortie du gestionnaire est alignée sur son widget.
-source-git-commit: 2d8f44f4f258bf217992131de9d9450a4023560d
+source-git-commit: d9fb493c0b1708e4566e93a4f883e99bb4166e18
 workflow-type: tm+mt
-source-wordcount: '537'
+source-wordcount: '581'
 ht-degree: 0%
 ---
 
@@ -215,6 +215,8 @@ module.exports = async ({ query = '' } = {}) => {
 ```
 
 Conserver l’accès réseau protégé dans le gestionnaire. Ne placez jamais les informations d’identification d’API dans le JavaScript de widget ou le contrôle de code source.
+
+Pour les paramètres non sensibles dont votre gestionnaire a besoin, tels qu’une URL de service, voir [Configurer les variables et secrets d’application](/help/guides/app-variables.md). Les variables sont configurées par environnement et prennent effet lors du prochain déploiement. La prise en charge du secret n’est pas encore disponible ; n’utilisez pas de variables pour stocker les informations d’identification d’API.
 
 ## Gérer les états attendus
 

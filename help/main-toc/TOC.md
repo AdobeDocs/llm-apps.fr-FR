@@ -2,10 +2,10 @@
 user-guide-title: Guide des applications LLM
 breadcrumb-title: Applications LLM
 user-guide-description: Créez, personnalisez, déployez et testez des expériences interactives sur les plateformes LLM prises en charge, telles que ChatGPT avec les applications Adobe LLM.
-source-git-commit: fd41dbcabc4db0cae766de19cb042d7c85d8b7aa
+source-git-commit: 4e447562c5d38f68c209ded7370e9d384a7c9701
 workflow-type: tm+mt
-source-wordcount: '119'
-ht-degree: 5%
+source-wordcount: '124'
+ht-degree: 4%
 ---
 
 # Guide d’[!DNL LLM Apps] {#using}
@@ -17,6 +17,7 @@ ht-degree: 5%
 + Personnaliser l’application générée {#customize-generated-app}
   + [Personnaliser un gestionnaire généré](/help/guides/customize-handler.md)
   + [Personnaliser un widget généré](/help/guides/widgets.md)
+  + [Configuration des variables et des secrets d’application](/help/guides/app-variables.md)
 + Ajouter une nouvelle action {#add-new-action}
   + [Création d’une action à partir de zéro](/help/guides/create-action.md)
 + Connecter un projet EDS existant {#connect-existing-eds}

@@ -130,7 +130,7 @@ Les deux options d’infrastructure se terminent par **[!UICONTROL Détails de l
 ![Détails de l’application : saisissez un nom d’application, sélectionnez un programme AEM, puis choisissez la région données d’analyse](/help/assets/guide-infrastructure/app-details.png)
 
 1. Saisissez le **[!UICONTROL Nom de l’application LLM]**. Utilisez un nom qui identifie la marque ou l’expérience, tel que *café Frescopa*.
-2. Sélectionnez le programme **** auquel l’application appartient. Si vous n’avez accès qu’à un seul programme, l’assistant le sélectionne automatiquement.
+2. Sélectionnez le programme **&#x200B;**&#x200B;auquel l’application appartient. Si vous n’avez accès qu’à un seul programme, l’assistant le sélectionne automatiquement.
 3. Sous **[!UICONTROL Région de données Analytics]**, choisissez **[!UICONTROL États-Unis (US)]** ou **[!UICONTROL Europe (UE)]**.
 4. Sélectionnez **[!UICONTROL Créer une application]**.
 

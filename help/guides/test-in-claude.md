@@ -19,7 +19,7 @@ Après le déploiement, votre application LLM expose une URL de serveur MCP. Ajo
 
 **Dans ce guide :** découvrez comment ajouter votre application déployée en tant que connecteur [!DNL Claude], choisir son comportement de connexion et tester ses actions et widgets dans une conversation.
 
-Pour une application avec des actions publiques et protégées, [!DNL Claude] prend en charge la connexion différée jusqu’à ce qu’elle appelle une action protégée. Une application dont les actions nécessitent toutes une authentification doit se connecter avant utilisation. Voir [ Authentifier les utilisateurs finaux avec votre propre fournisseur d’identité](/help/guides/authentication.md).
+Pour une application avec des actions publiques et protégées, [!DNL Claude] prend en charge la connexion différée jusqu’à ce qu’elle appelle une action protégée. Une application dont les actions nécessitent toutes une authentification doit se connecter avant utilisation. Voir [&#x200B; Authentifier les utilisateurs finaux avec votre propre fournisseur d’identité](/help/guides/authentication.md).
 
 ## Planifier les exigences
 

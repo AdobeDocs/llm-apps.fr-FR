@@ -26,7 +26,7 @@ Commencez par le symptôme observable. Ne partagez pas les informations d’iden
 | Les nouveaux référentiels n’apparaissent pas | Utilisez **Connecter un autre référentiel** pour accorder l’accès à l’application GitHub des applications LLM Adobe, revenez à l’assistant et sélectionnez **Actualiser les organisations et les référentiels** |
 | Échec de la validation du référentiel d’action ou de widget | Utilisez un projet existant compatible ou un référentiel vide. Utilisez des référentiels distincts pour les actions et les widgets, puis sélectionnez à nouveau **Valider le référentiel**. |
 | La synchronisation du code AEM n’est pas détectée | Installez la synchronisation du code AEM pour le référentiel de widgets, ajoutez-vous en tant qu’administrateur de site sur sa page de confirmation, revenez à l’assistant, puis sélectionnez **Valider l’installation de la synchronisation du code AEM** |
-| La création de l’application n’a pas généré d’actions | La création d’applications ne configure l’infrastructure que . Sur la page de l’application, sélectionnez **Créer automatiquement les actions**, saisissez **Votre site web**, puis sélectionnez **Créer automatiquement mes actions**. Voir [ Création d’actions ](/help/guides/creating-actions.md) |
+| La création de l’application n’a pas généré d’actions | La création d’applications ne configure l’infrastructure que . Sur la page de l’application, sélectionnez **Créer automatiquement les actions**, saisissez **Votre site web**, puis sélectionnez **Créer automatiquement mes actions**. Voir [&#x200B; Création d’actions &#x200B;](/help/guides/creating-actions.md) |
 | Actions en cours de génération | L’interface utilisateur estime jusqu’à 30 minutes pour la génération. Suivez la progression sur la page Actions ou quittez la page et revenez plus tard |
 | Échec de la génération des rapports d’action | Vérifiez que le site web est public via HTTPS et que, pour vos propres référentiels, cet accès au référentiel est toujours valide. Si le problème persiste, contactez l’équipe Beta en indiquant le message d’erreur visible |
 
@@ -47,7 +47,7 @@ Commencez par le symptôme observable. Ne partagez pas les informations d’iden
 | Le widget s’affiche mais n’affiche aucune donnée. | Appelez le gestionnaire avec MCP Inspector et comparez sa forme `structuredContent` avec les champs lus depuis `bridge.toolResult` |
 | Le widget fonctionne en prévisualisation directe, mais pas dans le ChatGPT | L’aperçu direct peut utiliser des données d’exemple. Testez le résultat du gestionnaire déployé et vérifiez que l’origine EDS est autorisée par CORS et CSP. |
 | Requête du navigateur bloquée | Ajoutez uniquement l’origine requise au champ CSP correct et redéployez |
-| L’éditeur d’en-têtes HTTP ne peut pas enregistrer la configuration | Utilisez le [service de configuration ](https://aem.live/docs/config-service-setup) ou demandez à l’administrateur EDS d’initialiser la configuration des en-têtes de site |
+| L’éditeur d’en-têtes HTTP ne peut pas enregistrer la configuration | Utilisez le [service de configuration &#x200B;](https://aem.live/docs/config-service-setup) ou demandez à l’administrateur EDS d’initialiser la configuration des en-têtes de site |
 
 Ne consignez pas les valeurs de `bridge.toolResult` complètes lorsqu’elles peuvent contenir des données personnelles ou sensibles.
 
@@ -62,12 +62,12 @@ Ne consignez pas les valeurs de `bridge.toolResult` complètes lorsqu’elles pe
 
 ## Authentification {#authentication}
 
-S’applique lorsque l’option **[!UICONTROL Activer l’authentification]** est activée. Voir [ Authentifier les utilisateurs finaux avec votre propre fournisseur d’identité](/help/guides/authentication.md).
+S’applique lorsque l’option **[!UICONTROL Activer l’authentification]** est activée. Voir [&#x200B; Authentifier les utilisateurs finaux avec votre propre fournisseur d’identité](/help/guides/authentication.md).
 
 | Symptôme | Quoi essayer |
 |---------|-------------|
 | Les actions sont toujours publiques après l’enregistrement des paramètres | Déployez à nouveau l’application dans cet environnement. Les modifications d’authentification prennent effet lors du prochain déploiement |
-| Les paramètres ne s’affichent pas correctement après le changement d’environnement | Vérifiez que le sélecteur **** affiche l’environnement souhaité. **[!UICONTROL Évaluation]** et **[!UICONTROL Production]** sont configurés indépendamment |
+| Les paramètres ne s’affichent pas correctement après le changement d’environnement | Vérifiez que le sélecteur **&#x200B;**&#x200B;affiche l’environnement souhaité. **[!UICONTROL Évaluation]** et **[!UICONTROL Production]** sont configurés indépendamment |
 | La connexion ne démarre pas | Vérifiez que vous avez déployé l’application après l’activation de l’authentification et que l’action utilise **[!UICONTROL Obligatoire]**. Une action **[!UICONTROL facultative]** s’affiche uniquement lorsque son gestionnaire demande la connexion |
 | La plateforme envoie l’utilisateur vers une page de connexion incorrecte | Vérifiez que **[!UICONTROL Émetteur]** correspond exactement à l’URL de l’émetteur de votre fournisseur d’identité et qu’il est accessible via HTTPS public |
 | Connexion réussie mais chaque appel est toujours rejeté | Confirmez que votre fournisseur d’identité émet des jetons dont l’audience est l’URL du serveur MCP de l’application pour cet environnement et que le jeton est un jeton JWT signé avec un algorithme asymétrique. Voir [Exigences en matière de jetons](/help/reference/authentication-reference.md#token-requirements) |
@@ -88,7 +88,7 @@ Ne collez pas de jetons d’accès, de jeux de réclamations ou de secrets clien
 
 | Symptôme | Quoi essayer |
 |---------|-------------|
-| Le plug-in n’apparaît pas | Ouvrez [](https://chatgpt.com/plugins), vérifiez que votre compte ou votre espace de travail autorise les serveurs MCP personnalisés, puis installez ou connectez le plug-in obtenu |
+| Le plug-in n’apparaît pas | Ouvrez [&#128279;](https://chatgpt.com/plugins), vérifiez que votre compte ou votre espace de travail autorise les serveurs MCP personnalisés, puis installez ou connectez le plug-in obtenu |
 | Échec de la création du plug-in | Copiez à nouveau l’URL complète du serveur HTTPS MCP depuis **Tester l’application** et choisissez la méthode d’authentification correspondant à l’application. Utilisez **Aucune authentification** uniquement pour une application publique, et non comme solution de contournement pour OAuth ayant échoué |
 | Le plug-in se connecte, mais ne peut pas appeler d’actions. | Vérifiez que le plug-in est associé au chat, que les actions sont exposées au modèle et que la dernière version est déployée |
 | Le plug-in utilise un environnement incorrect. | Modifiez ou recréez le module externe avec l’URL du serveur MCP d’évaluation ou de production prévue |

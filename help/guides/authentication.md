@@ -53,7 +53,7 @@ Configurez l’authentification **par environnement**. **[!UICONTROL Évaluation
 
 ## Avant de commencer
 
-- Un fournisseur d’identité OAuth 2.1 ou OpenID Connect qui émet des jetons d’accès **JWT** signés avec un algorithme asymétrique. Les jetons opaques et les jetons signés HMAC ne sont pas pris en charge. Voir [ Exigences en matière de jetons ](/help/reference/authentication-reference.md#token-requirements).
+- Un fournisseur d’identité OAuth 2.1 ou OpenID Connect qui émet des jetons d’accès **JWT** signés avec un algorithme asymétrique. Les jetons opaques et les jetons signés HMAC ne sont pas pris en charge. Voir [&#x200B; Exigences en matière de jetons &#x200B;](/help/reference/authentication-reference.md#token-requirements).
 - Un accès administrateur à ce fournisseur d’identité pour enregistrer une API et un client.
 - Votre application a été déployée au moins une fois dans l’environnement que vous êtes en train de configurer. L’URL du serveur MCP déployé est la valeur sur laquelle vos jetons doivent être inclus.
 
@@ -89,7 +89,7 @@ Les étapes varient selon le fournisseur. Configurez les quatre éléments suiva
 ## Activer l’authentification
 
 1. Dans le volet de navigation de gauche, sélectionnez **[!UICONTROL Paramètres]**, puis ouvrez l’onglet **[!UICONTROL Authentification]**.
-2. Dans ****, choisissez **[!UICONTROL Évaluation]** ou **[!UICONTROL Production]**.
+2. Dans **&#x200B;**, choisissez **[!UICONTROL Évaluation]** ou **[!UICONTROL Production]**.
 3. Activez **[!UICONTROL Activer l’authentification]**.
 4. Sous **[!UICONTROL Paramètres principaux]**, saisissez :
    - **[!UICONTROL Émetteur]** : l’URL de l’émetteur HTTPS de votre fournisseur d’identité, qui est également la valeur qu’il met dans la réclamation `iss` de chaque jeton. La plateforme nécessite cette URL et publie l’émetteur en tant que serveur d’autorisation de l’application pour la découverte de clients LLM. Chaque application prend en charge un fournisseur d’identité.
@@ -99,7 +99,7 @@ Les étapes varient selon le fournisseur. Configurez les quatre éléments suiva
 
 ![Authentification : activez l&#39;authentification et renseignez les paramètres principaux](/help/assets/guide-authentication/auth-core-settings.png)
 
-Pour connaître la configuration requise pour le champ, voir [ Paramètres d’authentification ](/help/reference/authentication-reference.md#authentication-settings).
+Pour connaître la configuration requise pour le champ, voir [&#x200B; Paramètres d’authentification &#x200B;](/help/reference/authentication-reference.md#authentication-settings).
 
 ## Choisir un mode d’authentification pour chaque action
 
@@ -226,7 +226,7 @@ Voir [Tester le plug-in ChatGPT](/help/guides/test-in-chatgpt.md) pour la suite 
 
 ### [!DNL Claude]
 
-Ajoutez le connecteur personnalisé et vérifiez ses paramètres d’authentification. Pour une application mixte publique/protégée, choisissez **[!UICONTROL Se connecter si nécessaire]** le cas échéant. Pour demander la connexion avant l’utilisation du connecteur, sélectionnez **[!UICONTROL Se connecter maintenant]**. La boîte de dialogue varie en fonction du compte ou de l’organisation. Voir [ Tester le connecteur Claude ](/help/guides/test-in-claude.md).
+Ajoutez le connecteur personnalisé et vérifiez ses paramètres d’authentification. Pour une application mixte publique/protégée, choisissez **[!UICONTROL Se connecter si nécessaire]** le cas échéant. Pour demander la connexion avant l’utilisation du connecteur, sélectionnez **[!UICONTROL Se connecter maintenant]**. La boîte de dialogue varie en fonction du compte ou de l’organisation. Voir [&#x200B; Tester le connecteur Claude &#x200B;](/help/guides/test-in-claude.md).
 
 ### Vérifier
 

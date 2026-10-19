@@ -27,7 +27,7 @@ Commencez par tester le widget généré. Personnalisez ensuite son contrat de d
 
 ## Recherche du widget généré
 
-Ouvrez le référentiel EDS connecté lors de la [ configuration de l’infrastructure ](/help/guides/create-app.md). Si vous utilisez l’infrastructure gérée par Adobe, demandez l’accès au code avant de continuer. Chaque widget généré est un bloc EDS :
+Ouvrez le référentiel EDS connecté lors de la [&#x200B; configuration de l’infrastructure &#x200B;](/help/guides/create-app.md). Si vous utilisez l’infrastructure gérée par Adobe, demandez l’accès au code avant de continuer. Chaque widget généré est un bloc EDS :
 
 ```text
 blocks/
@@ -70,7 +70,7 @@ L’intégration récupère le contenu `.plain.html` de la page du widget et imp
 - Appelez une autre action avec `bridge.callTool()`.
 - Conserver sa taille synchronisée avec les `bridge.autoResize()`.
 
-Ce guide couvre les méthodes de pont courantes. Voir le package [`@adobe/llmapps-sdk` pour ](https://www.npmjs.com/package/@adobe/llmapps-sdk)’API complète.
+Ce guide couvre les méthodes de pont courantes. Voir le package [`@adobe/llmapps-sdk` pour &#x200B;](https://www.npmjs.com/package/@adobe/llmapps-sdk)’API complète.
 
 ## Comprendre le contrat de données
 

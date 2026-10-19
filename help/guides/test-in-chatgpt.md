@@ -37,7 +37,7 @@ En [!DNL LLM Apps] :
 
 ## Création du plug-in
 
-1. Ouvrez [](https://chatgpt.com/plugins).
+1. Ouvrez [&#128279;](https://chatgpt.com/plugins).
 2. Sélectionnez **+**, puis **[!UICONTROL Ajouter un serveur MCP personnalisé]**.
 3. Configurez la connexion :
    - **[!UICONTROL Nom]** — nom du module externe.
@@ -47,7 +47,7 @@ En [!DNL LLM Apps] :
 
    >[!NOTE]
    >
-   >Si vous avez activé l’authentification de l’utilisateur final, sélectionnez **[!UICONTROL OAuth]** lorsque chaque action est définie sur **[!UICONTROL Obligatoire]** ou **[!UICONTROL Mixte]** pour une combinaison d’actions publiques et protégées, où ces choix sont proposés. Voir [ Authentifier les utilisateurs finaux avec votre propre fournisseur d’identité](/help/guides/authentication.md).
+   >Si vous avez activé l’authentification de l’utilisateur final, sélectionnez **[!UICONTROL OAuth]** lorsque chaque action est définie sur **[!UICONTROL Obligatoire]** ou **[!UICONTROL Mixte]** pour une combinaison d’actions publiques et protégées, où ces choix sont proposés. Voir [&#x200B; Authentifier les utilisateurs finaux avec votre propre fournisseur d’identité](/help/guides/authentication.md).
 
 4. Sélectionnez **[!UICONTROL Je comprends et je souhaite continuer]**.
 5. Sélectionnez **[!UICONTROL Créer en tant que plug-in]**.

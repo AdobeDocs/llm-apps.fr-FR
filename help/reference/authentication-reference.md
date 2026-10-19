@@ -19,7 +19,7 @@ Utilisez cette page pour rechercher des champs et des contrats d’authentificat
 
 ## Paramètres d’authentification {#authentication-settings}
 
-Ouvrez **[!UICONTROL Paramètres]** > **[!UICONTROL Authentification]**. Chaque environnement stocke ses propres paramètres. Utilisez le sélecteur **** pour sélectionner l’environnement à modifier ; l’enregistrement des paramètres n’affecte jamais l’autre environnement.
+Ouvrez **[!UICONTROL Paramètres]** > **[!UICONTROL Authentification]**. Chaque environnement stocke ses propres paramètres. Utilisez le sélecteur **&#x200B;**&#x200B;pour sélectionner l’environnement à modifier ; l’enregistrement des paramètres n’affecte jamais l’autre environnement.
 
 | Champ | Requis | Description |
 |-------|----------|-------------|
@@ -65,7 +65,7 @@ La modification du commutateur d’authentification réécrit également les mod
 | Désactivé à activé | Chaque action **[!UICONTROL Aucune]** devient **[!UICONTROL Obligatoire]**. Les actions déjà **[!UICONTROL Obligatoires]** ou **[!UICONTROL Facultatives]** conservent leur mode |
 | Activé/désactivé | Le mode et les portées de chaque action sont effacés pour cet environnement. La configuration n’est pas restaurée si vous rallumez le commutateur |
 
-La commutation de **** ne réécrit jamais les modes. Le sélecteur charge la configuration enregistrée de l’autre environnement sans la modifier.
+La commutation de **&#x200B;**&#x200B;ne réécrit jamais les modes. Le sélecteur charge la configuration enregistrée de l’autre environnement sans la modifier.
 
 Avec l’option **[!UICONTROL Activer l’authentification]** activée et chaque action définie sur **[!UICONTROL Aucune]**, l’application ne nécessite pas d’authentification, mais publie toujours son serveur d’autorisation pour la découverte. Pour rendre l’application entièrement publique, désactivez l’interrupteur.
 

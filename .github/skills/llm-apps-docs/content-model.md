@@ -1,7 +1,7 @@
 ---
-source-git-commit: a48b4022979d9a13b4fc3aa870c4ee6375e8bc13
+source-git-commit: 14d94a68dabddd2f2ef2cef65c51d31645d4a958
 workflow-type: tm+mt
-source-wordcount: '701'
+source-wordcount: '715'
 ht-degree: 0%
 ---
 # Modèle de contenu et terminologie
@@ -61,7 +61,7 @@ Commence par un symptôme observable.
 
 - **Applications Adobe LLM** — nom complet du produit sur la première mention.
 - **Application LLM** : une application gérée par le produit.
-- **Infrastructure gérée par Adobe** — Infrastructure d&#39;évaluation créée et hébergée par Adobe ; sélectionnez **Laissons-nous gérer** dans l&#39;assistant de création d&#39;application.
+- **Infrastructure gérée par Adobe** — infrastructure créée et gérée par Adobe ; sélectionnez **Laissons-nous la gérer** dans l’assistant de création d’application. Ne décrivez pas cette option comme étant à l’essai uniquement ou ne faites pas d’affirmations non confirmées sur l’éligibilité de la production.
 - **Je le configurerai moi-même** — option d’assistant pour connecter vos propres référentiels, pas d’exigence d’écriture manuelle d’actions. Le chemin d’accès par défaut commence par deux référentiels vides initialisés par la plateforme. Les projets existants compatibles sont facultatifs.
 - **Créer automatiquement des actions** : choix recommandé de création d’action sur la page de l’application après la configuration de l’infrastructure.
 - **Créer mes actions** — bouton qui lance la génération d’actions sur le site web.

@@ -1,9 +1,9 @@
 ---
 name: llm-apps-docs
 description: Créez, examinez et validez la documentation sur les applications Adobe LLM, appliquez ses normes éditoriales et capturez des captures d’écran actuelles de l’interface utilisateur grâce à l’automatisation du navigateur. Utilisez pour les articles llm-apps.en, la navigation, les captures d’écran et les lots de révision hors ligne.
-source-git-commit: a48b4022979d9a13b4fc3aa870c4ee6375e8bc13
+source-git-commit: 14d94a68dabddd2f2ef2cef65c51d31645d4a958
 workflow-type: tm+mt
-source-wordcount: '1346'
+source-wordcount: '1380'
 ht-degree: 0%
 ---
 
@@ -41,6 +41,7 @@ seul le comportement que les preuves disponibles confirment.
 ## Règles de création
 
 - Diriger les nouveaux utilisateurs et utilisatrices via **configuration de l’infrastructure**, puis **création d’actions**. L’assistant de création d’application configure l’infrastructure uniquement ; **[!UICONTROL Créer automatiquement des actions]** et **[!UICONTROL Créer mes actions]** lancez ensuite la génération d’actions sur le site web, à partir de la page de l’application. Utilisez **l’infrastructure gérée par** pour l’option intitulée **[!UICONTROL Laissez-nous la gérer]** dans l’interface utilisateur.
+- Décrivez de manière neutre l’infrastructure gérée par Adobe telle qu’Adobe la crée et la gère. Ne l’étiquetez pas comme une option d’évaluation, de configuration temporaire ou de non-production uniquement et ne faites pas de déclarations non confirmées sur l’éligibilité de la production.
 - Organisez la navigation autour des parcours utilisateur et des résultats, et non des rubriques d’implémentation.
 - Au début de chaque guide, utilisez **Dans ce guide :** suivi d’une ou de deux phrases en langage clair expliquant la tâche et l’étape suivante. Préférer « Découvrez comment... » sur des promesses aux tensions futures. N&#39;utilisez pas de libellés **Parcours:** ou de listes d&#39;étapes séparées par des flèches.
 - N’utilisez pas de noms de code internes (par exemple, « Agent d’intégration ») dans les documents destinés aux clients. Cette fonctionnalité n’est jamais exposée dans l’interface utilisateur du produit. Décrivez-la de manière générique (par exemple, « la plateforme ») et utilisez la copie exacte actuelle de l’interface utilisateur, telle que **[!UICONTROL Créer mes actions]** pour les contrôles.
@@ -52,7 +53,7 @@ seul le comportement que les preuves disponibles confirment.
 - Distinguer le modèle automatique généré de l’intégration prête pour la production.
 - Évitez les noms de programmes de travail internes, les champs de base de données, les tickets d’implémentation et les détails de pipelines instables.
 - Ne dupliquez pas les tableaux de champs dans les guides ; liez-les à des références.
-- Préservez le matériel et les directives d’Experience League : `[!DNL]`, &grave;&grave;, `[!IMPORTANT]`, `[!NOTE]` et `[!TIP]`.
+- Préservez le matériel et les directives d’Experience League : `[!DNL]`, ``, `[!IMPORTANT]`, `[!NOTE]` et `[!TIP]`.
 - Utilisez des liens internes relatifs à la racine : `/help/...`.
 - Utilisez la casse de phrase pour les titres et les en-têtes sauf si une étiquette de produit en exige autrement.
 - Utilisez un texte secondaire d’image descriptive qui explique l’écran et le statut.

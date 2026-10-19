@@ -1,9 +1,9 @@
 ---
 title: Présentation des applications Adobe LLM
 description: Découvrez ce qu’est une application Adobe LLM, son fonctionnement et comment commencer à la créer.
-source-git-commit: a48b4022979d9a13b4fc3aa870c4ee6375e8bc13
+source-git-commit: 14d94a68dabddd2f2ef2cef65c51d31645d4a958
 workflow-type: tm+mt
-source-wordcount: '621'
+source-wordcount: '606'
 ht-degree: 1%
 ---
 
@@ -50,7 +50,7 @@ Fonction côté serveur qui s’exécute lorsque la plateforme LLM appelle une a
 
 ### Widget {#widgets-eds}
 
-Réponse visuelle affichée avec la réponse du LLM, telle qu’une carte, un carrousel ou un tableau. Les widgets générés sont des blocs dans un référentiel [!DNL Edge Delivery Services] (EDS). Avec l’infrastructure gérée par Adobe, Adobe prépare et héberge le référentiel pour une version d’essai. Vous pouvez également connecter votre propre référentiel.
+Réponse visuelle affichée avec la réponse du LLM, telle qu’une carte, un carrousel ou un tableau. Les widgets générés sont des blocs dans un référentiel [!DNL Edge Delivery Services] (EDS). Avec l’infrastructure gérée par Adobe, Adobe prépare et héberge le référentiel pour vous. Vous pouvez également connecter votre propre référentiel.
 
 ### Serveur MCP
 
@@ -76,7 +76,7 @@ Pour plus d’informations sur les éléments à créer et le fonctionnement des
 
 La création d’une application et la création de ses actions sont des étapes distinctes :
 
-1. [Configurer l’infrastructure](/help/guides/create-app.md). Utilisez l’infrastructure gérée par Adobe pour une version d’essai ou fournissez deux référentiels [!DNL GitHub] vides via l’assistant de création d’application. La plateforme initialise l’un pour les gestionnaires d’action et l’autre pour les widgets.
+1. [Configurer l’infrastructure](/help/guides/create-app.md). Utilisez l’infrastructure gérée par Adobe pour une configuration rapide ou choisissez d’utiliser vos propres référentiels [!DNL GitHub].
 2. [Créer vos actions](/help/guides/creating-actions.md). Demandez à la plateforme d’analyser votre site web et de générer des actions, ou créez-les vous-même.
 3. [Déployez et testez l’application](/help/guides/deploy-your-app.md). Examinez le travail généré, déployez-le dans l’environnement d’évaluation et testez-le dans une plateforme LLM prise en charge.
 

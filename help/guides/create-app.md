@@ -1,9 +1,9 @@
 ---
 title: Configuration de l’infrastructure
 description: Créez une application Adobe LLM à l’aide de l’infrastructure gérée par Adobe ou fournissez deux référentiels GitHub vides que la plateforme doit initialiser.
-source-git-commit: a48b4022979d9a13b4fc3aa870c4ee6375e8bc13
+source-git-commit: 14d94a68dabddd2f2ef2cef65c51d31645d4a958
 workflow-type: tm+mt
-source-wordcount: '1330'
+source-wordcount: '1337'
 ht-degree: 0%
 ---
 
@@ -44,14 +44,14 @@ L’assistant **[!UICONTROL Créer votre application LLM]** commence par **[!UIC
 
 | Option d’infrastructure | Sélectionner dans l’assistant | Ce que cela signifie |
 |---|---|---|
-| **Infrastructure gérée par** | **[!UICONTROL Laissez-nous nous en occuper]** | Adobe crée et héberge les référentiels pour une configuration d’évaluation. L’accès au code est disponible sur demande et vous pouvez déplacer vers vos propres référentiels ultérieurement. |
+| **Infrastructure gérée par** | **[!UICONTROL Laissez-nous nous en occuper]** | Adobe crée et gère les référentiels et les services connectés pour votre application. Un accès au code est disponible sur demande. |
 | **Vos propres référentiels** | **[!UICONTROL Je vais le configurer moi-même]** | Vous fournissez deux référentiels GitHub vides et accordez l’accès via l’assistant. La plateforme initialise l’un pour les gestionnaires d’action et l’autre pour les widgets. |
 
 Les deux options prennent en charge la génération automatique d’actions ultérieurement. Aucune des deux options ne nécessite que vous écriviez des actions manuellement.
 
 ## Utilisation de l’infrastructure gérée par Adobe {#adobe-managed-infrastructure}
 
-Utilisez cette option pour essayer l’application sans créer de référentiels au préalable ou installer vous-même des applications [!DNL GitHub].
+Utilisez cette option pour permettre à Adobe de configurer et de gérer les référentiels et les services connectés pour votre application. Vous n’avez pas besoin de créer de référentiels ni d’installer vous-même des applications [!DNL GitHub].
 
 1. Sélectionnez **[!UICONTROL Laissons-nous nous en occuper]**.
 2. Sélectionnez **[!UICONTROL Étape suivante]**.
@@ -130,7 +130,7 @@ Les deux options d’infrastructure se terminent par **[!UICONTROL Détails de l
 ![Détails de l’application : saisissez un nom d’application, sélectionnez un programme AEM, puis choisissez la région données d’analyse](/help/assets/guide-infrastructure/app-details.png)
 
 1. Saisissez le **[!UICONTROL Nom de l’application LLM]**. Utilisez un nom qui identifie la marque ou l’expérience, tel que *café Frescopa*.
-2. Sélectionnez le programme **&#x200B;**&#x200B;auquel l’application appartient. Si vous n’avez accès qu’à un seul programme, l’assistant le sélectionne automatiquement.
+2. Sélectionnez le programme **** auquel l’application appartient. Si vous n’avez accès qu’à un seul programme, l’assistant le sélectionne automatiquement.
 3. Sous **[!UICONTROL Région de données Analytics]**, choisissez **[!UICONTROL États-Unis (US)]** ou **[!UICONTROL Europe (UE)]**.
 4. Sélectionnez **[!UICONTROL Créer une application]**.
 

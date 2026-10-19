@@ -1,9 +1,9 @@
 ---
 title: Configuration des variables et secrets d’application
 description: Ajoutez des variables spécifiques à un environnement à votre application Adobe LLM, lisez-les dans un gestionnaire d’actions, déployez et résolvez les problèmes courants.
-source-git-commit: 141d7a263a6937299b3ff52bdcc7c16197e55632
+source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
 workflow-type: tm+mt
-source-wordcount: '1158'
+source-wordcount: '1170'
 ht-degree: 1%
 ---
 
@@ -15,24 +15,24 @@ ht-degree: 1%
 >
 >Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
 
-Utilisez des variables et des secrets pour configurer votre application sans valeurs de codage en dur dans ses gestionnaires d’actions. Par exemple, définissez l’URL de l’API de catalogue de produits que votre application appelle, à l’aide d’un service de test dans l’environnement intermédiaire et du service actif dans l’environnement de production, sans modifier le code du gestionnaire.
+Utilisez des variables et des secrets pour configurer votre application sans valeurs de codage en dur dans ses gestionnaires d’actions. Par exemple, configurez l’URL de l’API du catalogue de produits pour utiliser un service de test dans l’environnement intermédiaire et le service actif dans l’environnement de production sans modifier le code du gestionnaire.
 
 Les variables contiennent des paramètres non sensibles. Les secrets sont destinés à des valeurs sensibles telles que les clés API et les jetons d’accès.
 
 >[!IMPORTANT]
 >
->Actuellement, **seules les variables** sont prises en charge. La prise en charge secrète est prévue pour une version ultérieure. D’ici là, **NE PAS stocker** les mots de passe, les clés API, les jetons d’accès ou d’autres informations sensibles **dans les variables** : leurs valeurs sont visibles et copiables dans le tableau des paramètres.
+>L’interface utilisateur prend actuellement en charge **uniquement les variables**. La prise en charge secrète est prévue pour une version ultérieure. D’ici là, **NE PAS stocker** les mots de passe, les clés API, les jetons d’accès ou d’autres informations sensibles **dans les variables** : le tableau des paramètres affiche les valeurs des variables et permet aux utilisateurs de les copier.
 
-**Parcours :** ajoutez une variable ou un secret → lisez-le dans votre gestionnaire → déployer → test.
+**Dans ce guide :** découvrez comment ajouter une variable d’application et la lire dans un gestionnaire d’action. Déployez l’application et vérifiez que le gestionnaire utilise la valeur attendue.
 
 ## Avant de commencer {#before-you-begin}
 
 Vous avez besoin des éléments suivants :
 
-- **Accès au référentiel des gestionnaires de votre application** afin que vous puissiez mettre à jour les gestionnaires pour lire vos variables si nécessaire.
-- **`@adobe/llm-apps-runtime`version 1.1.0 ou ultérieure** dans ce référentiel. Les applications créées depuis août 2026 l’incluent déjà.
+- **Accès au référentiel des gestionnaires de votre application** pour mettre à jour les gestionnaires qui doivent lire des variables.
+- **`@adobe/llm-apps-runtime`version 1.1.0 ou ultérieure** dans ce référentiel. Vérifiez la version avant d’utiliser l’assistant ci-dessous.
 
-Pour vérifier la version, exécutez ceci dans votre référentiel de gestionnaire :
+Pour vérifier la version, exécutez la commande suivante dans votre référentiel de gestionnaire :
 
 ```bash
 npm ls @adobe/llm-apps-runtime
@@ -46,20 +46,17 @@ npm install @adobe/llm-apps-runtime@latest
 
 ## Gestion des variables {#manage-variables}
 
-Chaque environnement, **[!UICONTROL Évaluation]** ou **[!UICONTROL Production]**, possède ses propres variables. Par conséquent, vérifiez **[!UICONTROL Workspace]** avant d’en ajouter, d’en mettre à jour ou d’en supprimer une. Les modifications prennent effet la prochaine fois que vous déployez l’application dans cet environnement.
+Chaque environnement, **[!UICONTROL Évaluation]** ou **[!UICONTROL Production]**, possède ses propres variables. Vérifiez **** avant d&#39;ajouter, de mettre à jour ou de supprimer une variable. Les modifications prennent effet la prochaine fois que vous déployez l’application dans cet environnement.
 
 ### Ajouter une variable {#add-variable-to-app}
 
-Ce guide utilise une variable nommée `GREETING_PREFIX` avec la valeur `Good day` comme exemple non sensible, qui remplace le message d’accueil par défaut du gestionnaire de `Hello`. L’ajout d’une variable ne modifie **pas** automatiquement une action : le gestionnaire **doit** la lire.
+Cet exemple utilise la variable non sensible `GREETING_PREFIX` avec la valeur `Good day` pour remplacer le message d’accueil par défaut du gestionnaire de `Hello`. L’ajout d’une variable ne modifie **pas** automatiquement une action : le gestionnaire **doit** lire la variable.
 
 #### Étape 1 : ajouter une variable dans l’interface utilisateur {#add-a-variable}
 
 1. Ouvrez votre application et sélectionnez **[!UICONTROL Paramètres]** dans le volet de navigation de gauche.
 2. Ouvrez l’onglet **[!UICONTROL Variables et secrets]**.
-
-
-
-3. Dans **&#x200B;**, sélectionnez **[!UICONTROL Évaluation]** ou **[!UICONTROL Production]**.
+3. Dans ****, sélectionnez **[!UICONTROL Évaluation]** ou **[!UICONTROL Production]**.
 4. Sélectionnez **[!UICONTROL Ajouter]**.
 
    ![Variables et secrets : videz l’espace de travail d’étape avec le bouton Ajouter](/help/assets/guide-app-variables/variables-empty.png)
@@ -71,13 +68,11 @@ Ce guide utilise une variable nommée `GREETING_PREFIX` avec la valeur `Good day
 
    ![Ajouter une variable ou un secret — GREETING_PREFIX défini sur Bon jour](/help/assets/guide-app-variables/add-variable-dialog.png)
 
-6. Sélectionnez **[!UICONTROL Ajouter]** pour enregistrer.
+6. Pour enregistrer la variable, sélectionnez **[!UICONTROL Ajouter]**.
 
-La variable apparaît dans le tableau avec ses **[!UICONTROL Nom]**, **[!UICONTROL Type]**, **[!UICONTROL Valeur]** et **[!UICONTROL Dernière mise à jour]** date. Utilisez le contrôle de copie en regard de la valeur si vous devez la copier.
+La variable apparaît dans le tableau avec ses **[!UICONTROL Nom]**, **[!UICONTROL Type]**, **[!UICONTROL Valeur]** et **[!UICONTROL Dernière mise à jour]** date. Pour copier la valeur, utilisez la commande de copie adjacente.
 
 ![Variables et secrets — GREETING_PREFIX enregistré dans l’espace de travail d’évaluation](/help/assets/guide-app-variables/variable-added.png)
-
-
 
 >[!IMPORTANT]
 >
@@ -101,7 +96,7 @@ module.exports = async ({ name = 'there' } = {}, extra) => {
 
 Avec la valeur `Good day`, un appel dont la `name` est définie sur `Ada` renvoie `Good day, Ada!` au lieu de la `Hello, Ada!` par défaut. Si vous redéfinissez ensuite la valeur sur `Howdy`, le message d’accueil change après le redéploiement, sans qu’aucune autre modification de gestionnaire ne soit nécessaire.
 
-Le nom de votre code **doit** correspond exactement au nom de l’interface utilisateur. Si la variable n’est pas définie, `getVariable` renvoie `undefined`. Décidez si votre action peut utiliser une valeur par défaut appropriée, comme dans l’exemple, ou doit renvoyer une erreur claire, car elle nécessite le paramètre .
+Le nom de votre code **doit** correspond exactement au nom de l’interface utilisateur. Si la variable n’est pas définie, `getVariable` renvoie `undefined`. Choisissez une valeur par défaut appropriée, comme dans l’exemple, ou renvoyez une erreur claire si l’action nécessite le paramètre .
 
 >[!NOTE]
 >
@@ -113,10 +108,9 @@ Lorsque les modifications apportées au gestionnaire sont prêtes, validez-les e
 
 1. [Déployez votre application](/help/guides/deploy-your-app.md) dans l’environnement sélectionné dans **[!UICONTROL Workspace]**.
 2. Appelez l’action depuis une plateforme LLM prise en charge avec `name` défini sur `Ada`. Voir [Test du plug-in ChatGPT](/help/guides/test-in-chatgpt.md) ou [Test du connecteur Claude](/help/guides/test-in-claude.md).
-3. Vérifiez que la réponse est `Good day, Ada!`. Cela confirme que le gestionnaire lit votre variable configurée et remplace son message d’accueil par défaut.
+3. Vérifiez que la réponse est `Good day, Ada!`. La réponse vérifie que le gestionnaire lit votre variable configurée et remplace son message d’accueil par défaut.
 
-Pour configurer l’autre environnement, sélectionnez-le dans **&#x200B;**, répétez l’installation avec la valeur appropriée, puis déployez et vérifiez-le.
-
+Pour configurer l’autre environnement, sélectionnez-le dans ****, répétez l’installation avec la valeur appropriée, puis déployez et testez l’application à cet endroit.
 
 >[!NOTE]
 >
@@ -138,7 +132,7 @@ Pour configurer l’autre environnement, sélectionnez-le dans **&#x200B;**, ré
 3. Sélectionner **[!UICONTROL Mettre à jour]**.
 4. Déployez à nouveau l’application dans le même environnement et vérifiez le comportement modifié.
 
-La mise à jour ne modifie que la valeur. Les variables **ne peuvent pas** peuvent pas être renommées ; pour utiliser un autre nom, supprimez la variable existante et ajoutez-en une nouvelle, puis mettez à jour votre gestionnaire pour lire le nouveau nom.
+La mise à jour d’une variable ne modifie que sa valeur. Vous **ne pouvez pas** renommer les variables. Pour utiliser un autre nom, supprimez la variable existante, ajoutez une nouvelle variable et mettez à jour votre gestionnaire pour lire le nouveau nom.
 
 ### Supprimer une variable {#delete-a-variable}
 
@@ -152,7 +146,7 @@ La mise à jour ne modifie que la valeur. Les variables **ne peuvent pas** peuve
 
 >[!IMPORTANT]
 >
->La suppression **IMPOSSIBLE** ne peut pas être annulée. Assurez-vous donc d’avoir sélectionné la bonne variable. L’application déployée conserve sa configuration existante jusqu’au prochain déploiement. Après ce déploiement, les gestionnaires **ne reçoivent plus** la variable supprimée. Par conséquent, une action qui en a besoin peut échouer.
+>Vous **NE POUVEZ PAS** annuler la suppression. Vérifiez que vous avez sélectionné la bonne variable. L’application déployée conserve sa configuration existante jusqu’au prochain déploiement. Après ce déploiement, les gestionnaires **plus** ne reçoivent pas la variable supprimée. Par conséquent, une action qui nécessite la variable peut échouer.
 
 ## Règles et limites {#good-to-know}
 
@@ -160,7 +154,7 @@ La mise à jour ne modifie que la valeur. Les variables **ne peuvent pas** peuve
 |------|------|
 | Nom | Jusqu’à 64 caractères : lettres majuscules, chiffres et traits de soulignement, ne commençant pas par un chiffre. **Doit** être unique par application et environnement et doit correspondre au gestionnaire. |
 | Noms réservés | Noms commençant par `LLMA_` et `MCP_SERVER_URL`. |
-| Valeur | **Obligatoire**, jusqu’à 500 caractères. Les espaces de début et de fin sont supprimés. |
+| Valeur | **Obligatoire**, jusqu’à 500 caractères. La plateforme supprime les espaces de début et de fin. |
 | Limite | 50 variables par application et environnement. |
 | Visibilité | Les valeurs des variables sont visibles et copiables. La prise en charge des secrets planifiés conserve les valeurs enregistrées masquées. |
 | Modifications | Prendre effet lors du prochain déploiement dans l’environnement sélectionné. |
@@ -174,8 +168,8 @@ La mise à jour ne modifie que la valeur. Les variables **ne peuvent pas** peuve
 | *Ce nom est réservé par la plateforme* | Choisissez un nom qui ne commence pas par `LLMA_` et qui n’est pas `MCP_SERVER_URL`. |
 | *Une variable portant ce nom existe déjà* | Mettez à jour la variable existante à la place. |
 | *Cette variable vient d’être modifiée ailleurs* | Actualisez la page et réessayez. |
-| *Impossible de charger les variables* | Rechargez la page. S’il persiste, vérifiez que vous avez accès à l’application. |
-| L’action n’utilise pas la nouvelle valeur | Vérifiez que vous avez déployé **après** avoir enregistré la variable, dans le même environnement que celui que vous avez testé, que la modification du gestionnaire a été transmise et que le nom correspond **exactement**. **[!UICONTROL Dernière mise à jour]** indique la date d’enregistrement de la valeur, et non sa date de déploiement. |
+| *Impossible de charger les variables* | Rechargez la page. Si l’erreur persiste, vérifiez que vous avez accès à l’application. |
+| L’action n’utilise pas la nouvelle valeur | Vérifiez que vous avez déployé **après** avoir enregistré la variable et testé le même environnement. Vérifiez que vous avez effectué la modification du gestionnaire et que le nom de variable correspond **exactement**. La **[!UICONTROL Dernière mise à jour]** indique la date à laquelle vous avez enregistré la valeur, et non la date à laquelle vous avez déployé l’application. |
 | `getVariable is not a function` | Votre application utilise une exécution antérieure à 1.1.0. Effectuez la mise à niveau comme décrit dans la section [Avant de commencer](#before-you-begin), puis effectuez le déploiement. |
 | L’action échoue après la suppression d’une variable | Ajoutez à nouveau la variable ou mettez à jour le gestionnaire afin qu’il n’en ait plus besoin, puis déployez. |
 

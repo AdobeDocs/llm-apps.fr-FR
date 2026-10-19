@@ -1,15 +1,13 @@
 ---
-title: Créer automatiquement votre première application LLM
-description: Créez une application Adobe LLM à partir de votre site web, passez en revue les actions générées, déployez-la et testez-la sur une plateforme LLM prise en charge, telle que ChatGPT.
-source-git-commit: f91bb73a39cc5aacf44979ee55dd0ab5f69d4c81
+title: Configuration de l’infrastructure
+description: Créez une application Adobe LLM à l’aide de l’infrastructure gérée par Adobe ou fournissez deux référentiels GitHub vides que la plateforme doit initialiser.
+source-git-commit: a48b4022979d9a13b4fc3aa870c4ee6375e8bc13
 workflow-type: tm+mt
-source-wordcount: '1272'
+source-wordcount: '1330'
 ht-degree: 0%
-
 ---
 
-
-# Création Automatique De Votre Première Application {#create-first-app}
+# Configuration de l’infrastructure {#create-first-app}
 
 >[!IMPORTANT]
 >
@@ -17,198 +15,135 @@ ht-degree: 0%
 >
 >Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
 
-La plateforme transforme votre site web en une application entièrement fonctionnelle. Il propose des actions, écrit du code de gestionnaire et des tests, crée des widgets EDS et envoie les fichiers générés aux deux référentiels [!DNL GitHub] que vous détenez.
+L’infrastructure est la base technique de votre application : les référentiels qui stockent son code et les services qui exécutent ses gestionnaires d’action et diffusent ses widgets aux utilisateurs.
 
-Compter environ 15 minutes pour la génération. À la fin de ce tutoriel, vous disposez d’une application déployée que vous pouvez tester sur une plateforme LLM prise en charge, telle que [!DNL ChatGPT].
+Comme expliqué dans la [présentation](/help/overview/overview.md#key-concepts), un **gestionnaire d’actions** effectue une tâche, telle que la recherche de produits, tandis qu’un **widget** présente le résultat sous la forme d’une expérience interactive dans la conversation.
 
-**Parcours :** confirmer les exigences → créer deux référentiels → créer l’application → passer en revue les actions générées → déployer dans l’environnement d’évaluation → tester le plug-in → connecter les systèmes de production.
+[!DNL LLM Apps] stocke le code source du gestionnaire et du widget dans deux référentiels [!DNL GitHub] distincts :
 
-## Avant de commencer
+- **Référentiel d’action** : contient les gestionnaires côté serveur et leurs tests.
+- **Référentiel de widgets** — contient le code et les styles pour les widgets interactifs.
 
-Renseignez toutes les [exigences relatives aux applications LLM](/help/overview/overview.md#requirements) avant de commencer ce tutoriel.
+Par exemple, un gestionnaire de recherche de produits récupère les produits correspondants et son widget les affiche sous forme de cartes de produits. Les référentiels stockent ce code ; Adobe I/O Runtime exécute les gestionnaires déployés et Edge Delivery Services diffuse les widgets.
 
-Ce tutoriel crée une application LLM pour [&#x200B; Frescopa Coffee &#x200B;](https://frescopa.coffee/).
+L’assistant de configuration prépare ces référentiels et connecte les services dont votre application a besoin. Nous vous recommandons de commencer par **l’infrastructure gérée par**, la manière la plus rapide de commencer. Adobe crée et héberge les référentiels pour vos gestionnaires d’action et widgets. Vous n’avez pas besoin de configurer vous-même les référentiels.
 
-## Créer deux référentiels vides
+Vous pouvez également fournir deux référentiels [!DNL GitHub] vides dans votre propre compte ou organisation. La plateforme les initialise avec les fichiers de projet requis ; il n’est pas nécessaire de préparer au préalable l’action ou le code du widget.
 
-La plateforme a besoin de deux référentiels vides. Créez les deux sous le même compte ou la même organisation [!DNL GitHub] :
+**Dans ce guide :** découvrez comment choisir une option d’infrastructure et créer votre application à l’aide de l’assistant de configuration. Après la configuration, passez à [Création d’actions](/help/guides/creating-actions.md).
 
-- **Référentiel de gestionnaires** — stocke les gestionnaires d&#39;actions et les tests. Par exemple, `my-brand-llm-app`.
-- **Référentiel EDS** — stocke les blocs de widgets et les styles générés. Par exemple, `my-brand-llm-app-eds`.
+La création de l’application ne lance **la génération d’actions.** Démarrez la génération de l’action séparément de la page de l’application.
 
-Accédez à [&#128279;](https://github.com/new) pour chaque référentiel.
+## Ouvrir l’assistant de création d’application
 
-N’initialisez aucun référentiel avec une licence README, `.gitignore` ou . La plateforme prépare la structure de projet requise.
+Ouvrez [Applications Adobe LLM](https://experience.adobe.com/llm-apps). Sur la page d’accueil, sélectionnez **[!UICONTROL Commencer]**. Si une application est déjà ouverte, utilisez le sélecteur d’applications et sélectionnez **[!UICONTROL Créer une application]**.
 
->[!TIP]
->
->Utilisez des noms de référentiel qui identifient l’application et la fonction de chaque référentiel. Cela les rend plus faciles à reconnaître dans la boîte de dialogue de création d’application.
+L’assistant **[!UICONTROL Créer votre application LLM]** commence par **[!UICONTROL Commencer]**. Choisissez comment configurer l’environnement technique.
 
-## Démarrer l’application
+![Création de votre application LLM : choisissez entre une infrastructure gérée par Adobe et la connexion de vos propres référentiels](/help/assets/guide-infrastructure/setup-choice.png)
 
-1. Ouvrez [Applications Adobe LLM](https://experience.adobe.com/#/@llmapps/llm-apps/) puis sélectionnez **[!UICONTROL Créer une application]**.
-2. Saisissez le **[!UICONTROL Nom de l’application LLM]** et une description facultative.
-3. Sélectionnez la **[!UICONTROL région Analytics]**.
+| Option d’infrastructure | Sélectionner dans l’assistant | Ce que cela signifie |
+|---|---|---|
+| **Infrastructure gérée par** | **[!UICONTROL Laissez-nous nous en occuper]** | Adobe crée et héberge les référentiels pour une configuration d’évaluation. L’accès au code est disponible sur demande et vous pouvez déplacer vers vos propres référentiels ultérieurement. |
+| **Vos propres référentiels** | **[!UICONTROL Je vais le configurer moi-même]** | Vous fournissez deux référentiels GitHub vides et accordez l’accès via l’assistant. La plateforme initialise l’un pour les gestionnaires d’action et l’autre pour les widgets. |
 
-   >[!IMPORTANT]
-   >
-   >La région Analytics ne peut pas être modifiée une fois l’application créée.
+Les deux options prennent en charge la génération automatique d’actions ultérieurement. Aucune des deux options ne nécessite que vous écriviez des actions manuellement.
 
-4. Dans **[!UICONTROL Créer mon application]**, sélectionnez **[!UICONTROL Créer mon application automatiquement]**.
-5. Dans **[!UICONTROL votre site web]**, saisissez l’URL de votre site web, y compris le protocole `https://`. La plateforme analyse ce site afin de déterminer des actions utiles et des exemples de résultats représentatifs.
+## Utilisation de l’infrastructure gérée par Adobe {#adobe-managed-infrastructure}
 
-![Créer une application LLM — détails de l&#39;application et activation de Créer mon application](/help/assets/guide-onboarding-agent/app-details-onboarding.png)
+Utilisez cette option pour essayer l’application sans créer de référentiels au préalable ou installer vous-même des applications [!DNL GitHub].
 
-## Accorder à [!DNL LLM Apps] l’accès aux référentiels
-
-L’application de [!DNL GitHub] des applications Adobe LLM [!DNL LLM Apps] donne accès aux référentiels que vous sélectionnez.
-
->[!NOTE]
->
->La connexion à une organisation [!DNL GitHub] est une configuration ponctuelle. Si l’organisation apparaît déjà dans la boîte de dialogue, utilisez **[!UICONTROL Gérer les référentiels sur GitHub]** au lieu de la connecter à nouveau.
-
-### Organisation connectée
-
-Si l’application Adobe LLM Apps [!DNL GitHub] a déjà été installée avant la création des référentiels :
-
-1. Sélectionnez l’organisation connectée.
-2. Sélectionnez **[!UICONTROL Gérer les référentiels sur GitHub]**.
-3. Ajoutez les deux référentiels à l’installation de l’application [!DNL GitHub] existante.
-4. Revenez à [!DNL LLM Apps] et actualisez les listes de référentiel.
-
-### Première connexion uniquement
-
-Si l’organisation n’apparaît pas dans la boîte de dialogue :
-
-1. Sélectionnez **[!UICONTROL Connecter une organisation GitHub]**.
-2. Installez l’application [!DNL GitHub] Adobe LLM Apps.
-3. Choisissez **[!UICONTROL Sélectionner uniquement les référentiels]** puis sélectionnez les deux référentiels.
-4. Revenez à la boîte de dialogue Créer une application LLM .
-
-Si vous ne pouvez pas installer ni mettre à jour l’application [!DNL GitHub], contactez l’administration de l’organisation.
-
-## Sélectionner les référentiels
-
-1. Sous **[!UICONTROL Référentiel standard]**, sélectionnez l’organisation et le référentiel de gestionnaire vide.
-2. Sous **[!UICONTROL Référentiel EDS]**, sélectionnez l’organisation et le référentiel EDS vide.
-
-   ![Créer mon application — sélectionnez l’organisation GitHub, le référentiel standard et le référentiel EDS](/help/assets/guide-onboarding-agent/repos-selected.png)
-
-3. Sous **[!UICONTROL Conditions générales]**, cochez la case **[!UICONTROL J’accepte les conditions générales d’Adobe Developer]**.
+1. Sélectionnez **[!UICONTROL Laissons-nous nous en occuper]**.
+2. Sélectionnez **[!UICONTROL Étape suivante]**.
+3. Complétez [Détails de l’application](#app-details).
 4. Sélectionnez **[!UICONTROL Créer une application]**.
 
-## Terminer la configuration d’EDS
+La page de l’application affiche **[!UICONTROL Configuration de l’application]** pendant qu’Adobe prépare les référentiels et connecte le site du widget. L’interface utilisateur indique que la configuration prend généralement entre 1 et 2 minutes ; les actions, les tests et le déploiement ne sont pas disponibles tant que la configuration n’est pas prête.
 
-Lorsque le référentiel EDS sélectionné est vide, [!DNL LLM Apps] l’initialise avec le standard AEM. La boîte de dialogue vous demande ensuite d’installer la synchronisation du code AEM avant de tenter de créer à nouveau l’application.
+![Configuration de l’application — Adobe prépare l’infrastructure de l’application](/help/assets/guide-infrastructure/provisioning.png)
 
-1. Dans le message situé sous le référentiel EDS, sélectionnez **[!UICONTROL Installer la synchronisation du code AEM]**.
-2. Sur [!DNL GitHub], installez la synchronisation du code AEM et accordez-lui l’accès au référentiel EDS.
+Si la configuration échoue, lisez l’erreur et sélectionnez **[!UICONTROL Réessayer]**. Si la page ne peut pas vérifier la progression, l’installation se poursuit en arrière-plan ; sélectionnez **[!UICONTROL Vérifier à nouveau]** pour vous reconnecter.
 
-   Sur la page de confirmation **Synchronisation du code AEM enregistrée**, sous **[!UICONTROL Utilisateurs du site]**, sélectionnez **[!UICONTROL + Ajouter un utilisateur]** et ajoutez l’adresse e-mail que vous utilisez pour vous connecter à [!DNL LLM Apps] avec le rôle **[!UICONTROL admin]**. Sélectionnez ensuite **[!UICONTROL Terminer la configuration]** au bas de la page.
+Une fois la configuration terminée, passez à [Création d’actions](/help/guides/creating-actions.md).
 
-   ![Synchronisation du code AEM enregistrée : ajoutez-vous en tant qu’utilisateur du site avec le rôle d’administrateur](/help/assets/guide-onboarding-agent/aem-code-sync-site-users-admin.png)
+## Connecter vos propres référentiels {#your-own-repositories}
 
-3. Revenez à la boîte de dialogue Créer une application LLM .
+Sélectionnez **[!UICONTROL Je vais le configurer moi-même]**, puis **[!UICONTROL Étape suivante]**. Ce chemin d’accès comporte quatre étapes d’assistant :
 
-![Créer une application LLM : référentiel EDS vide initialisé et synchronisation du code AEM requise](/help/assets/guide-onboarding-agent/install-aem-code-sync.png)
+**Prise en main → Configuration de l’infrastructure Action → Configuration de l’infrastructure Widget → Détails de l’application.**
 
-Vous devez être administrateur du site EDS. Si la boîte de dialogue indique que vous n’êtes pas administrateur :
+Vous devez accéder aux référentiels sélectionnés et disposer des autorisations nécessaires pour installer ou configurer les applications [!DNL GitHub] requises. Pour les référentiels appartenant à l’organisation, un administrateur peut avoir besoin d’approuver l’accès.
 
-![Créer une application LLM — Accès administrateur EDS requis](/help/assets/guide-onboarding-agent/eds-admin-required.png)
+Créez deux référentiels vides : un pour les gestionnaires d’action et un pour les widgets. N’initialisez pas avec un fichier README, une licence ou une `.gitignore`. La plateforme ajoute la structure de projet requise lorsque vous validez chaque référentiel dans l’assistant.
 
-1. Sélectionnez **[!UICONTROL Ouvrir l’administration AEM Live]**.
-2. Ajoutez-vous en tant qu’administrateur du site EDS en cliquant sur le bouton **[!UICONTROL + Ajouter un ou plusieurs utilisateurs]** .
-
-   ![Créer une application LLM — Vous ajouter en tant qu&#39;administrateur EDS](/help/assets/guide-onboarding-agent/add-eds-admin.png)
-
-3. Revenez à [!DNL LLM Apps], actualisez le référentiel EDS, puis sélectionnez à nouveau **[!UICONTROL Créer une application]**.
-
-Une fois le référentiel et l’administrateur vérifiés, [!DNL LLM Apps] crée l’application et commence à générer des actions.
-
-## Attente de la génération des actions
-
-Accédez à la page **[!UICONTROL Actions]** à partir de la gauche. La page Actions affiche **Découverte d’actions pour votre expérience de conversation** pendant que l’agent analyse le site web et génère l’application. La génération prend généralement environ 15 minutes. Vous pouvez quitter cette page et revenir ultérieurement.
-
-![Actions — génération de recommandations](/help/assets/guide-onboarding-agent/actions-generating.png)
-
-Pendant la génération, [!DNL LLM Apps] :
-
-1. Analyse le site web et identifie les intentions utiles du client.
-2. Crée des métadonnées d’action, y compris des descriptions et des paramètres d’entrée.
-3. Génère un gestionnaire et teste pour chaque action dans le référentiel de gestionnaires.
-4. Génère un widget EDS pour chaque action dans le référentiel EDS.
-5. Prépare les actions à réviser.
-
-Les gestionnaires générés utilisent initialement des données d’exemple provenant du site web. Ils présentent une expérience complète, mais ne se connectent pas à vos systèmes de production.
-
-## Vérifier les actions générées
-
-Une fois la génération terminée, la page Actions affiche les actions générées et les aperçus de widget. Chaque action comporte une action **[!UICONTROL générée par l’IA, nécessite une révision]** un badge.
-
-![Actions — actions générées prêtes à être révisées](/help/assets/guide-onboarding-agent/actions-ready-for-review.png)
-
-Pour chaque action :
-
-1. Sélectionnez **[!UICONTROL Vérifier]**.
-2. Examinez le nom, la description, les paramètres, les annotations, le gestionnaire généré et le widget.
-3. Sélectionnez **[!UICONTROL Marquer comme révisé]**. Cette opération fusionne les demandes d’extraction générées.
-4. Revenez à la page Actions et répétez l’opération pour les actions restantes.
-
-![Action générée : prête à être marquée comme révisée](/help/assets/guide-onboarding-agent/generated-action-review.png)
-
-Lorsque toutes les actions sont passées en revue, sélectionnez **[!UICONTROL Aller à la page de l’application]**.
-
-![Actions — toutes les actions générées examinées](/help/assets/guide-onboarding-agent/actions-reviewed.png)
+Si vous disposez déjà de projets d’action et EDS compatibles, vous pouvez les connecter à la place, mais le code existant n’est pas requis.
 
 >[!NOTE]
 >
->Le code généré est un point de départ que vous possédez. Vous pouvez modifier les métadonnées d’action, les gestionnaires, les tests, le JavaScript de widget et les styles de widget après révision.
+>Pour un référentiel vide, la validation écrit les fichiers de projet initiaux. Sélectionnez les référentiels destinés à cette application avant de sélectionner **[!UICONTROL Valider le référentiel]**.
 
-## Déploiement de l’application
+### Configurer l’infrastructure d’action
 
-1. Revenez à la page Détails de l’application.
-2. Sélectionnez **[!UICONTROL Déployer]**.
-3. Sélectionnez **[!UICONTROL Phase]** comme environnement cible.
-4. Sélectionnez **[!UICONTROL Déployer]**.
+Le référentiel d’actions contient les tests et gestionnaires côté serveur qui s’exécutent lorsqu’une plateforme LLM appelle une action.
 
-![Déployer — sélectionner l&#39;environnement intermédiaire](/help/assets/guide-onboarding-agent/deploy-stage.png)
+1. Sous **[!UICONTROL Source des actions]**, sélectionnez **[!UICONTROL GitHub]**. Les autres sources de code ne sont actuellement pas disponibles.
+2. Réponse **[!UICONTROL Avez-vous déjà créé un référentiel GitHub ?]** :
+   - Sélectionnez **[!UICONTROL Oui, j’utiliserai un référentiel déjà créé]** pour connecter un projet existant compatible ou un référentiel vide.
+   - Sélectionnez **[!UICONTROL Je n’ai pas encore de référentiel]** puis **[!UICONTROL Créer des référentiels sur GitHub]** pour créer un référentiel d’actions vide. Revenez ensuite à l’assistant.
+3. Connectez le référentiel à l’application [!DNL GitHub] Adobe LLM Apps :
+   - Si aucune organisation n’est connectée, sélectionnez **[!UICONTROL Installer sur GitHub]**.
+   - Si une organisation est déjà connectée, sélectionnez **[!UICONTROL Connecter le référentiel]** et ajoutez le référentiel à cette installation.
+4. Sur [!DNL GitHub], choisissez **[!UICONTROL Ne sélectionner que les référentiels]** et accordez l’accès uniquement aux référentiels utilisés par cette application.
+5. Revenez à l’assistant. Sous **[!UICONTROL Sélectionner le référentiel]**, choisissez les options **[!UICONTROL Organisation]** et **[!UICONTROL Référentiel]**.
+6. Sélectionnez **[!UICONTROL Valider le référentiel]**. La validation initialise un référentiel vide avec le modèle standard Applications LLM Adobe . Un référentiel existant doit contenir un projet d’actions compatible.
+7. Une fois la validation réussie, sélectionnez **[!UICONTROL Étape suivante]**.
 
-Patientez pendant que [!DNL LLM Apps] prépare, crée et publie l’application.
+![Configuration de l’infrastructure d’action — Sélectionnez GitHub et connectez un référentiel d’action](/help/assets/guide-infrastructure/action-repository.png)
 
-![Déployer — Pipeline de déploiement en cours d’exécution](/help/assets/guide-onboarding-agent/deploy-running.png)
+Si une organisation ou un référentiel est manquant, utilisez **[!UICONTROL Connecter une autre organisation]** ou **[!UICONTROL Connecter un autre référentiel]** dans son sélecteur. Après avoir modifié l’accès sur [!DNL GitHub], sélectionnez **[!UICONTROL Actualiser les organisations et les référentiels]**.
 
-![Déploiement — déploiement intermédiaire réussi](/help/assets/guide-onboarding-agent/deploy-successful.png)
+### Configurer l’infrastructure du widget
 
-Après le déploiement, la section **[!UICONTROL Tester l’application]** affiche l’URL du serveur MCP d’évaluation. Sélectionnez **[!UICONTROL Copier l’URL]**.
+Les widgets sont des réponses visuelles facultatives jointes à des actions, telles que des cartes de produits ou des formulaires de réservation. L’assistant connecte un référentiel [!DNL Edge Delivery Services] (EDS) pour les héberger.
 
-![Détails de l&#39;application — Copiez l&#39;URL du serveur MCP intermédiaire](/help/assets/guide-onboarding-agent/app-mcp-url.png)
+1. Sous **[!UICONTROL Source du widget]**, sélectionnez **[!UICONTROL Sélectionner manuellement le référentiel de widgets]**.
+2. Sous **[!UICONTROL Source du code]**, sélectionnez **[!UICONTROL GitHub]**.
+3. Choisissez si vous disposez déjà d’un référentiel. Dans le cas contraire, sélectionnez **[!UICONTROL Créer des référentiels sur GitHub]**, créez un référentiel de widget vide et revenez à l’assistant.
+4. Installez ou configurez l’application [!DNL GitHub] Adobe LLM Apps pour ce référentiel, comme vous l’avez fait pour le référentiel d’action.
+5. Sélectionnez ses **[!UICONTROL Organisation]** et **[!UICONTROL Référentiel]**. Ne sélectionnez pas le référentiel d’actions.
+6. Sélectionnez **[!UICONTROL Valider le référentiel]**. La validation initialise un référentiel vide avec le modèle AEM. Un référentiel existant doit être un projet EDS compatible.
+7. Sélectionnez **[!UICONTROL Installer la synchronisation du code AEM]** et accordez à la synchronisation du code AEM l’accès au référentiel de widgets.
+8. Sur la page de confirmation de l’installation, utilisez l’assistant d’installation pour vous ajouter en tant qu’administrateur du site EDS.
+9. Revenez à [!DNL LLM Apps] et sélectionnez **[!UICONTROL Valider l’installation de la synchronisation du code AEM]**.
+10. Lorsque **[!UICONTROL La synchronisation du code AEM est installée]** apparaît, sélectionnez **[!UICONTROL Étape suivante]**.
 
-## Test en [!DNL ChatGPT]
+>[!NOTE]
+>
+>L’assistant marque **[!UICONTROL Utiliser Cloud Manager Edge Delivery Services]** comme **[!UICONTROL Bientôt disponible]** et n’autorise pas la sélection. Utilisez l’option manuelle widget-repository .
 
-Suivez la procédure [Test dans ChatGPT](/help/guides/test-in-chatgpt.md) pour créer un plug-in à l’aide de l’URL du serveur MCP intermédiaire.
+Si la validation ne détecte pas la synchronisation du code AEM, vérifiez que la synchronisation du code AEM a accès au référentiel de widgets sélectionné et que vous vous êtes ajouté en tant qu’administrateur ou administratrice du site. Validez à nouveau.
 
-Posez une question correspondant à l’une des actions générées. Vérifiez que :
+## Saisir les détails de l’application {#app-details}
 
-- [!DNL ChatGPT] sélectionne l’action attendue.
-- Le widget effectue le rendu et contient les exemples de données attendus.
-- Les contrôles de widget produisent le comportement de suivi attendu.
-- La réponse textuelle résume précisément le résultat.
+Les deux options d’infrastructure se terminent par **[!UICONTROL Détails de l’application]**.
 
-![ChatGPT — réponse du plug-in de l&#39;application LLM générée](/help/assets/guide-onboarding-agent/chatgpt-generated-app.png)
+![Détails de l’application : saisissez un nom d’application, sélectionnez un programme AEM, puis choisissez la région données d’analyse](/help/assets/guide-infrastructure/app-details.png)
 
-Vous disposez désormais d’une application de bout en bout entièrement fonctionnelle et fonctionnelle.
+1. Saisissez le **[!UICONTROL Nom de l’application LLM]**. Utilisez un nom qui identifie la marque ou l’expérience, tel que *café Frescopa*.
+2. Sélectionnez le programme **** auquel l’application appartient. Si vous n’avez accès qu’à un seul programme, l’assistant le sélectionne automatiquement.
+3. Sous **[!UICONTROL Région de données Analytics]**, choisissez **[!UICONTROL États-Unis (US)]** ou **[!UICONTROL Europe (UE)]**.
+4. Sélectionnez **[!UICONTROL Créer une application]**.
 
-## Préparation de l’application pour la production
+>[!IMPORTANT]
+>
+>La région Programme AEM et données d’analyse ne peut pas être modifiée une fois l’application créée. La région Analytics détermine l’emplacement de stockage des données d’analyse de l’application.
 
-L’application générée utilise des exemples de données. Avant de l’utiliser avec les clients :
+Si aucun programme AEM n’est disponible, demandez l’accès à votre administrateur. Si le chargement des programmes échoue, sélectionnez **[!UICONTROL Réessayer de charger les programmes]**.
 
-1. **Connecter vos systèmes** — [personnaliser chaque gestionnaire généré](/help/guides/customize-handler.md) pour remplacer les données d’exemple par des appels à vos API ou sources de données.
-2. **Protéger les informations d’identification** — Stockez les URL d’API et les informations d’identification dans la configuration d’exécution gérée, jamais dans le code source ou le widget JavaScript.
-3. **Valider les données** : validez les arguments d’action et les réponses de l’API, ajoutez des délais d’expiration de requête et renvoyez des messages d’erreur sécurisés.
-4. **Mettre à jour les widgets** — Conservez chaque widget aligné sur les `structuredContent` de son gestionnaire, puis appliquez vos exigences en matière d’identité graphique et d’accessibilité. Voir [Personnaliser un widget généré](/help/guides/widgets.md).
-5. **Tester les gestionnaires** : couvrent les entrées valides, non valides, les résultats vides, les échecs d’API et la forme de données attendue par le widget.
-6. **Vérifier dans l’environnement intermédiaire** — redéployez et testez chaque action via le plug-in [!DNL ChatGPT].
-7. **Déployer en production** — Une fois les tests d’évaluation réussis, déployez en production et créez ou mettez à jour le plug-in avec l’URL du serveur MCP de production.
+L’assistant ouvre la page de l’application après sa création. Avec l’infrastructure gérée par Adobe, attendez la fin de la configuration de l’infrastructure avant de continuer.
 
-Pour ajouter une fonctionnalité que la plateforme n’a pas créée, voir [Créer une action à partir de zéro](/help/guides/create-action.md).
+## Ensuite : créez les actions
 
+Votre application dispose désormais de son infrastructure, mais aucune action générée pour le moment. Continuez avec [Créer des actions](/help/guides/creating-actions.md) pour analyser un site web ou choisissez la création d’actions manuelles.
+
+Pour connaître la relation entre les métadonnées d’action, les gestionnaires, les widgets et le serveur MCP déployé, consultez la section [Comment une application est connectée ensemble](/help/guides/app-architecture.md).

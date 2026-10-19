@@ -1,13 +1,11 @@
 ---
 title: Comment une application est connectée
-description: Regardez de plus près comment les éléments que vous possédez (métadonnées d’action, code de gestionnaire et widgets) se regroupent dans une application LLM en cours d’exécution, au moment de la création et de l’exécution.
-source-git-commit: 2f3480b3667a6ab7c4ed65b999eed4638c383edb
+description: Découvrez les trois parties d’une application LLM, son fonctionnement dans une conversation et où apporter des modifications.
+source-git-commit: af83670aebde1e6f73585c89a891bc7f5e92fb3a
 workflow-type: tm+mt
-source-wordcount: '335'
+source-wordcount: '573'
 ht-degree: 0%
-
 ---
-
 
 # Comment une application est connectée {#app-architecture}
 
@@ -17,69 +15,66 @@ ht-degree: 0%
 >
 >Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
 
-## En une seule phrase
+Une application **LLM** permet d’intégrer les services de votre marque dans une conversation IA. Par exemple, un client demande des recommandations de café, votre application trouve les produits correspondants et l’assistant affiche les résultats.
 
-Une **application LLM** est un ensemble d’**actions** (chacune étant un outil exposé sur le **protocole de contexte modèle** ou **MCP**) que vous publiez sur un seul point d’entrée. Un hôte de chat comme [!DNL ChatGPT] découvre ces outils, les appelle en cours de conversation et génère un widget **interactif** avec le résultat, directement dans le chat.
+**Dans ce guide :** découvrez la fonction de chaque partie de votre application, où apporter des modifications et comment ces parties fonctionnent ensemble lorsqu’une personne utilise l’application.
 
-## Tout le câblage, la construction → l&#39;exécution
+## Les trois parties d’une application
 
-**Diagramme 1 - Heure de création.** Vous possédez trois surfaces distinctes ; la plateforme les fusionne en une seule application déployable.
+Une application peut regrouper plusieurs actions associées, telles que *Parcourir les produits*, *Comparer les produits* et *Trouver un magasin*. Chaque action possède ses propres paramètres, gestionnaire et widget facultatif. L’ajout d’une action ne nécessite pas une autre paire de référentiels.
 
-```
-┌─────────────────────┐   ┌─────────────────────┐   ┌─────────────────────┐
-│ 1  LLM Apps UI      │   │ 2  Action Handler   │   │ 3  Widget repo      │
-│                     │   │    repo             │   │                     │
-│ Create, edit, and   │   │                     │   │ Each widget is an   │
-│ manage your action  │   │ Business logic —    │   │ EDS block,          │
-│ definitions here    │   │ built from our      │   │ published to a      │
-│ (metadata)          │   │ boilerplate         │   │ public URL on       │
-│                     │   │                     │   │ *.aem.page          │
-│                     │   │ Returns content     │   │                     │
-│                     │   │ (for the LLM) +     │   │                     │
-│                     │   │ structuredContent   │   │                     │
-│                     │   │ (for the widget)    │   │                     │
-└─────────────────────┘   └─────────────────────┘   └─────────────────────┘
-           │                         │                         │
-           └─────────────────────────┼─────────────────────────┘
-                                     ▼
-                       ┌─────────────────────────────┐
-                       │ LLM Apps deploy pipeline    │
-                       │ Combines the 3 surfaces     │
-                       │ into one running app        │
-                       └─────────────────────────────┘
-                                     │
-                                     ▼
-                 ┌─────────────────────────────────────────┐
-                 │ ONE MCP server on Adobe I/O Runtime     │
-                 │ https://<ns>.adobeioruntime.net/.../mcp │
-                 └─────────────────────────────────────────┘
+Une application avec des widgets interactifs se compose de trois parties : paramètres d’action, code de gestionnaire et code de widget. Vous gérez les paramètres dans [!DNL LLM Apps]. Le code du gestionnaire et du widget résident dans deux référentiels [!DNL GitHub] distincts.
+
+```text
+┌───────────────────────┐   ┌───────────────────────┐   ┌───────────────────────┐
+│ 1. LLM Apps UI        │   │ 2. Handler repository │   │ 3. Widget repository  │
+│                       │   │                       │   │                       │
+│ Action descriptions   │   │ Connects to your APIs │   │ Widget layout         │
+│ Required information  │   │ Runs the task         │   │ Branding and styles   │
+│ When to use an action │   │ Returns results       │   │ Interactive controls  │
+└───────────────────────┘   └───────────────────────┘   └───────────────────────┘
+            │                           │                           │
+            └───────────────────────────┼───────────────────────────┘
+                                        ▼
+                    ┌───────────────────────────────────────┐
+                    │ Your app in an AI conversation        │
+                    │ The action runs and the widget        │
+                    │ shows the result.                     │
+                    └───────────────────────────────────────┘
 ```
 
-- **Interface utilisateur des applications LLM** — où vous créez, modifiez et gérez la définition de chaque action : son **identifiant de code** (un rappel fixe que vous définissez une fois ici, par exemple `my_action`, qui lie cette même action à travers l&#39;interface utilisateur, le gestionnaire et le widget), la description, le schéma d&#39;entrée, le choix du widget et les indicateurs CSP/visibilité. Pas de code.
-- **Référentiel du gestionnaire d’action** : référentiel côté serveur (basé sur notre modèle standard) où vous écrivez la logique commerciale. Chaque fonction de gestionnaire renvoie deux éléments : `content` (texte brut lu par le *LLM*) et `structuredContent` (objet de données lu par le *widget*).
-- **Référentiel de widgets** — Référentiel EDS dans lequel chaque widget vit en tant que bloc et est publié sur une URL de `*.aem.page` publique. Chaque bloc utilise [`@adobe/llmapps-sdk`](https://www.npmjs.com/package/@adobe/llmapps-sdk), le pont entre le widget et l’hôte/le serveur. Il met en œuvre la spécification **MCP Apps**, le protocole sous-jacent, derrière une API simple et extrait l’hôte LLM lui-même, de sorte que le même widget fonctionne sans modification dans [!DNL ChatGPT], [!DNL Claude], Gemini ou tout autre hôte MCP.
+- **Les paramètres d’action décrivent la tâche.** Il indique à l’assistant quand utiliser une action et de quelles informations il a besoin. Pour la recherche de produits, cette information peut être une catégorie ou un terme de recherche.
+- **Le gestionnaire effectue le travail.** Il récupère les données de vos systèmes ou effectue une tâche. Un gestionnaire de recherche de produits, par exemple, récupère les produits correspondants de votre catalogue.
+- **Le widget présente le résultat.** Il contrôle ce que le client voit et avec quoi il interagit, par exemple des cartes de produits avec des noms, des prix et des boutons.
 
-**Diagramme 2 — runtime.** Ce qui se passe pour chaque message envoyé par l’utilisateur, une fois que ce serveur est actif. Affiché avec [!DNL ChatGPT] comme exemple d’hôte : la même séquence s’affiche pour tout hôte MCP, tel que [!DNL Claude].
+Il est recommandé d’ajouter un widget à chaque action. Un widget vous permet de contrôler l’aspect des résultats et la manière dont les clients interagissent avec eux, plutôt que de laisser la présentation à l’assistant d’IA. Les réponses en texte seul sont également prises en charge.
 
-```
-┌── ChatGPT  (the MCP host) ──────────────────────────────────────────────┐
-│  1  tools/list  >  sees `my_action` + its description + input schema    │
-│  2  user asks   >  "I need help with …"                                 │
-│  3  model picks >  the description matches -> calls this tool           │
-│  4  tools/call  >  { name: "my_action", arguments: {situation, ...} }   │
-└─────────────────────────────────────────────────────────────────────────┘
-                                     │
-                 routes by CODE IDENTIFIER  ->  my_action
-                                     ▼
-┌── Adobe I/O Runtime ────────────────────────────────────────────────────┐
-│  actions/my_action/index.js  --  your handler runs                      │
-│  returns  { content -> text for the model , structuredContent -> data } │
-└─────────────────────────────────────────────────────────────────────────┘
-                                     │
-                                     ▼
-┌── Rendered inside the conversation ─────────────────────────────────────┐
-│  5  render      >  ChatGPT renders the Widget repo's EDS block          │
-│  The EDS block reads the structuredContent the Action Handler repo      │
-│  returned, and draws the interactive card — live, inside the chat.      │
-└─────────────────────────────────────────────────────────────────────────┘
-```
+## Où apporter des modifications
+
+| Ce que vous souhaitez modifier | Où modifier |
+|---|---|
+| Lorsque l&#39;assistant utilise une action ou les informations demandées par l&#39;action | [Paramètres d’action dans les applications LLM](/help/reference/reference-docs.md) |
+| D’où proviennent les résultats ou ce qui se passe lorsqu’une action est exécutée | [Code du gestionnaire dans le référentiel de gestionnaires](/help/guides/customize-handler.md) |
+| l’aspect des résultats, y compris la disposition, la marque et les interactions ; | [Code du widget dans le référentiel de widgets](/help/guides/widgets.md) |
+
+Gardez les trois parties cohérentes. Par exemple, si vous modifiez les informations renvoyées par un gestionnaire, mettez à jour le widget pour afficher le nouveau résultat.
+
+## Ce qui se passe dans une conversation
+
+Après le déploiement, votre application dispose d’une URL de connexion appelée **URL du serveur MCP**. Ajoutez cette URL à une plateforme d’IA prise en charge afin que l’assistant puisse découvrir et utiliser les actions de votre application.
+
+Pour une application avec une action et un widget de recherche de produit :
+
+1. Un client demande à l’assistant *Montrez-moi les capsules de café.*
+2. L’assistant utilise la description de l’action pour choisir l’action de recherche de produit.
+3. Le gestionnaire récupère les produits correspondants du catalogue.
+4. Le widget affiche les produits sous forme de cartes dans la conversation.
+5. Le client explore les résultats ou pose une question de suivi.
+
+Le client reste dans la conversation pendant que votre application fournit les informations ou le service. La prise en charge des widgets dépend de la plateforme LLM.
+
+## Appliquer et tester vos modifications
+
+Publiez les modifications du widget et déployez les modifications de l’action avant de tester l’expérience mise à jour. Suivez [Déployer votre application](/help/guides/deploy-your-app.md) pour effectuer un déploiement dans l’environnement intermédiaire et tester l’application sur une plateforme LLM prise en charge.
+
+Les actions générées automatiquement commencent par des exemples de données. Connectez les gestionnaires à vos systèmes réels et testez l’application avant de la rendre disponible pour les clients.

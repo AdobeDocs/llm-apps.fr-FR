@@ -1,13 +1,11 @@
 ---
 title: Présentation des applications Adobe LLM
-description: Découvrez ce qu’est l’application Adobe LLM, son fonctionnement et ce dont vous avez besoin pour commencer.
-source-git-commit: 2f3480b3667a6ab7c4ed65b999eed4638c383edb
+description: Découvrez ce qu’est une application Adobe LLM, son fonctionnement et comment commencer à la créer.
+source-git-commit: a48b4022979d9a13b4fc3aa870c4ee6375e8bc13
 workflow-type: tm+mt
-source-wordcount: '969'
+source-wordcount: '621'
 ht-degree: 1%
-
 ---
-
 
 # Applications Adobe LLM - Aperçu {#adobe-llm-apps-an-overview}
 
@@ -19,9 +17,9 @@ ht-degree: 1%
 
 ## Qu’est-ce qu’[!DNL Adobe LLM Apps] ?
 
-[!DNL Adobe LLM Apps] permet à votre marque de proposer des actions utiles, telles que la découverte de produits, les contrôles de disponibilité ou les réservations de services, dans les assistants d’IA tels que [!DNL ChatGPT].
+[!DNL Adobe LLM Apps] permet à votre marque de proposer des actions utiles, telles que la découverte de produits, les contrôles de disponibilité ou les réservations de services, dans les assistants d’IA pris en charge, tels que [!DNL ChatGPT] et [!DNL Claude].
 
-[!DNL LLM Apps] est disponible à l’adresse [experience.adobe.com](https://experience.adobe.com/#/@llmapps/llm-apps/).
+[!DNL LLM Apps] est disponible à l’adresse [experience.adobe.com/llm-apps](https://experience.adobe.com/llm-apps).
 
 ## Ce que vous pouvez faire avec [!DNL LLM Apps]
 
@@ -29,7 +27,7 @@ ht-degree: 1%
 - **Créer des widgets LLM interactifs** — Créez des composants visuels d’interface utilisateur (cartes produit, formulaires de réservation, localisateurs de magasin) gérés en tant que composants AEM dans votre référentiel de [!DNL GitHub].
 - **Maintenir une gouvernance de marque centralisée** — Les auteurs et les développeurs conservent un contrôle total sur l’ensemble du contenu, des copies et des visuels exposés dans la plateforme LLM, les approbations étant gérées via AEM.
 - **Déploiement vers l’environnement d’évaluation et de production** — Un pipeline de déploiement contrôlé vous permet de tester l’expérience dans un environnement d’évaluation avant de passer à la production.
-- **Contrôler la visibilité au niveau des actions** — Après le déploiement, les actions individuelles peuvent être activées ou désactivées sans redéployer l&#39;application entière.
+- **Contrôler la visibilité au niveau des actions** — Activez ou désactivez les actions individuelles, puis déployez l&#39;application pour appliquer la modification.
 - **Mesurer ce qui motive les décisions** — Analyses intégrées (optimisées par Adobe Customer Journey Analytics) le nombre de déclencheurs d’action de surface, les taux de succès, les taux d’abandon, les principales invites d’utilisateur et les scores de visibilité.
 
 ## Pourquoi [!DNL LLM Apps] important
@@ -44,15 +42,15 @@ Votre assistant de marque avec lequel les utilisateurs interagissent au sein de 
 
 ### Action {#actions}
 
-Une fonctionnalité proposée par votre application, telle que *Trouver un distributeur* ou *Parcourir les produits*. La plateforme LLM appelle une action lorsqu’une requête correspond à sa description. Les métadonnées d’action sont gérées dans [!DNL LLM Apps], tandis que leur gestionnaire est le code de votre référentiel [!DNL GitHub].
+Une fonctionnalité proposée par votre application, telle que *Trouver un distributeur* ou *Parcourir les produits*. La plateforme LLM appelle une action lorsqu’une requête correspond à sa description. [!DNL LLM Apps] gère les métadonnées d’action et le référentiel [!DNL GitHub] stocke le code du gestionnaire.
 
 ### Gestionnaire d’actions
 
-Fonction côté serveur qui s’exécute lorsqu’une action est appelée. Il peut valider les entrées, appeler vos API et renvoyer du texte ainsi que des données structurées.
+Fonction côté serveur qui s’exécute lorsque la plateforme LLM appelle une action. Utilisez le gestionnaire pour valider les entrées, appeler vos API et renvoyer du texte ainsi que des données structurées.
 
 ### Widget {#widgets-eds}
 
-Réponse visuelle affichée avec la réponse du LLM, telle qu’une carte, un carrousel ou un tableau. Les widgets générés sont des blocs dans un référentiel [!DNL Edge Delivery Services] (EDS) que vous détenez.
+Réponse visuelle affichée avec la réponse du LLM, telle qu’une carte, un carrousel ou un tableau. Les widgets générés sont des blocs dans un référentiel [!DNL Edge Delivery Services] (EDS). Avec l’infrastructure gérée par Adobe, Adobe prépare et héberge le référentiel pour une version d’essai. Vous pouvez également connecter votre propre référentiel.
 
 ### Serveur MCP
 
@@ -60,7 +58,7 @@ Point d’entrée exposé après le déploiement. Une plateforme LLM prise en ch
 
 ## Fonctionnement
 
-À un niveau élevé, trois choses se produisent : vous [!DNL LLM Apps] dites ce que votre marque offre, cela devient quelque chose sur lequel un assistant d&#39;IA peut agir, et votre client obtient une vraie réponse, directement dans le chat.
+Vous définissez les fonctionnalités de votre marque dans [!DNL LLM Apps]. La plateforme rend ces fonctionnalités disponibles sous forme d’actions, et un assistant d’IA utilise ces actions pour répondre aux demandes des clients dans la conversation.
 
 ```
 ┌────────────────────┐          ┌────────────────────┐          ┌────────────────────┐
@@ -72,71 +70,14 @@ Point d’entrée exposé après le déploiement. Une plateforme LLM prise en ch
 └────────────────────┘          └────────────────────┘          └────────────────────┘
 ```
 
-Vous souhaitez connaître les détails techniques : ce que vous créez et comment les pièces s’assemblent-elles ? Voir [Comment une application est connectée](/help/guides/app-architecture.md).
+Pour plus d’informations sur les éléments à créer et le fonctionnement des composants, voir [Comment une application est connectée](/help/guides/app-architecture.md).
 
-## Conditions requises {#requirements}
+## Commencer {#choose-your-journey}
 
-Remplissez toutes les conditions requises suivantes avant de créer une application.
+La création d’une application et la création de ses actions sont des étapes distinctes :
 
-### Console de développeur Adobe
+1. [Configurer l’infrastructure](/help/guides/create-app.md). Utilisez l’infrastructure gérée par Adobe pour une version d’essai ou fournissez deux référentiels [!DNL GitHub] vides via l’assistant de création d’application. La plateforme initialise l’un pour les gestionnaires d’action et l’autre pour les widgets.
+2. [Créer vos actions](/help/guides/creating-actions.md). Demandez à la plateforme d’analyser votre site web et de générer des actions, ou créez-les vous-même.
+3. [Déployez et testez l’application](/help/guides/deploy-your-app.md). Examinez le travail généré, déployez-le dans l’environnement d’évaluation et testez-le dans une plateforme LLM prise en charge.
 
-Votre organisation Adobe IMS doit avoir accès à [[!DNL App Builder]](https://developer.adobe.com/app-builder/docs/intro_and_overview/). Vous avez besoin du rôle **Développeur** ou **Administrateur système**.
-
-Pour vérifier votre accès, ouvrez [&#128279;](https://developer.adobe.com/console). L’écran de démarrage rapide confirme que vous disposez de l’accès requis.
-
-![Adobe Developer Console — Écran de démarrage rapide confirmant l’accès développeur](/help/assets/overview/dev-console-access-granted.png)
-
-Si vous voyez **Accès limité**, contactez l’administrateur de votre organisation IMS et demandez le rôle de développeur.
-
-![Adobe Developer Console — Message à accès restreint](/help/assets/overview/dev-console-access-denied.png)
-
-### [!DNL GitHub]
-
-Vous avez besoin d’un compte [!DNL GitHub] qui **peut** comme suit. Il s’agit d’une vérification des autorisations — n’installez rien pour le moment :
-
-- Créez deux référentiels dans le compte ou l’organisation propriétaire de l’application.
-- Installez les applications [!DNL GitHub] ultérieurement au cours du processus de configuration ou demandez à un administrateur de l’organisation de les approuver.
-
-Pour vérifier l’accès à la création du référentiel, ouvrez [&#128279;](https://github.com/new) et vérifiez que le compte ou l’organisation prévu s’affiche sous **Propriétaire**.
-
-![GitHub — Sélectionnez un propriétaire de référentiel](/help/assets/overview/github-repo-owner-dropdown.png)
-
-Pour les référentiels appartenant à l’organisation, un administrateur de l’organisation peut avoir besoin d’approuver les applications [!DNL GitHub].
-
->[!NOTE]
->
->Il s’agit d’une vérification des autorisations, pas d’une étape de configuration. N’installez pas encore d’applications [!DNL GitHub] : [Créer automatiquement votre première application](/help/guides/create-app.md) vous guide tout au long de l’installation de chacune d’elles, en fonction des référentiels exacts que vous créez, au point où cela est nécessaire.
-
-### Site Web
-
-Vous avez besoin d’un site web HTTPS public qui représente les produits, services ou tâches que l’application doit prendre en charge. La plateforme analyse ce site web pour proposer des actions et créer des exemples de données représentatives.
-
-N’utilisez pas un site web qui expose des informations confidentielles ou dont l’accès est contrôlé.
-
-### [!DNL ChatGPT] ou [!DNL Claude] pour les tests
-
-Pour suivre le tutoriel de prise en main, utilisez un plan de [!DNL ChatGPT] pris en charge avec le mode Développeur activé ou un plan de [!DNL Claude] pris en charge avec les connecteurs personnalisés activés. Les administrateurs de Workspace ou d’une organisation peuvent restreindre l’accès. Voir [Test dans le ChatGPT](/help/guides/test-in-chatgpt.md#plan-requirements) ou [Test dans Claude](/help/guides/test-in-claude.md#plan-requirements).
-
-## Choisissez votre parcours {#choose-your-journey}
-
-### &#x200B;1. Créer et lancer votre première application
-
-Commencez par [Générer et lancer votre première application](/help/guides/create-app.md). Ce parcours commence avec deux référentiels vides et se termine par une application prête pour la production testée en tant que plug-in dans une plateforme LLM prise en charge, telle que [!DNL ChatGPT].
-
-### &#x200B;2. Personnaliser l’application générée
-
-Choisissez ce parcours lorsque la plateforme a créé l’application automatiquement et que vous souhaitez remplacer l’exemple de comportement :
-
-1. [Personnalisez les gestionnaires générés](/help/guides/customize-handler.md) pour connecter vos API et définir les données renvoyées par chaque action.
-2. [Personnalisez les widgets générés](/help/guides/widgets.md) pour utiliser ces données et appliquer vos interactions et votre conception.
-
-### &#x200B;3. Ajouter une nouvelle action à partir de zéro
-
-Choisissez [Ajouter une nouvelle action à partir de zéro](/help/guides/create-action.md) pour définir de nouvelles métadonnées, écrire le gestionnaire, connecter un widget, tester et déployer l’action.
-
-### &#x200B;4. Connecter un projet EDS existant
-
-Choisissez [Connecter un projet EDS existant](/help/guides/bring-your-own-eds.md) lorsque vous disposez déjà d’un site EDS ou que vous n’avez pas créé l’application automatiquement.
-
-Chaque parcours utilise l’étape partagée [déploiement](/help/guides/deploy-your-app.md), puis [test du plug-in ChatGPT](/help/guides/test-in-chatgpt.md) ou [test du connecteur Claude](/help/guides/test-in-claude.md).
-
+La génération automatique vous donne un point de départ avec un exemple de comportement. Avant de mettre l’application à la disposition des clients, [connectez vos gestionnaires à vos systèmes](/help/guides/customize-handler.md) et [personnalisez les widgets](/help/guides/widgets.md).

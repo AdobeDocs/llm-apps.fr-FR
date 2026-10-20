@@ -1,13 +1,11 @@
 ---
 title: Création d’une action à partir de zéro
 description: Définissez des métadonnées d’action, implémentez son gestionnaire, connectez un widget EDS, testez-le et déployez-le avec les applications Adobe LLM.
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
 workflow-type: tm+mt
-source-wordcount: '1137'
-ht-degree: 1%
-
+source-wordcount: '1453'
+ht-degree: 0%
 ---
-
 
 # Création d’une action à partir de zéro {#create-action-from-scratch}
 
@@ -21,11 +19,11 @@ ht-degree: 1%
 >
 >Ce guide suppose des connaissances de base d’Adobe Edge Delivery Services (EDS). Si vous êtes nouveau dans EDS, lisez d’abord le tutoriel de développement [EDS](https://www.aem.live/developer/tutorial) et [Exploration des blocs](https://www.aem.live/docs/exploring-blocks) pour en savoir plus sur l’essentiel (les blocs, la fonction `decorate` et la structure du projet EDS) avant de connecter un widget.
 
-Utilisez ce guide pour ajouter une fonctionnalité que la plateforme n’a pas créée. Vous devez définir l’action dans [!DNL LLM Apps], écrire son gestionnaire dans le référentiel lié, ajouter un widget si nécessaire, le tester et le déployer.
+Ajoutez une fonctionnalité que la plateforme n’a pas créée. Définissez l’action dans [!DNL LLM Apps], écrivez son gestionnaire dans le référentiel lié et ajoutez un widget si nécessaire.
 
-**Parcours :** planifiez l’action → créer ses métadonnées → écrire le gestionnaire → connecter le widget → tester localement → déployer et tester le plug-in.
+**Dans ce guide :** découvrez comment définir une action, implémenter son gestionnaire et connecter un widget facultatif. Testez l’action localement, déployez l’application et essayez l’action sur une plateforme LLM prise en charge.
 
-Pour votre première application, commencez par [Créer votre première application automatiquement](/help/guides/create-app.md).
+Pour votre première application, commencez par [Configuration de l’infrastructure](/help/guides/create-app.md), puis [Création d’actions](/help/guides/creating-actions.md). Le guide Créer des actions explique la génération automatique à partir d’un site web et la création manuelle.
 
 ## Avant de commencer
 
@@ -33,22 +31,22 @@ Vous avez besoin des éléments suivants :
 
 - Une application LLM existante.
 - Référentiel de gestionnaire lié.
-- Le référentiel a été cloné localement avec ses dépendances installées.
+- Un clone local du référentiel avec ses dépendances installées.
 - Un projet EDS si l’action affiche un widget.
 - Une API ou une source de données claire pour les résultats de production.
 
 ## Planifier l’action
 
-Une action doit exécuter une tâche utilisateur claire. Avant d’ouvrir l’interface utilisateur, définissez les éléments suivants :
+Concevez chaque action autour d’une tâche utilisateur claire. Avant d’ouvrir l’interface utilisateur, définissez les éléments suivants :
 
 - **Intention** — Ce que l&#39;utilisateur tente d&#39;accomplir.
-- **Description** — quand la plateforme LLM doit sélectionner cette action.
+- **Description** — quand sélectionner l’action.
 - **Entrées** — informations minimales requises de l&#39;utilisateur.
 - **Résultat** : le texte et les données structurées renvoyés par le gestionnaire.
 - **Comportement** : indique si l’action lit des données, modifie des données ou appelle des systèmes externes.
 - **Widget** — si le résultat nécessite une interface visuelle.
 
-Par exemple, une action **Rechercher des produits** peut utiliser :
+Par exemple, utilisez ce plan pour une action **Rechercher des produits** :
 
 ```text
 Intent: Find products matching a category or search phrase
@@ -62,13 +60,13 @@ Behavior: read-only, idempotent, open-world
 Widget: product cards
 ```
 
-Gardez les tâches liées mais différentes séparées. La recherche de produits et l’achat de produits ne doivent pas être une seule action, car ils comportent des entrées, des risques et des exigences de confirmation différents.
+Gardez les tâches liées mais différentes séparées. Utilisez des actions distinctes pour la recherche de produits et l’achat de produits, car les tâches comportent des entrées, des risques et des exigences de confirmation différents.
 
 ## Création des métadonnées d’action
 
 Ouvrez l’application et sélectionnez **[!UICONTROL Actions]**, puis **[!UICONTROL Créer une action]**.
 
-L’éditeur contient les onglets **[!UICONTROL Action]** et **[!UICONTROL Métadonnées de widget]**.
+La boîte de dialogue de création contient les onglets **[!UICONTROL Action]** et **[!UICONTROL Métadonnées de widget]**. Développez chaque section pour configurer ses champs.
 
 ### Saisir des informations de base
 
@@ -78,6 +76,8 @@ Enter :
 
 - **[!UICONTROL Nom de l’action]** — Nom court de la tâche, tel que *Rechercher des produits*.
 - **[!UICONTROL Description]** — expliquez quand utiliser l&#39;action et ce qu&#39;elle renvoie.
+
+La boîte de dialogue génère un **[!UICONTROL identifiant de code]** à partir du nom, tel que `search-products`. L’identifiant est fixe après création et doit être unique dans l’application. Utilisez l’identifiant exact du dossier de gestionnaire.
 
 Une description utile est spécifique :
 
@@ -108,28 +108,28 @@ Invoking: Searching products...
 Invoked: Products found
 ```
 
-Pour les actions avec des widgets, ajoutez **[!UICONTROL Description du widget]**. Elle est différente de la description de l’action :
+Pour les actions avec des widgets, ajoutez **[!UICONTROL Description du widget]**. La description du widget diffère de la description de l’action :
 
 - La **Description de l’action** aide le modèle à décider quand appeler l’action.
 - **Description du widget** mappe à `_meta["openai/widgetDescription"]` et résume ce que le composant rendu affiche, réduisant ainsi la narration répétée.
 
-[!DNL LLM Apps] l’applique en tant que métadonnées de composant. Ne le renvoyez pas à partir du gestionnaire .
+[!DNL LLM Apps] applique la description du widget en tant que métadonnées de composant. Ne renvoyez pas la description à partir du gestionnaire .
 
 ### Configuration de la visibilité
 
 - **[!UICONTROL Exposer au modèle d’IA]** permet au modèle de sélectionner l’action.
 - **[!UICONTROL Afficher en tant que widget dans la surface de l’application]** affiche le widget configuré.
 
-Désactivez la visibilité du widget lorsque l’action renvoie uniquement du texte.
+Pour une action en texte seul, sélectionnez également **[!UICONTROL Aucun widget]** sous **[!UICONTROL Métadonnées de widget]** > **[!UICONTROL Type]**. Les contrôles de visibilité ne choisissent pas le type de widget de l’action.
 
 ### Ajouter des paramètres d’entrée
 
 Ajoutez un paramètre pour chaque valeur acceptée par le gestionnaire. Chaque paramètre nécessite :
 
-- **Name** — la clé reçue par le gestionnaire.
+- **Nom** — Clé reçue par le gestionnaire.
 - **Type** — Chaîne, Nombre, Entier ou Booléen.
-- **Description** — Comment le modèle doit extraire la valeur.
-- **Obligatoire** — si l&#39;action peut s&#39;exécuter sans elle.
+- **Description** — Comment extraire la valeur.
+- **Obligatoire** — si l&#39;action requiert la valeur.
 
 Pour **Rechercher des produits** :
 
@@ -151,13 +151,15 @@ Utilisez des noms de paramètres stables. La modification d’un nom nécessite 
 
 Activez l’option **[!UICONTROL Collecter l’intention de l’utilisateur]** lorsque vous souhaitez que les analyses incluent un résumé de la conversation qui a conduit à l’action.
 
+La collecte d’intention utilisateur est activée par défaut. Consultez **[!UICONTROL Description de l’intention de l’utilisateur]**, qui contient les instructions pour demander le résumé. Limitez les instructions à une intention non sensible et anonymisée et décrivez votre collecte de données dans votre politique de confidentialité. La description accepte jusqu’à 2 000 caractères.
+
 ![Créer une action — Analyse des intentions de l’utilisateur](/help/assets/guide-create-action/action-analytics-user-intent.png)
 
 Pour obtenir des définitions de champ complètes, voir [Champs d’action et de widget](/help/reference/reference-docs.md).
 
 ## Configuration du widget
 
-Ignorez cette section pour une action en mode texte uniquement.
+Pour une action en mode texte uniquement, ouvrez **[!UICONTROL Métadonnées de widget]** et définissez **[!UICONTROL Type]** sur **[!UICONTROL Aucun widget]**. Ignorez ensuite les paramètres de widget restants.
 
 Ouvrez **[!UICONTROL Métadonnées de widget]**.
 
@@ -165,11 +167,16 @@ Ouvrez **[!UICONTROL Métadonnées de widget]**.
 
 Configurer :
 
-- **Type** — sélectionnez EDS.
-- **Domaine du widget** — origine EDS hébergeant le widget.
+- **[!UICONTROL Type]** — sélectionnez **[!UICONTROL Bloc Edge Delivery Services]** pour un widget interactif.
+- **[!UICONTROL Domaine du widget]** — origine du sandbox du widget. L’interface utilisateur l’identifie comme requise pour l’envoi de l’application et comme unique par application ; elle n’est pas identique à l’URL de la page EDS.
 - **Préfère la bordure** — demande un conteneur bordé dans l&#39;hôte.
-- **URL du script** — point d&#39;entrée du widget EDS.
-- **URL du widget** : page EDS publiée pour cette action.
+
+Développez **[!UICONTROL URL du modèle]** et saisissez :
+
+- **[!UICONTROL URL du script]** — point d&#39;entrée du widget EDS.
+- **[!UICONTROL URL du widget]** : page EDS publiée pour cette action.
+
+![Créer une action : URL de script et de widget pour un widget EDS](/help/assets/guide-create-action/widget-template-urls.png)
 
 Les URL standard sont les suivantes :
 
@@ -183,7 +190,13 @@ https://main--<repo>--<owner>.aem.live/<widget-page>
 
 Octroyez uniquement les autorisations de navigateur et les domaines CSP requis.
 
-![Créer une action : autorisations et CSP](/help/assets/guide-create-action/widget-permissions-csp.png)
+Développez **[!UICONTROL Autorisations (spécifiques au MCP)]** uniquement si le widget a besoin de fonctionnalités de navigateur telles que la géolocalisation. Laissez les autorisations inutilisées désactivées.
+
+![Créer une action — Autorisations de navigateur facultatives](/help/assets/guide-create-action/widget-permissions.png)
+
+Sous **[!UICONTROL Configuration CSP]**, ajoutez les origines requises pour les ressources et les requêtes réseau. Un widget qui charge des ressources externes peut ne pas s’afficher si sa CSP est incomplète.
+
+![Créer une action — Listes de domaines de la politique de sécurité du contenu](/help/assets/guide-create-action/widget-csp.png)
 
 Si le projet ou la page de widget EDS n’existe pas encore, complétez [Apportez votre propre projet EDS](/help/guides/bring-your-own-eds.md), puis revenez à l’action.
 
@@ -191,7 +204,9 @@ Si le projet ou la page de widget EDS n’existe pas encore, complétez [Apporte
 
 Sélectionnez **[!UICONTROL Créer une action]**. L’action s’affiche sur la page Actions avec un badge **Non déployé**.
 
-À ce stade, les métadonnées existent, mais l’action a toujours besoin d’un gestionnaire.
+L’enregistrement crée les métadonnées, mais l’action a toujours besoin d’un gestionnaire.
+
+Lorsque vous rouvrez l’action enregistrée, l’éditeur dispose des onglets **[!UICONTROL Détails du widget LLM]**, **[!UICONTROL Détails de l’action]** et **[!UICONTROL Analytics]**. Pour enregistrer les modifications ultérieures, sélectionnez **[!UICONTROL Enregistrer les modifications]**. La boîte de dialogue de création et l’éditeur d’action enregistrée ont des dispositions différentes.
 
 ## Mettre en œuvre le gestionnaire
 
@@ -234,7 +249,7 @@ Le gestionnaire reçoit les paramètres définis dans l’interface utilisateur.
 
 ### `content` de retour
 
-`content` est le texte de remplacement lu par la plateforme LLM :
+La plateforme LLM lit `content` comme texte de remplacement :
 
 ```javascript
 content: [
@@ -246,7 +261,7 @@ Renvoyez toujours des `content` utiles, même si l’action comporte un widget.
 
 ### `structuredContent` de retour
 
-`structuredContent` est un objet simple consommé par le widget :
+Le widget utilise `structuredContent` comme objet simple :
 
 ```javascript
 structuredContent: {
@@ -261,35 +276,43 @@ La forme doit correspondre à ce que le bloc EDS lit de `bridge.toolResult`.
 
 ### Connexion à une API
 
-Conservez l’accès protégé à l’API dans le gestionnaire côté serveur. Chargez la configuration à partir de l’environnement d’exécution et utilisez une origine HTTPS fixe.
+Conserver les appels API dans le gestionnaire côté serveur. Cet exemple appelle une API de produit publique. Configurez l’origine HTTPS de l’API dans une [variable d’application](/help/guides/app-variables.md) nommée `PRODUCT_API_ORIGIN`. L’exemple accepte les paramètres `query` et `category` définis ci-dessus, nécessite au moins un paramètre et ne nécessite pas d’informations d’identification.
 
 ```javascript
-const API_ORIGIN = process.env.PRODUCT_API_ORIGIN;
-const API_TOKEN = process.env.PRODUCT_API_TOKEN;
+const { getVariable } = require('@adobe/llm-apps-runtime');
 
-module.exports = async ({ query = '' } = {}) => {
-  const normalizedQuery = String(query).trim();
-  if (!normalizedQuery || normalizedQuery.length > 200) {
+module.exports = async ({ query = '', category = '' } = {}, extra) => {
+  const normalizedQuery = typeof query === 'string' ? query.trim() : '';
+  const normalizedCategory = typeof category === 'string' ? category.trim() : '';
+  if (typeof query !== 'string' || typeof category !== 'string'
+      || (!normalizedQuery && !normalizedCategory)
+      || normalizedQuery.length > 200 || normalizedCategory.length > 100) {
     return {
+      isError: true,
       content: [{ type: 'text', text: 'Enter a valid product search.' }],
       structuredContent: { products: [], total: 0 }
     };
   }
 
-  if (!API_ORIGIN || !API_TOKEN) {
+  const apiOrigin = getVariable(extra, 'PRODUCT_API_ORIGIN');
+  if (!apiOrigin) {
     throw new Error('Product API configuration is unavailable.');
   }
 
-  const origin = new URL(API_ORIGIN);
+  const origin = new URL(apiOrigin);
   if (origin.protocol !== 'https:') {
     throw new Error('Product API configuration must use HTTPS.');
   }
 
   const url = new URL('/v1/products', origin);
-  url.searchParams.set('query', normalizedQuery);
+  if (normalizedQuery) {
+    url.searchParams.set('query', normalizedQuery);
+  }
+  if (normalizedCategory) {
+    url.searchParams.set('category', normalizedCategory);
+  }
 
   const response = await fetch(url, {
-    headers: { Authorization: `Bearer ${API_TOKEN}` },
     signal: AbortSignal.timeout(8000)
   });
 
@@ -325,7 +348,7 @@ module.exports = async ({ query = '' } = {}) => {
 };
 ```
 
-Ne placez pas les informations d’identification d’API dans le code source, les métadonnées d’action, le JavaScript de widget, les journaux ou les erreurs rencontrées par l’utilisateur ou l’utilisatrice.
+Ne placez pas les informations d’identification d’API dans le code source, les métadonnées d’action, le JavaScript de widget, les journaux ou les erreurs rencontrées par l’utilisateur ou l’utilisatrice. L’interface utilisateur **[!UICONTROL Variables et secrets]** ne prend actuellement en charge que les variables non sensibles, et non les secrets. Ne stockez pas de jeton API dans une variable. Si votre API en amont requiert des informations d’identification, organisez un mécanisme d’informations d’identification côté serveur approuvé avant de le connecter.
 
 Pour le code de production, validez la réponse amont complète avant de mapper les champs approuvés dans `structuredContent`.
 
@@ -389,9 +412,8 @@ Voir [Apporter votre propre projet EDS](/help/guides/bring-your-own-eds.md).
 
 1. Validez et envoyez les modifications du gestionnaire et du widget.
 2. [Déployez l’application](/help/guides/deploy-your-app.md) dans l’environnement intermédiaire.
-3. [Testez le plug-in ChatGPT](/help/guides/test-in-chatgpt.md).
-4. Vérifiez les invites qui doivent ou non appeler l&#39;action.
+3. Testez l’application dans [ChatGPT](/help/guides/test-in-chatgpt.md) ou [Claude](/help/guides/test-in-claude.md).
+4. Vérifiez la sélection de l’action avec les invites correspondant à l’action et les invites non liées qui ne l’appellent pas.
 5. Une fois l’étape réussie, déployez en production.
 
 Si des métadonnées existent sans gestionnaire correspondant, le déploiement enregistre l’action avec un stub par défaut. Ajoutez le gestionnaire avant de mettre l’action à la disposition des utilisateurs.
-- [Guide : configuration du widget (EDS)](/help/guides/widgets.md)

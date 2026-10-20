@@ -1,13 +1,13 @@
 ---
 title: Déploiement de l’application
 description: Découvrez comment déployer votre application LLM Adobe vers les environnements d’évaluation et de production à l’aide de l’interface utilisateur des applications LLM.
-source-git-commit: 4e447562c5d38f68c209ded7370e9d384a7c9701
+source-git-commit: a48b4022979d9a13b4fc3aa870c4ee6375e8bc13
 workflow-type: tm+mt
-source-wordcount: '352'
+source-wordcount: '412'
 ht-degree: 0%
 ---
 
-# Déploiement De L’Application {#deploy-your-app}
+# Déploiement de l’application {#deploy-your-app}
 
 >[!IMPORTANT]
 >
@@ -15,9 +15,9 @@ ht-degree: 0%
 >
 >Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
 
-Une fois que vous avez écrit votre code de gestionnaire et que vous l’avez envoyé à votre référentiel lié, vous pouvez déployer l’application à partir de l’interface utilisateur de [!DNL LLM Apps].
+Une fois que vous avez révisé les actions générées ou envoyé votre propre code de gestionnaire au référentiel lié, déployez l’application à partir de [!DNL LLM Apps]. Pour les actions générées, examinez et fusionnez le travail généré avant le déploiement.
 
-Il s’agit d’une étape partagée pour chaque parcours. Après le déploiement, continuez à [tester le plug-in ChatGPT](/help/guides/test-in-chatgpt.md) ou [tester le connecteur Claude](/help/guides/test-in-claude.md).
+**Dans ce guide :** découvrez comment déployer votre application dans l’environnement intermédiaire, vérifier le résultat du déploiement et copier l’URL de son serveur MCP pour le test. Déploiement en production une fois le test terminé.
 
 ## Démarrer le déploiement
 
@@ -36,30 +36,31 @@ Le déploiement s’exécute en quatre étapes :
 3. **Générer une application** — installe les dépendances et génère le code de référentiel le plus récent.
 4. **Publier** — publie l&#39;application sur [!DNL Adobe I/O Runtime].
 
-![Déployer — Pipeline de déploiement en cours d’exécution](/help/assets/guide-onboarding-agent/deploy-running.png)
-
 >[!NOTE]
 >
->Si une action contient des métadonnées dans l’interface utilisateur mais aucun fichier de gestionnaire correspondant dans le référentiel, elle est toujours enregistrée. Les appels utilisent un gestionnaire de stub par défaut jusqu’à ce que vous ajoutiez le code réel.
+>Si une action contient des métadonnées dans l’interface utilisateur mais aucun fichier de gestionnaire correspondant dans le référentiel, le déploiement enregistre toujours l’action. Les appels utilisent un gestionnaire de stub par défaut jusqu’à ce que vous ajoutiez le code réel.
 
 ## Après un déploiement réussi
 
 Une fois toutes les étapes terminées, la boîte de dialogue affiche **Déploiement réussi**.
 
-![Déploiement — déploiement réussi](/help/assets/guide-onboarding-agent/deploy-successful.png)
-
-Cliquez sur **Fermer** pour fermer la boîte de dialogue. Faites défiler l’écran jusqu’à la section **[!UICONTROL Tester l’application]** de la page Détails de l’application :
+Pour fermer la boîte de dialogue, sélectionnez **Fermer**. Sur la page Détails de l’application, faites défiler l’écran pour **[!UICONTROL Tester l’application]** :
 
 ![Détails de l&#39;application — Copiez l&#39;URL du serveur MCP](/help/assets/guide-onboarding-agent/app-mcp-url.png)
 
-Chaque environnement déployé affiche une URL de serveur MCP. Sélectionnez **[!UICONTROL Copier l’URL]** et utilisez-la pour créer un module externe dans la plateforme LLM cible.
+Chaque environnement déployé affiche une URL de serveur MCP. Sélectionnez **[!UICONTROL Copier l’URL]** et utilisez-la pour créer un plug-in ou un connecteur dans la plateforme LLM cible.
 
 La section **Historique de déploiement** affiche les 10 derniers déploiements :
 
 ![Historique de déploiement](/help/assets/guide-deploy/deployment-history.png)
 
-Chaque ligne affiche la date cible **Environnement** (d’évaluation ou de production), **Statut** (de réussite ou d’échec) et la date **Déployé à**. Vous pouvez utiliser ce tableau pour suivre le moment où les déploiements se sont produits et vérifier que les
-dernier déploiement réussi.
+Chaque ligne affiche la date cible **Environnement** (évaluation ou production), **Statut** (Succès ou Échec) et **Déployé à**. Utilisez le tableau pour suivre les dates de déploiement et vérifier que le dernier déploiement a réussi.
+
+## Déployer les modifications de configuration
+
+Les modifications apportées aux métadonnées d’action, aux commutateurs **[!UICONTROL Visibilité]**, à l’authentification et aux variables d’application de la page d’application prennent effet lors du prochain déploiement dans cet environnement. L’enregistrement d’un paramètre ne met pas à jour le serveur MCP déployé en lui-même.
+
+Vérifiez l’environnement cible à chaque fois. Le déploiement dans l’environnement intermédiaire ne déploie pas les mêmes modifications dans la production.
 
 ## Étape suivante
 

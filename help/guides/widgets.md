@@ -1,13 +1,11 @@
 ---
 title: Personnaliser un widget EDS généré
 description: Découvrez et personnalisez le widget Edge Delivery Services créé automatiquement par les applications Adobe LLM.
-source-git-commit: bb3d8a02f22a91ceeeba5999453aeb4221060f80
+source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
 workflow-type: tm+mt
-source-wordcount: '646'
+source-wordcount: '1065'
 ht-degree: 0%
-
 ---
-
 
 # Personnaliser un widget généré {#customize-generated-widget}
 
@@ -19,34 +17,36 @@ ht-degree: 0%
 
 >[!NOTE]
 >
->Ce guide suppose des connaissances de base d’Adobe Edge Delivery Services (EDS). Si vous êtes nouveau dans EDS, lisez d’abord le tutoriel de développement [EDS](https://www.aem.live/developer/tutorial) et [Exploration des blocs](https://www.aem.live/docs/exploring-blocks) pour en savoir plus sur l’essentiel (les blocs, la fonction `decorate` et la structure du projet EDS) avant de personnaliser un widget.
+>Ce guide suppose des connaissances de base d’Adobe Edge Delivery Services (EDS). Si vous découvrez EDS, lisez le tutoriel de développement [EDS](https://www.aem.live/developer/tutorial) et [Exploration des blocs](https://www.aem.live/docs/exploring-blocks) avant de personnaliser un widget. Ces ressources couvrent les blocs, la fonction `decorate` et la structure de projet EDS.
 
-La plateforme crée un widget EDS pour chaque action générée. Le widget reçoit déjà le résultat de l’action, effectue le rendu des exemples de données, applique le style de l’hôte et est lié à l’action dans [!DNL LLM Apps].
+Une fois la génération réussie, la plateforme fournit un widget EDS lié à l’action en [!DNL LLM Apps]. Le widget effectue le rendu des données représentatives pour la prévisualisation et lit le résultat du gestionnaire lorsqu’il est connecté à une plateforme LLM prise en charge. Examinez la conception et le comportement générés avant de personnaliser le widget.
 
 Commencez par tester le widget généré. Personnalisez ensuite son contrat de données, son interaction et sa conception visuelle.
 
-**Parcours :** recherchez le bloc généré → alignez son contrat de données → personnalisez en toute sécurité l’aperçu → localement → déployez et testez.
+**Dans ce guide :** découvrez comment trouver le widget généré et l’adapter aux données de votre action et à la conception de votre marque. Ensuite, prévisualisez vos modifications localement et testez-les dans l’application déployée.
 
 ## Recherche du widget généré
 
-Ouvrez le référentiel EDS sélectionné lors de la création de l’application. Chaque widget généré est un bloc EDS :
+Ouvrez le référentiel EDS connecté lors de la [&#x200B; configuration de l’infrastructure &#x200B;](/help/guides/create-app.md). Si vous utilisez l’infrastructure gérée par Adobe, demandez l’accès au code avant de continuer. Chaque widget généré est un bloc EDS :
 
 ```text
 blocks/
-└── <action-name>/
-    ├── <action-name>.js
-    └── <action-name>.css
+└── <action-slug>/
+    ├── <action-slug>.js
+    └── <action-slug>.css
 ```
 
 - Le fichier JavaScript lit le résultat de l’action et crée l’interface.
 - Le fichier CSS contrôle la disposition, le comportement réactif et la conception visuelle.
 - La requête de tirage générée affiche les fichiers exacts créés pour l’action.
 
-La plateforme configure également les URL des widgets et les fichiers SDK pris en charge. Vous n’avez pas besoin de créer un second projet EDS ni de saisir à nouveau ces valeurs pour personnaliser un widget généré.
+Le rappel utilise des tirets : une action avec un identifiant de code `search_products` utilise un bloc tel que `blocks/search-products/`. La page du widget généré est généralement `/eds-widgets/search-products-demo` ; utilisez l’**[!UICONTROL URL du widget]** réel dans les métadonnées de l’action.
+
+La plateforme configure également les URL des widgets et les fichiers SDK pris en charge. Vous n’avez pas besoin de créer un second projet EDS ni de saisir à nouveau les URL des widgets pour personnaliser un widget généré.
 
 ## Comment le SDK des applications LLM connecte le widget
 
-Le package `@adobe/llmapps-sdk` connecte le widget EDS à l’hôte LLM. Le référentiel EDS généré comprend les éléments suivants :
+Le package `@adobe/llmapps-sdk` connecte le widget EDS à l’hôte LLM. Ses points d’entrée dans le référentiel EDS généré sont les suivants :
 
 ```text
 scripts/
@@ -62,7 +62,7 @@ export default async function decorate(block, bridge) {
 }
 ```
 
-Vous n’importez pas le SDK dans le bloc . Le `bridge` connecté est fourni automatiquement. Il permet au widget :
+L’intégration récupère le contenu `.plain.html` de la page du widget et importe ses blocs. Vous n’importez pas le SDK dans le bloc . L’intégration fournit automatiquement des `bridge` ; le chargement normal de page EDS ne les fournit pas. Le pont permet au widget :
 
 - Lisez le résultat du gestionnaire avec `bridge.toolResult`.
 - Appliquez le style de l’hôte avec `bridge.applyHostStyles()`.
@@ -79,21 +79,31 @@ Le gestionnaire d’actions renvoie `structuredContent` et le bloc le lit à par
 ```javascript
 // Handler result
 return {
-  content: [{ type: 'text', text: `Found ${products.length} products.` }],
-  structuredContent: { products, total: products.length }
+  content: [{ type: 'text', text: `Found ${records.length} products.` }],
+  structuredContent: { arguments: { query: 'coffee' }, records }
 };
 ```
 
 ```javascript
 // EDS block
+const PREVIEW_RESULT = {
+  records: [{ id: 'P-100', name: 'Frescopa House Blend' }]
+};
+
 export default async function decorate(block, bridge) {
-  const result = bridge ? await bridge.toolResult : null;
-  const products = result?.structuredContent?.products ?? [];
-  // Render products.
+  const live = bridge?.isConnected && bridge.hostContext?.preview !== true;
+  const result = live ? await bridge.toolResult : null;
+  const data = live ? result?.structuredContent : PREVIEW_RESULT;
+  const records = Array.isArray(data?.records) ? data.records : [];
+  // Render records or an error state when result?.isError is true.
 }
 ```
 
-Lorsque vous modifiez `structuredContent`, mettez à jour le gestionnaire et le widget ensemble. Voir [Personnaliser un gestionnaire généré](/help/guides/customize-handler.md) pour l’ensemble du contrat de retour.
+Dans cet exemple, `PREVIEW_RESULT` est l’objet de données d’exemple local du bloc. Les widgets générés actuels utilisent `structuredContent.arguments` et `structuredContent.records`. Vérifiez que les fichiers générés ont la forme exacte. Ne remplacez jamais un résultat dynamique vide par des enregistrements de prévisualisation.
+
+`bridge.toolResult` est résolu avec le premier résultat uniquement. Utilisez `bridge.onToolResult(callback)` si un widget reste monté et doit gérer les résultats ultérieurs.
+
+Lorsque vous modifiez `structuredContent`, mettez à jour le gestionnaire et le widget ensemble. Ne partez pas du principe que les données structurées sont masquées dans le modèle ; elles font partie du résultat de l’action de l’hôte. Voir [Personnaliser un gestionnaire généré](/help/guides/customize-handler.md) pour l’ensemble du contrat de retour.
 
 ## Rendre des données externes en toute sécurité
 
@@ -110,13 +120,20 @@ function createProductCard(product, bridge) {
   const button = document.createElement('button');
   button.type = 'button';
   button.textContent = 'Tell me more';
-  button.addEventListener('click', () => {
-    if (bridge && product.id) {
-      bridge.sendMessage(`Show me details for product ${String(product.id)}`);
+  button.disabled = !bridge?.isConnected;
+  const status = document.createElement('p');
+  status.setAttribute('role', 'status');
+  button.addEventListener('click', async () => {
+    if (bridge?.isConnected && typeof product.id === 'string') {
+      try {
+        await bridge.sendMessage(`Show me details for product ${product.id}`);
+      } catch {
+        status.textContent = 'Unable to send the request. Try again.';
+      }
     }
   });
 
-  card.append(title, button);
+  card.append(title, button, status);
   return card;
 }
 ```
@@ -125,49 +142,54 @@ Validez les URL avant de les affecter à des `href` ou des `src` et n’autorise
 
 ## Utiliser le pont hôte
 
-EDS passe un pont connecté à `decorate(block, bridge)`. Guard Bridge appelle pour que le bloc s’affiche également lors de l’aperçu EDS direct.
+L&#39;intégration passe un pont à `decorate(block, bridge)`. Protégez les appels interactifs avec `bridge?.isConnected` afin que le bloc s’affiche également lors de l’aperçu EDS direct. Un objet de pont peut exister en mode autonome sans être connecté ; l’attente de `toolResult` en mode autonome ne se résout jamais. L’aperçu des applications LLM définit également les `bridge.hostContext.preview` pour permettre au bloc de choisir des données d’exemple.
 
 ### Application de styles d’hôte
 
 ```javascript
-if (bridge) {
+if (bridge?.isConnected) {
   bridge.applyHostStyles();
 }
 ```
 
-Cela s’applique à la typographie de l’hôte et aux variables de thème. Votre widget CSS doit prendre en charge les thèmes hôtes clairs et sombres.
+La méthode applique les variables CSS hôtes et les styles de police disponibles. L’application de styles hôtes est facultative : les widgets générés peuvent utiliser leurs propres jetons de conception à la place. L’incorporation conserve les classes `.light` et `.dark` sur son corps fantôme. Utilisez `bridge.hostContext.theme` et `bridge.onContextChange(callback)` lorsque votre bloc doit également réagir aux modifications du thème.
 
 ### Envoyer un message de relance
 
 ```javascript
-await bridge.sendMessage('Show me similar products.');
+if (bridge?.isConnected) {
+  await bridge.sendMessage('Show me similar products.');
+}
 ```
 
-Utilisez `sendMessage` lorsqu’une interaction doit continuer la conversation.
+Utilisez `sendMessage` pour continuer la conversation après une interaction.
 
-### Appeler une autre action
+### Appeler directement une action
 
 ```javascript
-const result = await bridge.callTool('get-product-details', {
-  id: product.id
-});
+if (bridge?.isConnected) {
+  const result = await bridge.callTool('search_products', { query: 'coffee' });
+  // Re-render this widget from result.structuredContent, or show result.isError.
+}
 ```
 
-Utilisez `callTool` pour une interaction explicite qui nécessite un autre résultat d’action. Transmettez uniquement des valeurs validées et gérez les échecs sans exposer les détails internes.
+Utilisez `callTool` pour une interaction explicite qui nécessite un résultat d’action. Transmettez l’identifiant de code de l’action cible réelle, et non son nom de dossier ou d’affichage de bloc ; `search_products` est un exemple. L’hôte doit prendre en charge les appels d’action et l’action cible doit permettre la visibilité de l’application. L’appel d’une action ne rend pas automatiquement le widget actif. Transmettez uniquement des valeurs validées et gérez les appels rejetés sans exposer les détails internes.
+
+Si la visibilité de l’action cible doit changer, modifiez uniquement cette action sous **[!UICONTROL Détails de l’action]**, enregistrez la modification et redéployez-la dans l’environnement que vous testez.
 
 ### Conserver la taille du widget synchronisée
 
 ```javascript
-if (bridge) {
+if (bridge?.isConnected) {
   bridge.autoResize(block);
 }
 ```
 
-Appelez `autoResize` après le rendu initial afin que l’hôte puisse répondre aux modifications du contenu.
+Pour permettre à l’hôte de répondre aux modifications du contenu, appelez `autoResize` après le rendu initial. La méthode renvoie une fonction de nettoyage qui arrête l’observation lorsque le widget est supprimé.
 
 ## Prévisualiser vos modifications
 
-Les blocs générés doivent inclure des exemples de données pour la prévisualisation directe lorsque la `bridge` n’est pas disponible.
+Les blocs générés incluent des exemples de données pour un aperçu direct lorsque le pont est manquant, déconnecté ou marqué comme aperçu. Conservez la version de secours des données d’exemple séparément des états actif vide et erreur.
 
 Pour prévisualiser le projet EDS localement :
 
@@ -176,7 +198,7 @@ npm install -g @adobe/aem-cli
 aem up
 ```
 
-Ouvrez la page du widget généré sur `http://localhost:3000`. Vérifier :
+Ouvrez le chemin d’accès à partir de l’URL du widget de l’action sur le serveur local, par exemple `http://localhost:3000/eds-widgets/search-products-demo`, plutôt que uniquement la racine du site. Vérifier :
 
 - États vide, chargement, succès et erreur.
 - Texte long et champs facultatifs manquants.
@@ -184,16 +206,18 @@ Ouvrez la page du widget généré sur `http://localhost:3000`. Vérifier :
 - Thèmes clairs et sombres.
 - Mises en page étroites et larges.
 
-Déployez ensuite l’application pour l’évaluation et le test avec des `structuredContent` en direct dans la plateforme LLM.
+L’aperçu EDS direct ne teste pas les données de l’établissement de liaison de l’hôte ou des actions en direct. Publiez les modifications EDS et testez-les en direct `structuredContent` la plateforme LLM prise en charge.
 
 ## Publier la personnalisation
 
 1. Validez et envoyez les modifications EDS.
-2. Si vous avez modifié la forme de données, validez et poussez les modifications de gestionnaire correspondantes.
-3. Déployez l’application vers l’environnement d’évaluation.
-4. Testez l’action et le widget dans [!DNL ChatGPT].
-5. Promouvez la version vérifiée en production.
+2. Vérifiez que la page du widget et les scripts et styles modifiés sont disponibles dans les URL EDS configurées. Publiez les modifications de contenu par le biais de votre workflow de publication EDS.
+3. Si vous avez modifié les métadonnées du gestionnaire ou de l’action, poussez ces modifications et déployez l’application dans l’environnement d’évaluation.
+4. Testez l’action et le widget dans une plateforme LLM prise en charge. Voir [Test dans le ChatGPT](/help/guides/test-in-chatgpt.md) ou [Test dans Claude](/help/guides/test-in-claude.md).
+5. Une fois les tests réussis, déployez les modifications du gestionnaire et des métadonnées dans l’environnement de production, si nécessaire.
+
+La publication EDS est distincte du déploiement d’applications. Si les environnements d’évaluation et de production utilisent les mêmes URL EDS, les modifications de widget apportées à ces URL affectent les deux environnements ; le déploiement dans l’environnement d’évaluation ne crée pas de copie de widget isolée.
 
 ## Autres configurations EDS
 
-Si vous n’avez pas créé l’application automatiquement ou si vous souhaitez intégrer un site EDS existant, reportez-vous à la section [&#x200B; Apporter votre propre projet EDS &#x200B;](/help/guides/bring-your-own-eds.md).
+Si vous avez créé des actions vous-même ou si vous souhaitez intégrer un site EDS compatible, reportez-vous à la section [Apporter votre propre projet EDS](/help/guides/bring-your-own-eds.md).

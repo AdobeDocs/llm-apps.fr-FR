@@ -1,9 +1,9 @@
 ---
 title: Création d’une action à partir de zéro
 description: Définissez des métadonnées d’action, implémentez son gestionnaire, connectez un widget EDS, testez-le et déployez-le avec les applications Adobe LLM.
-source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
+source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
 workflow-type: tm+mt
-source-wordcount: '1453'
+source-wordcount: '1476'
 ht-degree: 0%
 ---
 
@@ -147,9 +147,11 @@ query
 
 Utilisez des noms de paramètres stables. La modification d’un nom nécessite également la modification du gestionnaire et de ses tests.
 
-### Configuration d’Analytics
+### Configuration d’Analytics {#configure-analytics}
 
 Activez l’option **[!UICONTROL Collecter l’intention de l’utilisateur]** lorsque vous souhaitez que les analyses incluent un résumé de la conversation qui a conduit à l’action.
+
+Si vous configurez votre propre [!DNL Adobe Analytics] ou [!DNL Customer Journey Analytics], l’intention de l’utilisateur y est également envoyée. Voir [Configuration d’Adobe Analytics et de Customer Journey Analytics](/help/guides/analytics-setup.md).
 
 La collecte d’intention utilisateur est activée par défaut. Consultez **[!UICONTROL Description de l’intention de l’utilisateur]**, qui contient les instructions pour demander le résumé. Limitez les instructions à une intention non sensible et anonymisée et décrivez votre collecte de données dans votre politique de confidentialité. La description accepte jusqu’à 2 000 caractères.
 

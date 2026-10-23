@@ -1,7 +1,7 @@
 ---
-source-git-commit: a48b4022979d9a13b4fc3aa870c4ee6375e8bc13
+source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
 workflow-type: tm+mt
-source-wordcount: '1052'
+source-wordcount: '1418'
 ht-degree: 1%
 ---
 # Manifeste de capture d’écran
@@ -135,6 +135,28 @@ réponse. Il ne vérifie pas l’interface utilisateur de configuration actuelle
 les captures d’écran nécessitent un accès authentifié actuel ; sinon, utilisez un fournisseur officiel
 instructions et omettez les images non vérifiées.
 
+## Configuration d’Analytics
+
+Article : `/help/guides/analytics-setup.md`
+
+Répertoire de sortie : `help/assets/guide-analytics/`
+
+| Nom de fichier | État et contexte utile | Texte de remplacement suggéré |
+|---|---|---|
+| `analytics-settings.png` | Paramètres de l’application, onglet Analytics, Activation d’Analytics, ID de flux de données vide, Exigences développées, Enregistrement des modifications désactivé | Paramètres de l’application, onglet Analytics - Activation d’Analytics, champ d’identifiant de flux de données vide et liste des exigences développée |
+| `datastream-analytics-service.png` | Collecte de données, ajout de service, Adobe Analytics activé avec un identifiant de suite de rapports factice | Ajouter un service : Adobe Analytics activé avec un exemple d’identifiant de suite de rapports |
+| `datastream-platform-service.png` | Collecte de données, service Adobe Experience Platform avec uniquement le jeu de données d’événement sélectionné | service Adobe Experience Platform : jeu de données d’événement sélectionné et autres options effacées |
+| `datastream-services.png` | Détails du flux de données avec les deux services activés, un identifiant de flux de données factice et le schéma de mappage | Détails du flux de données - les deux services sont activés, avec l’exemple d’identifiant de flux de données et le schéma de mappage |
+
+Ne capturez jamais un ID de flux de données réel. Ne sélectionnez pas **Enregistrer les modifications** : après un enregistrement,
+seul un administrateur peut modifier le flux de données. Afficher Experience Platform, Adobe Analytics,
+et Customer Journey Analytics uniquement lorsqu’ils affichent un paramètre spécifique à
+Applications LLM ; lien vers Experience League pour tout le reste. Remplacer l’organisation
+noms, identifiants de suite de rapports, identifiants de flux de données, identifiants de jeu de données, adresses électroniques et noms personnels
+avec ces valeurs factices : `example-org`, `demo.<suffix>` suites de rapports,
+`00000000-0000-0000-0000-000000000000`, `0000…0001`, `user@example.com` et
+`Example User`.
+
 ## Provenance de capture existante
 
 L’exécution de capture 2026-10-19 a utilisé l’interface utilisateur locale demandée par l’utilisateur, avec l’interface utilisateur/l’API correspondante
@@ -162,3 +184,25 @@ le bouton reste la commande d’activation/de désactivation ; paramètres d’e
 restez dans l’éditeur. Le lien du référentiel est masqué et la navigation du compte est .
 exclus. Aucune action n’a été enregistrée, approuvée, basculée ou déployée lors de cette actualisation.
 Capture brute : `docs-captures/2026-10-19/remove-enabled/`.
+
+### Paramètres d’Analytics, 21/10/2026
+
+Actualisation des `guide-analytics/analytics-settings.png` fournies par l’utilisateur
+`Screenshot 2026-10-21 at 11.48.36.png`, pas une exécution pilotée par un agent. Source
+environnement : non enregistré et non visible sur l’image ; la parité de production ne l’est pas
+vérifié. Vérification visuelle confirmée L’activation d’Analytics dans le champ Identifiant du flux de données
+est vide, le champ Exigences est développé et l’option Enregistrer les modifications est désactivée. L’image était
+copiés sans modifications ; aucun identifiant ou détail de compte n’est visible.
+
+### Captures d’écran de flux de données, 2026-10-19
+
+Ajout de `guide-analytics/datastream-analytics-service.png`,
+`datastream-platform-service.png` et `datastream-services.png` à partir de
+Captures de la collecte de données interne (2026-07-29 et 2026-10-19). Identifiant de suite de rapports
+et l’identifiant du flux de données ont été remplacés par des superpositions de texte factices (`demo.aem.llm` et
+`00000000-0000-0000-0000-000000000000`) ; la police de recouvrement est San Francisco, donc
+diffère légèrement de la police du produit. L’image du service de plateforme avait besoin de
+modifications. L’image du service Analytics affiche toujours le pointeur de la souris à partir de l’
+capture originale. Un passage OCR sur les images finales n&#39;a trouvé aucun identifiant original.
+Remplacez-les par de nouvelles captures qui utilisent des valeurs factices saisies dans l’interface utilisateur lorsque
+l’article est ensuite actualisé.

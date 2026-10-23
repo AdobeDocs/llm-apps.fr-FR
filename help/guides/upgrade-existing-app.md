@@ -21,9 +21,9 @@ N’utilisez ce guide que si votre application utilise une version de `@adobe/ll
 
 ## Avant de commencer {#before-you-begin}
 
-Vous devez accéder au référentiel du gestionnaire et, pour les applications comportant des widgets EDS, au référentiel EDS lié à votre application. Si votre application utilise une infrastructure gérée par Adobe, demandez l’accès au code avant d’effectuer des mises à jour. Voir [ Utilisation de l’infrastructure gérée par Adobe](/help/guides/create-app.md#adobe-managed-infrastructure).
+Vous devez accéder au référentiel du gestionnaire et, pour les applications comportant des widgets EDS, au référentiel EDS lié à votre application. Si votre application utilise une infrastructure gérée par Adobe, demandez l’accès au code avant d’effectuer des mises à jour. Voir [&#x200B; Utilisation de l’infrastructure gérée par Adobe](/help/guides/create-app.md#adobe-managed-infrastructure).
 
-Il n’est pas nécessaire de créer une autre application. Mettez à jour uniquement les composants qui se trouvent sous les versions prises en charge. Vous pouvez réutiliser une configuration d’Adobe existante répondant aux [ exigences de configuration d’Analytics ](/help/guides/analytics-setup.md#setup-checklist).
+Il n’est pas nécessaire de créer une autre application. Mettez à jour uniquement les composants qui se trouvent sous les versions prises en charge. Vous pouvez réutiliser une configuration d’Adobe existante répondant aux [&#x200B; exigences de configuration d’Analytics &#x200B;](/help/guides/analytics-setup.md#setup-checklist).
 
 Pour les applications disposant de widgets EDS, publiez et vérifiez d’abord la mise à jour de SDK, puis fusionnez la mise à jour d’exécution et redéployez l’application. Les deux mises à jour du référentiel peuvent être préparées indépendamment, mais les deux doivent être disponibles avant de tester le déploiement compatible avec les analyses.
 

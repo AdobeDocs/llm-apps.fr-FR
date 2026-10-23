@@ -31,7 +31,7 @@ Effectuez chaque étape marquée **Obligatoire** pour les services que vous util
 | Étape | [!DNL Adobe Analytics] | [!DNL Customer Journey Analytics] |
 |---|---|---|
 | [1. Créez l’espace de noms d’identité](#identity-namespace) | Requis | Requis |
-| [2. Créez le schéma ](#schema) | Requis | Requis |
+| [2. Créez le schéma &#x200B;](#schema) | Requis | Requis |
 | [3. Créez le jeu de données](#dataset) | Pas nécessaire | Requis |
 | [4. Préparez la suite de rapports](#report-suite) | Requis | Pas nécessaire |
 | [5. Créez le flux de données](#datastream) | Requis | Requis |
@@ -45,8 +45,8 @@ Créez l’espace de noms, le schéma, le jeu de données et le flux de données
 
 Vous avez besoin des éléments suivants :
 
-- **Un runtime et SDK pris en charge.** Votre référentiel de gestionnaire doit utiliser `@adobe/llm-apps-runtime` version 1.2.0 ou ultérieure. Pour les widgets EDS, utilisez LLM Apps SDK 0.1.13 ou une version ultérieure. Pour mettre à jour une application plus ancienne vers le dernier runtime et SDK avant d’activer Analytics, suivez [ Mise à niveau d’une application existante](/help/guides/upgrade-existing-app.md). Les applications qui répondent à ces exigences n’ont pas besoin d’être mises à niveau.
-- **Les groupes de champs agentic.** Votre organisation doit être activée pour les groupes de champs Informations sur l’agence et Événement de conversation . Si ces groupes de champs n’apparaissent pas lorsque vous ajoutez des groupes de champs à un schéma, contactez votre équipe de compte Adobe. Voir [ Implémentation d’Insights de conversation ](https://experienceleague.adobe.com/en/docs/analytics-platform/using/conversation-insights/implement#schema-and-datasets). Les appels à l’action sont enregistrés dans le champ `agenticExperience.tools` des informations sur l’agence, qui se trouve dans Beta en [!DNL Experience Platform].
+- **Un runtime et SDK pris en charge.** Votre référentiel de gestionnaire doit utiliser `@adobe/llm-apps-runtime` version 1.2.0 ou ultérieure. Pour les widgets EDS, utilisez LLM Apps SDK 0.1.13 ou une version ultérieure. Pour mettre à jour une application plus ancienne vers le dernier runtime et SDK avant d’activer Analytics, suivez [&#x200B; Mise à niveau d’une application existante](/help/guides/upgrade-existing-app.md). Les applications qui répondent à ces exigences n’ont pas besoin d’être mises à niveau.
+- **Les groupes de champs agentic.** Votre organisation doit être activée pour les groupes de champs Informations sur l’agence et Événement de conversation . Si ces groupes de champs n’apparaissent pas lorsque vous ajoutez des groupes de champs à un schéma, contactez votre équipe de compte Adobe. Voir [&#x200B; Implémentation d’Insights de conversation &#x200B;](https://experienceleague.adobe.com/en/docs/analytics-platform/using/conversation-insights/implement#schema-and-datasets). Les appels à l’action sont enregistrés dans le champ `agenticExperience.tools` des informations sur l’agence, qui se trouve dans Beta en [!DNL Experience Platform].
 - **[!DNL Experience Platform]les autorisations** pour créer des espaces de noms d’identité, des schémas, des jeux de données et des flux de données dans votre sandbox.
 - **Pour [!DNL Adobe Analytics] :** l’autorisation de gérer les suites de rapports et les règles de traitement. Les administrateurs de produit disposent des deux par défaut.
 - **Par [!DNL Customer Journey Analytics] :** accès administrateur de produit pour créer des connexions et des vues de données.
@@ -210,8 +210,8 @@ Ajoutez un service pour chaque destination :
 
 | Service | Paramètres | Obligatoire pour |
 |---|---|---|
-| **** | **[!UICONTROL Activé]**. Dans **[!UICONTROL Identifiant de suite de rapports]**, saisissez l’identifiant de l’[étape 4](#report-suite). | [!DNL Adobe Analytics] |
-| **** | **[!UICONTROL Activé]**. Dans **[!UICONTROL Jeu de données d’événement]**, sélectionnez le jeu de données à l’[étape 3](#dataset). Laissez les autres options désactivées. | [!DNL Customer Journey Analytics] |
+| **&#x200B;**&#x200B;| **[!UICONTROL Activé]**. Dans **[!UICONTROL Identifiant de suite de rapports]**, saisissez l’identifiant de l’[étape 4](#report-suite). | [!DNL Adobe Analytics] |
+| **&#x200B;**&#x200B;| **[!UICONTROL Activé]**. Dans **[!UICONTROL Jeu de données d’événement]**, sélectionnez le jeu de données à l’[étape 3](#dataset). Laissez les autres options désactivées. | [!DNL Customer Journey Analytics] |
 
 ![Ajouter un service - Adobe Analytics activé avec un exemple d’identifiant de suite de rapports](/help/assets/guide-analytics/datastream-analytics-service.png)
 
@@ -271,7 +271,7 @@ Créez une connexion et ajoutez le jeu de données de l’[étape 3](#dataset) a
 >
 >Activez **[!UICONTROL Importer toutes les nouvelles données]**. Ce paramètre crée une connexion continue, de sorte que de nouveaux événements sont automatiquement disponibles dans Workspace.
 
-Avec cet ID de personne, [!DNL Customer Journey Analytics] utilise l’identité principale de chaque événement comme personne et ignore les événements qui n’ont pas d’identité principale. Voir [ Comment les événements identifient les personnes ](#identities).
+Avec cet ID de personne, [!DNL Customer Journey Analytics] utilise l’identité principale de chaque événement comme personne et ignore les événements qui n’ont pas d’identité principale. Voir [&#x200B; Comment les événements identifient les personnes &#x200B;](#identities).
 
 Pour connaître la procédure à suivre, reportez-vous aux sections [Créer une connexion](https://experienceleague.adobe.com/en/docs/analytics-platform/using/cja-connections/create-connection#create-connection), [Paramètres du jeu de données d’événement](https://experienceleague.adobe.com/en/docs/analytics-platform/using/cja-connections/create-connection#event-dataset-settings) et [Utiliser le mappage d’identité comme ID de personne](https://experienceleague.adobe.com/en/docs/analytics-platform/using/cja-connections/create-connection#id-map).
 
@@ -321,7 +321,7 @@ Lorsque les données s’affichent correctement, [déployez votre application](/
 
 ## Restrictions {#limitations}
 
-- **Les interactions de widget sont divisées en plusieurs personnes.** Chaque appel d’action obtient un nouvel ECID. [!DNL Customer Journey Analytics] comptabilise donc les interactions de widgets de différents appels d’action comme différentes personnes. Voir [ Comment les événements identifient les personnes ](#identities).
+- **Les interactions de widget sont divisées en plusieurs personnes.** Chaque appel d’action obtient un nouvel ECID. [!DNL Customer Journey Analytics] comptabilise donc les interactions de widgets de différents appels d’action comme différentes personnes. Voir [&#x200B; Comment les événements identifient les personnes &#x200B;](#identities).
 - **Aucun lien vers votre site web.** Lorsqu’une personne suit un lien de widget vers votre site web, la visite du site web n’est pas liée à la conversation.
 - **Rapports de partage d’évaluation et de production.** Les deux environnements envoient des données au même flux de données et les événements n’enregistrent pas l’environnement qui les a envoyés.
 - **Certaines plateformes n’envoient aucune identité.** Les appels d’action des plateformes qui ne fournissent pas d’ID utilisateur, comme [!DNL Claude], sont ignorés dans [!DNL Customer Journey Analytics].
@@ -331,9 +331,9 @@ Lorsque les données s’affichent correctement, [déployez votre application](/
 
 | Ce que vous voyez | Éléments à vérifier |
 |---|---|
-| Le jeu de données ne reçoit aucun lot | Vous avez déployé l’application après avoir enregistré les paramètres Analytics dans l’environnement que vous testez. L’identifiant du flux de données est correct. Le flux de données contient le service **** avec votre jeu de données. |
+| Le jeu de données ne reçoit aucun lot | Vous avez déployé l’application après avoir enregistré les paramètres Analytics dans l’environnement que vous testez. L’identifiant du flux de données est correct. Le flux de données contient le service **&#x200B;**&#x200B;avec votre jeu de données. |
 | Échec des lots | Le schéma comprend les cinq groupes de champs de l’[étape 2](#schema). |
-| [!DNL Adobe Analytics] n’a pas de données | Le service **** est activé pour le flux de données avec l’identifiant correct de la suite de rapports. |
+| [!DNL Adobe Analytics] n’a pas de données | Le service **&#x200B;**&#x200B;est activé pour le flux de données avec l’identifiant correct de la suite de rapports. |
 | **Page** affiche les `mcp:<code identifier>`, mais **Intention de l’utilisateur** et les champs d’action sont vides | Votre référentiel de gestionnaire utilise `@adobe/llm-apps-runtime` version 1.2.0 ou ultérieure et vous l’avez déployé après la mise à niveau. Voir [Avant de commencer](#before-you-begin). |
 | **Intention de l’utilisateur** est vide pour certaines actions. | La règle de traitement de l’[étape 4](#processing-rule) utilise les variables de données contextuelles exactement comme indiqué, en minuscules, et dans l’eVar appropriée. L’action **[!UICONTROL Collecter l’intention de l’utilisateur]** est activée. La règle s’applique uniquement aux données collectées après leur enregistrement. |
 | [!DNL Customer Journey Analytics] affiche moins d’événements que le jeu de données | L&#39;option **[!UICONTROL Importer toutes les nouvelles données]** est activée. Les événements sans identité principale sont ignorés, par exemple les appels d’action des plateformes qui ne fournissent pas d’identifiant utilisateur. |

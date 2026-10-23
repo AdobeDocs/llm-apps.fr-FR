@@ -2,7 +2,7 @@
 title: Apporter votre propre projet Edge Delivery Services
 description: Connecter un projet Adobe Edge Delivery Services existant à une action Adobe LLM Apps.
 hidefromtoc: true
-source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
+source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
 workflow-type: tm+mt
 source-wordcount: '866'
 ht-degree: 1%
@@ -16,7 +16,7 @@ ht-degree: 1%
 >
 >Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
 
-Utilisez ce guide pour connecter un projet Edge Delivery Services (EDS) compatible ou pour ajouter un widget à une action que vous avez vous-même créée. Un projet existant est facultatif. Si vous configurez votre propre infrastructure, le chemin d’accès par défaut commence par deux référentiels vides que la plateforme initialise lors de la [&#x200B; configuration de l’infrastructure &#x200B;](/help/guides/create-app.md).
+Utilisez ce guide pour connecter un projet Edge Delivery Services (EDS) compatible ou pour ajouter un widget à une action que vous avez vous-même créée. Un projet existant est facultatif. Si vous configurez votre propre infrastructure, le chemin d’accès par défaut commence par deux référentiels vides que la plateforme initialise lors de la [ configuration de l’infrastructure ](/help/guides/create-app.md).
 
 Si la plateforme a créé votre widget automatiquement, suivez [Personnaliser un widget généré](/help/guides/widgets.md) à la place. Le projet généré inclut déjà la configuration des fichiers, blocs, contenus et actions SDK décrite ici.
 
@@ -33,7 +33,7 @@ Vous avez besoin des éléments suivants :
 
 Lorsque vous liez un référentiel existant, la plateforme vérifie les `scripts/aem.js`, les `blocks/`, les `styles/styles.css` et les `head.html`. L’incorporation importe également des `scripts/scripts.js` et appelle sa fonction `decorateMain` exportée pour préparer les blocs. Gardez intact le contrat de chargement des blocs EDS. Les fichiers requis seuls ne confirment pas qu’un projet fortement personnalisé s’affiche correctement.
 
-## Installation de LLM Apps SDK
+## Installation de LLM Apps SDK {#install-the-llm-apps-sdk}
 
 À partir de la racine du projet EDS :
 

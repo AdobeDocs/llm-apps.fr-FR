@@ -1,9 +1,9 @@
 ---
 title: Déploiement de l’application
 description: Découvrez comment déployer votre application LLM Adobe vers les environnements d’évaluation et de production à l’aide de l’interface utilisateur des applications LLM.
-source-git-commit: a48b4022979d9a13b4fc3aa870c4ee6375e8bc13
+source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
 workflow-type: tm+mt
-source-wordcount: '412'
+source-wordcount: '444'
 ht-degree: 0%
 ---
 
@@ -58,11 +58,14 @@ Chaque ligne affiche la date cible **Environnement** (évaluation ou production)
 
 ## Déployer les modifications de configuration
 
-Les modifications apportées aux métadonnées d’action, aux commutateurs **[!UICONTROL Visibilité]**, à l’authentification et aux variables d’application de la page d’application prennent effet lors du prochain déploiement dans cet environnement. L’enregistrement d’un paramètre ne met pas à jour le serveur MCP déployé en lui-même.
+Les modifications apportées aux métadonnées d’action, aux commutateurs **[!UICONTROL Visibilité]**, à l’authentification, aux variables d’application et aux paramètres Analytics de la page d’application prennent effet lors du prochain déploiement dans cet environnement. L’enregistrement d’un paramètre ne met pas à jour le serveur MCP déployé en lui-même.
 
 Vérifiez l’environnement cible à chaque fois. Le déploiement dans l’environnement intermédiaire ne déploie pas les mêmes modifications dans la production.
+
+Si votre application ne répond pas aux exigences d’exécution d’Analytics ou de SDK, suivez la section [Mettre à niveau une application existante](/help/guides/upgrade-existing-app.md) avant de procéder à un redéploiement.
 
 ## Étape suivante
 
 - [Testez l’application déployée en tant que plug-in ChatGPT](/help/guides/test-in-chatgpt.md).
 - [Testez l’application déployée en tant que connecteur Claude](/help/guides/test-in-claude.md).
+- [Envoyez les événements de votre application à Adobe Analytics ou Customer Journey Analytics](/help/guides/analytics-setup.md).

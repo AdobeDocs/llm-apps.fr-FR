@@ -1,7 +1,7 @@
 ---
 title: Présentation des applications Adobe LLM
 description: Découvrez ce qu’est une application Adobe LLM, son fonctionnement et comment commencer à la créer.
-source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
+source-git-commit: d37cb1f4e199d77c94def7a034a55598bd3d8d83
 workflow-type: tm+mt
 source-wordcount: '624'
 ht-degree: 1%
@@ -19,7 +19,10 @@ ht-degree: 1%
 
 [!DNL Adobe LLM Apps] permet à votre marque de proposer des actions utiles, telles que la découverte de produits, les contrôles de disponibilité ou les réservations de services, dans les assistants d’IA pris en charge, tels que [!DNL ChatGPT] et [!DNL Claude].
 
+>[!VIDEO](https://video.tv.adobe.com/v/3504875/?learn=on&enablevpops)
+
 [!DNL LLM Apps] est disponible à l’adresse [experience.adobe.com/llm-apps](https://experience.adobe.com/llm-apps).
+
 
 ## Ce que vous pouvez faire avec [!DNL LLM Apps]
 

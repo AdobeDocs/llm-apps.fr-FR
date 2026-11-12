@@ -1,7 +1,7 @@
 ---
-source-git-commit: a48b4022979d9a13b4fc3aa870c4ee6375e8bc13
+source-git-commit: fa80b7b68e1b905eb22d4789a74b2f0de886d70c
 workflow-type: tm+mt
-source-wordcount: '1109'
+source-wordcount: '1179'
 ht-degree: 0%
 ---
 # Procédure de capture d’écran pilotée par l’agent
@@ -29,7 +29,7 @@ signalez les conflits plutôt que de présenter un flux non vérifié comme publ
 la propriété et la portée de l’accès sont claires.
 3. Si l’automatisation ne peut pas se joindre, ouvrez un navigateur distinct sous contrôle de l’agent.
 Pour Chrome, utilisez un profil de session dédié en dehors du référentiel et liez
-débogage à distance à `127.0.0.1` sur un port local inutilisé. Ne copiez jamais le de l’utilisateur
+débogage à distance de `127.0.0.1` sur un port local inutilisé. Ne copiez jamais le de l’utilisateur
 profil de navigateur personnel ou exposer le port de débogage au réseau.
 4. Vérifiez que le navigateur est en cours d’exécution et que son point d’entrée d’automatisation répond.
 5. Ouvrez l’application et mettez-la en pause pour que l’utilisateur s’authentifie. L’utilisateur gère Adobe,
@@ -41,7 +41,7 @@ et le consentement privilégié.
 l’application à l’intérieur d’un iframe ; ne supposons pas un index d’image fixe.
 
 Ne jamais lire, imprimer, exporter ou valider des informations d’identification, des jetons, des cookies ou des navigateurs
-stockage. N’appelez pas `storage_state()` et n’inspectez pas les en-têtes d’authentification. Laisser le
+stockage. N&#39;appelez pas `storage_state()` et n&#39;inspectez pas les en-têtes d&#39;authentification. Laisser le
 le navigateur gère la connexion sans extraire son état.
 
 ## Inspecter et naviguer en toute sécurité
@@ -88,7 +88,7 @@ le chargement des recouvrements, les animations de sortie, les toasts et les tra
 modifiez l’état documenté.
 6. Capturez la plus petite zone géographique complète comprenant la tâche et les éléments utiles
 contexte. Préférez une capture d’écran de panneau ou de boîte de dialogue à une image de bureau complète.
-7. Avec Playwright, utilisez des captures d&#39;écran et des `animations='disabled'` de localisation, plus
+7. Avec Playwright, utilisez des captures d’écran de localisateur et `animations='disabled'`, plus
 masques de temps de capture pour les valeurs sensibles. Inspectez le fichier PNG obtenu ; le
 La réussite de l’API de capture d’écran ne prouve pas que la région est correcte.
 
@@ -107,6 +107,13 @@ Utilisez des noms de fichier descriptifs tels que `setup-choice.png`, `action-ba
 et `generated-action-review.png`. Conserver les captures source inchangées. Conserver brut
 capture et parcourt les profils des validations et des archives de révision.
 
+Avant de modifier les captures d’écran, demandez à l’utilisateur quels détails non sensibles doivent être floutés
+et s’il faut ajouter des légendes de contour rouge autour des champs ou contrôles pertinents.
+Réutilisez les préférences déjà fournies plutôt que de demander à nouveau. Vérifier si
+pour conserver la fenêtre entière ou la recadrer, en conservant la navigation nécessaire à la tâche.
+Éloignez les légendes des libellés et expliquez qu’il s’agit d’annotations et non de l’interface utilisateur
+erreurs. Ne stockez pas l’historique des conversations ou des itérations d’édition dans la compétence.
+
 Créez les copies finales sous les répertoires de sortie dans le manifeste :
 
 - Supprimez le Chrome du navigateur, la navigation de compte, les applications non liées et la zone de travail vide.
@@ -114,7 +121,7 @@ Créez les copies finales sous les répertoires de sortie dans le manifeste :
 - Masquer les noms personnels, avatars, identifiants d&#39;organisation et d&#39;installation, privé
 détails du référentiel, espaces de noms d’exécution et URL complètes du serveur MCP. Préférer un solide
 masques neutres à brouiller, ce qui peut laisser des valeurs récupérables.
-- Utilisez des valeurs sûres telles que `https://auth.example.com`, `catalog:read`,
+- Utiliser des valeurs sûres telles que `https://auth.example.com`, `catalog:read`,
   `GREETING_PREFIX` et `Good day` dans des exemples de formulaires non enregistrés.
 - Exclure les coordonnées générées et d’autres données d’exemple d’aspect personnel lorsque
 ce contenu n’est pas nécessaire pour l’étape .
@@ -138,7 +145,7 @@ identifie l’écran et l’état.
 5. Mettez à jour le manifeste avec l’environnement de capture, la date et les limites sur .
 vérification.
 6. Exécutez le programme de validation de la documentation et créez le site de révision à l’aide des commandes
-en `SKILL.md`.
+dans `SKILL.md`.
 7. Inspectez l’article rendu et vérifiez que chaque image se charge à un emplacement lisible.
 taille.
 

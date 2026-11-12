@@ -1,9 +1,9 @@
 ---
 title: Personnaliser un widget EDS généré
 description: Découvrez et personnalisez le widget Edge Delivery Services créé automatiquement par les applications Adobe LLM.
-source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
+source-git-commit: 74769d0b2eb2d9323a39ae645dc5359404450164
 workflow-type: tm+mt
-source-wordcount: '1065'
+source-wordcount: '1148'
 ht-degree: 0%
 ---
 
@@ -17,17 +17,17 @@ ht-degree: 0%
 
 >[!NOTE]
 >
->Ce guide suppose des connaissances de base d’Adobe Edge Delivery Services (EDS). Si vous découvrez EDS, lisez le tutoriel de développement [EDS](https://www.aem.live/developer/tutorial) et [Exploration des blocs](https://www.aem.live/docs/exploring-blocks) avant de personnaliser un widget. Ces ressources couvrent les blocs, la fonction `decorate` et la structure de projet EDS.
+>Ce guide suppose des connaissances de base d’Adobe Edge Delivery Services (EDS). Si vous découvrez EDS, lisez le [tutoriel de développement EDS](https://www.aem.live/developer/tutorial) et [Exploration des blocs](https://www.aem.live/docs/exploring-blocks) avant de personnaliser un widget. Ces ressources couvrent les blocs, la fonction `decorate` et la structure de projet EDS.
 
-Une fois la génération réussie, la plateforme fournit un widget EDS lié à l’action en [!DNL LLM Apps]. Le widget effectue le rendu des données représentatives pour la prévisualisation et lit le résultat du gestionnaire lorsqu’il est connecté à une plateforme LLM prise en charge. Examinez la conception et le comportement générés avant de personnaliser le widget.
+Une fois la génération réussie, la plateforme fournit un widget EDS lié à l’action dans [!DNL LLM Apps]. Le widget effectue le rendu des données représentatives pour la prévisualisation et lit le résultat du gestionnaire lorsqu’il est connecté à une plateforme LLM prise en charge. Examinez la conception et le comportement générés avant de personnaliser le widget.
 
 Commencez par tester le widget généré. Personnalisez ensuite son contrat de données, son interaction et sa conception visuelle.
 
-**Dans ce guide :** découvrez comment trouver le widget généré et l’adapter aux données de votre action et à la conception de votre marque. Ensuite, prévisualisez vos modifications localement et testez-les dans l’application déployée.
+**Dans ce guide :** Découvrez comment trouver le widget généré et l’adapter aux données de votre action et à la conception de votre marque. Ensuite, prévisualisez vos modifications localement et testez-les dans l’application déployée.
 
 ## Recherche du widget généré
 
-Ouvrez le référentiel EDS connecté lors de la [&#x200B; configuration de l’infrastructure &#x200B;](/help/guides/create-app.md). Si vous utilisez l’infrastructure gérée par Adobe, demandez l’accès au code avant de continuer. Chaque widget généré est un bloc EDS :
+Ouvrez le référentiel EDS connecté lors de la [configuration de l’infrastructure](/help/guides/create-app.md). Si vous utilisez l’infrastructure gérée par Adobe, demandez l’accès au code avant de continuer. Chaque widget généré est un bloc EDS :
 
 ```text
 blocks/
@@ -40,7 +40,7 @@ blocks/
 - Le fichier CSS contrôle la disposition, le comportement réactif et la conception visuelle.
 - La requête de tirage générée affiche les fichiers exacts créés pour l’action.
 
-Le rappel utilise des tirets : une action avec un identifiant de code `search_products` utilise un bloc tel que `blocks/search-products/`. La page du widget généré est généralement `/eds-widgets/search-products-demo` ; utilisez l’**[!UICONTROL URL du widget]** réel dans les métadonnées de l’action.
+Le slug utilise des tirets : une action avec un identifiant de code `search_products` utilise un bloc tel que `blocks/search-products/`. La page du widget généré est généralement `/eds-widgets/search-products-demo` ; utilisez l’**[!UICONTROL URL du widget]** dans les métadonnées d’action.
 
 La plateforme configure également les URL des widgets et les fichiers SDK pris en charge. Vous n’avez pas besoin de créer un second projet EDS ni de saisir à nouveau les URL des widgets pour personnaliser un widget généré.
 
@@ -54,7 +54,7 @@ scripts/
 └── llmapps-sdk.js
 ```
 
-`aem-embed.js` établit la connexion de l’hôte, charge la page EDS et appelle votre bloc :
+`aem-embed.js` établit la connexion hôte, charge la page EDS et appelle votre bloc :
 
 ```javascript
 export default async function decorate(block, bridge) {
@@ -62,19 +62,21 @@ export default async function decorate(block, bridge) {
 }
 ```
 
-L’intégration récupère le contenu `.plain.html` de la page du widget et importe ses blocs. Vous n’importez pas le SDK dans le bloc . L’intégration fournit automatiquement des `bridge` ; le chargement normal de page EDS ne les fournit pas. Le pont permet au widget :
+L’intégration récupère le contenu `.plain.html` de la page du widget et importe ses blocs. Vous n’importez pas le SDK dans le bloc . L’intégration fournit automatiquement `bridge` ; le chargement normal de page EDS ne le fournit pas. Le pont permet au widget :
 
 - Lisez le résultat du gestionnaire avec `bridge.toolResult`.
 - Appliquez le style de l’hôte avec `bridge.applyHostStyles()`.
 - Poursuivez la conversation avec `bridge.sendMessage()`.
-- Appelez une autre action avec `bridge.callTool()`.
-- Conserver sa taille synchronisée avec les `bridge.autoResize()`.
+- Appeler une autre action avec `bridge.callTool()`.
+- Conserver sa taille synchronisée avec `bridge.autoResize()`.
 
-Ce guide couvre les méthodes de pont courantes. Voir le package [`@adobe/llmapps-sdk` pour &#x200B;](https://www.npmjs.com/package/@adobe/llmapps-sdk)’API complète.
+Ce guide couvre les méthodes de pont courantes. Voir le package [`@adobe/llmapps-sdk`](https://www.npmjs.com/package/@adobe/llmapps-sdk) pour l’API complète.
+
+Pour permettre aux utilisateurs d’ouvrir un widget préparé directement, à côté d’une conversation ou en tant que visionneuse de fichiers sur des clients OpenAI pris en charge, consultez [Configuration des extensions ChatGPT](/help/guides/chatgpt-extensions.md). Ce guide explique la configuration et les exigences de l’interface utilisateur. La gestion des fichiers, le contexte de sélection, les liens profonds et les contrôles de messages enrichis nécessitent une implémentation de widget. L’activation d’une extension n’ajoute pas automatiquement ce comportement. Vérifiez les fonctionnalités de l’hôte avant d’utiliser les API facultatives. L’API du fournisseur `bridge.chatgpt` distincte est disponible uniquement dans le ChatGPT et est `null` ailleurs ; elle n’est pas la même que l’API du pont standard.
 
 ## Comprendre le contrat de données
 
-Le gestionnaire d’actions renvoie `structuredContent` et le bloc le lit à partir de `bridge.toolResult`.
+Le gestionnaire d&#39;actions renvoie `structuredContent` et le bloc le lit depuis `bridge.toolResult`.
 
 ```javascript
 // Handler result
@@ -103,11 +105,11 @@ Dans cet exemple, `PREVIEW_RESULT` est l’objet de données d’exemple local d
 
 `bridge.toolResult` est résolu avec le premier résultat uniquement. Utilisez `bridge.onToolResult(callback)` si un widget reste monté et doit gérer les résultats ultérieurs.
 
-Lorsque vous modifiez `structuredContent`, mettez à jour le gestionnaire et le widget ensemble. Ne partez pas du principe que les données structurées sont masquées dans le modèle ; elles font partie du résultat de l’action de l’hôte. Voir [Personnaliser un gestionnaire généré](/help/guides/customize-handler.md) pour l’ensemble du contrat de retour.
+Lorsque vous modifiez `structuredContent`, mettez à jour le gestionnaire et le widget ensemble. Ne partez pas du principe que les données structurées sont masquées dans le modèle ; elles font partie du résultat de l’action de l’hôte. Voir [Personnaliser un gestionnaire généré](/help/guides/customize-handler.md) pour l&#39;ensemble du contrat de retour.
 
 ## Rendre des données externes en toute sécurité
 
-Traiter la sortie du gestionnaire comme des données non approuvées. Privilégiez les API DOM telles que `textContent` au lieu d’insérer des valeurs de réponse dans `innerHTML`.
+Traiter la sortie du gestionnaire comme des données non approuvées. Privilégiez des API DOM telles que `textContent` au lieu d’insérer des valeurs de réponse dans `innerHTML`.
 
 ```javascript
 function createProductCard(product, bridge) {
@@ -138,11 +140,11 @@ function createProductCard(product, bridge) {
 }
 ```
 
-Validez les URL avant de les affecter à des `href` ou des `src` et n’autorisez que les protocoles requis par l’expérience.
+Validez les URL avant de les affecter à `href` ou `src` et n’autorisez que les protocoles requis par l’expérience.
 
 ## Utiliser le pont hôte
 
-L&#39;intégration passe un pont à `decorate(block, bridge)`. Protégez les appels interactifs avec `bridge?.isConnected` afin que le bloc s’affiche également lors de l’aperçu EDS direct. Un objet de pont peut exister en mode autonome sans être connecté ; l’attente de `toolResult` en mode autonome ne se résout jamais. L’aperçu des applications LLM définit également les `bridge.hostContext.preview` pour permettre au bloc de choisir des données d’exemple.
+L&#39;incorporer transmet un pont à `decorate(block, bridge)`. Protégez les appels interactifs avec `bridge?.isConnected` afin que le bloc s’affiche également lors de l’aperçu EDS direct. Un objet de pont peut exister en mode autonome sans être connecté ; l&#39;attente de `toolResult` en mode autonome ne se résout jamais. L&#39;aperçu des applications LLM définit également `bridge.hostContext.preview` pour permettre au bloc de choisir des données d&#39;exemple.
 
 ### Application de styles d’hôte
 
@@ -162,7 +164,7 @@ if (bridge?.isConnected) {
 }
 ```
 
-Utilisez `sendMessage` pour continuer la conversation après une interaction.
+Utiliser `sendMessage` pour continuer la conversation après une interaction.
 
 ### Appeler directement une action
 
@@ -173,7 +175,7 @@ if (bridge?.isConnected) {
 }
 ```
 
-Utilisez `callTool` pour une interaction explicite qui nécessite un résultat d’action. Transmettez l’identifiant de code de l’action cible réelle, et non son nom de dossier ou d’affichage de bloc ; `search_products` est un exemple. L’hôte doit prendre en charge les appels d’action et l’action cible doit permettre la visibilité de l’application. L’appel d’une action ne rend pas automatiquement le widget actif. Transmettez uniquement des valeurs validées et gérez les appels rejetés sans exposer les détails internes.
+Utilisez `callTool` pour une interaction explicite qui nécessite un résultat d’action. Transmettez l’identifiant de code de l’action cible réelle, et non son nom de dossier de blocs ou son nom d’affichage ; `search_products` en est un exemple. L’hôte doit prendre en charge les appels d’action et l’action cible doit permettre la visibilité de l’application. L’appel d’une action ne rend pas automatiquement le widget actif. Transmettez uniquement des valeurs validées et gérez les appels rejetés sans exposer les détails internes.
 
 Si la visibilité de l’action cible doit changer, modifiez uniquement cette action sous **[!UICONTROL Détails de l’action]**, enregistrez la modification et redéployez-la dans l’environnement que vous testez.
 
@@ -206,7 +208,7 @@ Ouvrez le chemin d’accès à partir de l’URL du widget de l’action sur le 
 - Thèmes clairs et sombres.
 - Mises en page étroites et larges.
 
-L’aperçu EDS direct ne teste pas les données de l’établissement de liaison de l’hôte ou des actions en direct. Publiez les modifications EDS et testez-les en direct `structuredContent` la plateforme LLM prise en charge.
+L’aperçu EDS direct ne teste pas les données de l’établissement de liaison de l’hôte ou des actions en direct. Publiez les modifications EDS et testez-les avec `structuredContent` en direct sur la plateforme LLM prise en charge.
 
 ## Publier la personnalisation
 
@@ -220,4 +222,4 @@ La publication EDS est distincte du déploiement d’applications. Si les enviro
 
 ## Autres configurations EDS
 
-Si vous avez créé des actions vous-même ou si vous souhaitez intégrer un site EDS compatible, reportez-vous à la section [Apporter votre propre projet EDS](/help/guides/bring-your-own-eds.md).
+Si vous avez créé vous-même des actions ou si vous souhaitez intégrer un site EDS compatible, consultez [Apporter votre propre projet EDS](/help/guides/bring-your-own-eds.md).

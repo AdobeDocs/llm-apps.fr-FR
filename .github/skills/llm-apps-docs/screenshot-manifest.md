@@ -1,7 +1,7 @@
 ---
-source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
+source-git-commit: fa80b7b68e1b905eb22d4789a74b2f0de886d70c
 workflow-type: tm+mt
-source-wordcount: '1418'
+source-wordcount: '1963'
 ht-degree: 1%
 ---
 # Manifeste de capture d’écran
@@ -11,7 +11,7 @@ Capturez ces états grâce à l’automatisation du navigateur à l’aide de
 ce manifeste n&#39;autorise pas la création, la génération, l&#39;approbation ou
 déploiement.
 
-Les captures brutes restent en `docs-captures/<run-id>/`. Publication uniquement révisée visuellement,
+Les captures brutes restent dans `docs-captures/<run-id>/`. Publication uniquement révisée visuellement,
 PNG assainis sous `help/assets/`. Gardez les noms de fichier ci-dessous stables lorsque
 actualisation des images.
 
@@ -69,8 +69,10 @@ Répertoire de sortie : `help/assets/guide-create-action/`
 | `widget-permissions.png` | Autorisations de navigateur facultatives, avec autorisations inutilisées désactivées | Création d’une action - Autorisations du navigateur |
 | `widget-csp.png` | Contrôles de domaine URI de ressource, de connexion, de trame, de redirection et de base | Créer une action - domaines de la politique de sécurité du contenu |
 
-La boîte de dialogue de création comporte des onglets **Action** et **Métadonnées de widget**. Éditeur enregistré
-comporte les onglets **Détails du widget LLM**, **Détails de l’action** et **Analytics**. Capturer le
+Les captures existantes affichent **Action** et **Métadonnées de widget** dans la création
+, et **Détails du widget LLM**, **Détails de l’action** et **Analytics** dans le
+éditeur enregistré. L’implémentation actuelle comporte également **Extensions ChatGPT** dans les deux
+flux ; vérifiez que l’onglet dans l’interface utilisateur en cours d’exécution lors de l’actualisation des images. Capturer le
 disposition que la procédure utilise réellement. Remplissez les champs d’exemple sans enregistrer, puis
 ignorez les modifications.
 
@@ -114,6 +116,65 @@ L’ouverture d’une boîte de dialogue n’autorise pas d’enregistrement ou 
 fixer une variable ou une tâche avant d&#39;en créer une. Conserver une ancienne image uniquement après
 la vérification que ses champs et contrôles correspondent toujours à l’interface utilisateur actuelle.
 
+## Extensions de ChatGPT
+
+Article : `/help/guides/chatgpt-extensions.md`
+
+Répertoire de sortie : `help/assets/guide-chatgpt-extensions/`
+
+Captures d’écran des points d’entrée globaux et de thread, paramètres d’affichage et mention du compositeur
+des captures d’écran de configuration ont été fournies le 2026-11-10 et sont publiées comme suit :
+enregistré ci-dessous. D’autres points de contrôle restent planifiés, mais pas les ressources existantes. Ne pas
+ajoutez des liens d’image d’article jusqu’à ce que les captures réelles aient été assainies et visuellement
+examiné.
+
+| Nom de fichier | État et contexte utile | Texte de remplacement suggéré |
+|---|---|---|
+| `extensions-tab.png` | Action enregistrée, soutenue par un widget avec Extensions GPT de conversation sélectionnées | Extensions GPT de conversation - points d’entrée, mode d’affichage et mentions du compositeur |
+| `global-thread-entrypoints.png` | Global et Thread sélectionnés ensemble pour le widget Accueil, avec Fichier décoché | Extensions GPT de conversation - Global et thread sélectionné pour l’action d’accueil |
+| `global-entrypoint-menu.png` | Point d’entrée principal dans le menu de navigation du client | Menu de navigation GPT de conversation affichant le point d’entrée global d’accueil |
+| `global-entrypoint-open.png` | Fenêtre client complète avec Accueil ouvert en plein écran et rail de navigation visible | Tableau de bord de l’accueil ouvert à partir du point d’entrée global |
+| `thread-entrypoint-menu.png` | Menu Conversation avec extension Plug-ins | Menu Conversation - Choisissez le point d’entrée du thread d’accueil. |
+| `thread-entrypoint-open.png` | Tableau de bord de l’accueil en regard d’une conversation | Tableau de bord de l’accueil ouvert en regard d’une conversation GPT de conversation |
+| `file-entrypoint.png` | Point d’entrée de fichier non enregistré avec .csv | Point d’entrée de fichier : proposez une visionneuse personnalisée pour les fichiers CSV |
+| `entrypoint-icon.png` | URL d’icône facultative non enregistrée partagée par les points d’entrée sélectionnés de l’action | Icône Point d’entrée : définissez une icône d’action partagée facultative |
+| `display-settings.png` | Préférence de lancement du modèle, modes de ressources pris en charge et affichage initial aux valeurs par défaut de l’hôte | Mode d’affichage : préférences de lancement des ressources et des modèles par défaut |
+| `composer-mentions.png` | Action de recherche de mentions en texte seul avec le bouton (bascule) de mention activé | Rechercher des mentions - mentions du compositeur activées |
+| `composer-mentions-query.png` | Détails de l’action Mentions de recherche avec une entrée de requête de chaîne facultative | Mentions de recherche - entrée de chaîne facultative nommée requête |
+| `composer-mentions-conflict.png` | Désactivation du bouton (bascule) de mention et avertissement de dénomination du fournisseur existant | Les mentions du compositeur ne sont pas disponibles, car le fournisseur est déjà Search Mentions |
+
+Utilisez un élément de catalogue approuvé et non sensible. Confirmer que les formulaires ne sont pas enregistrés automatiquement
+avant de saisir des exemples de valeurs ; ignorez les modifications non enregistrées par la suite. Ne pas enregistrer,
+approuvez les actions générées ou déployez uniquement pour compléter cette liste de contrôle.
+Les résultats tiers nécessitent un accès authentifié à un client compatible. Fichier
+Les points d’entrée nécessitent un bureau ; le navigateur de travail n’est pas un ChatGPT classique.
+
+### Mise à jour de la documentation Entrypoint, 2026-11-05
+
+- Source : composants `llm-apps-ui` locaux actuels et validation d’entrée, pas de
+Présentation de l’interface utilisateur de production.
+- Les commandes d’action rapide ont été supprimées. Utilisation globale, de threads et de fichiers
+cases à cocher qui prennent en charge plusieurs sélections pour un widget. L’URL de l’icône est une
+paramètre facultatif au niveau de l’action partagé par les points d’entrée.
+- La sélection du fichier ajoute une entrée d’objet facultative nommée `file` en cas d’absence.
+La combinaison d’un fichier avec un thread ou un fichier global nécessite que cette entrée reste facultative.
+- L&#39;inspection du navigateur a été bloquée car les deux profils de navigateur d&#39;automatisation étaient
+déjà utilisé. Aucune nouvelle capture d’écran n’a été effectuée.
+
+### Provenance du brouillon de texte, 2026-11-03
+
+- Environnement Source : implémentation locale de l’interface utilisateur/l’API/le runtime/SDK, non terminée.
+Présentation de l’éditeur d’action de production.
+- API d’extension confirmées par la vérification du package publié dans runtime 1.3.0 et
+SDK 0.2.1. Il s’agit des versions de base documentées, et non d’une revendication selon laquelle chaque
+Cette fonctionnalité a été introduite dans ces versions exactes.
+- La spécification d’extension publique d’OpenAI a été vérifiée pour les restrictions de plateforme.
+- La connexion de production a réussi dans un navigateur séparé contrôlé par un agent. Aucune application
+les paramètres ont été enregistrés, aucune correction n’a été sélectionnée et aucun déploiement n’a démarré.
+- L’utilisateur a différé les captures d’écran. Aucune nouvelle image n’a été capturée ou remplacée.
+Les libellés de contrôle de production exacts et le comportement de bout en bout de l’hôte nécessitent toujours un
+présentation en direct avant publication.
+
 ## Déploiement et tests
 
 Article : `/help/guides/deploy-your-app.md`
@@ -129,7 +190,7 @@ Ne démarrez pas un déploiement pour obtenir ces états, sauf si l’utilisateu
 Capturez les boîtes de dialogue de déploiement en cours ou réussies uniquement lorsque cet état est à la fois
 pertinentes et autorisées.
 
-Par `/help/guides/test-in-chatgpt.md`, la valeur conservée
+Pour `/help/guides/test-in-chatgpt.md`, la valeur conservée
 `help/assets/guide-onboarding-agent/chatgpt-generated-app.png` illustre un produit
 réponse. Il ne vérifie pas l’interface utilisateur de configuration actuelle. Nouvelle configuration ChatGPT ou Claude
 les captures d’écran nécessitent un accès authentifié actuel ; sinon, utilisez un fournisseur officiel
@@ -163,7 +224,7 @@ L’exécution de capture 2026-10-19 a utilisé l’interface utilisateur locale
 vérifications de sources. Elle n’établit pas la parité de production.
 
 - Captures brutes : `docs-captures/2026-10-19/` et son sous-répertoire `full-review/`.
-- Les images publiques antérieures ou remplacées restent dans les sous-répertoires `retired/` locaux.
+- Les images publiques antérieures ou remplacées restent dans les sous-répertoires locaux `retired/`.
 - L’élément de documentation a atteint l’étape de révision de l’action générée. Aucune action
 approbations, fusions des demandes d’extraction, déploiements ou authentification/variable enregistrée
 les modifications faisaient partie de cette exécution de capture.
@@ -178,7 +239,7 @@ vers l&#39;avant comme preuve d&#39;une nouvelle capture.
 
 ### Suppression du commutateur de l’éditeur d’actions, 2026-10-19
 
-Actualisation des `guide-creating-actions/generated-action-review.png` en cours d’exécution
+Actualisation de `guide-creating-actions/generated-action-review.png` à partir de l’exécution
 Interface utilisateur locale après la suppression du commutateur Activé de l’éditeur. Visibilité de la page d’application
 le bouton reste la commande d’activation/de désactivation ; paramètres d’exposition du modèle et du widget
 restez dans l’éditeur. Le lien du référentiel est masqué et la navigation du compte est .
@@ -187,8 +248,8 @@ Capture brute : `docs-captures/2026-10-19/remove-enabled/`.
 
 ### Paramètres d’Analytics, 21/10/2026
 
-Actualisation des `guide-analytics/analytics-settings.png` fournies par l’utilisateur
-`Screenshot 2026-10-21 at 11.48.36.png`, pas une exécution pilotée par un agent. Source
+Actualisation de `guide-analytics/analytics-settings.png` à partir du fourni par l&#39;utilisateur
+`Screenshot 2026-10-21 at 11.48.36.png`, exécution non pilotée par un agent. Source
 environnement : non enregistré et non visible sur l’image ; la parité de production ne l’est pas
 vérifié. Vérification visuelle confirmée L’activation d’Analytics dans le champ Identifiant du flux de données
 est vide, le champ Exigences est développé et l’option Enregistrer les modifications est désactivée. L’image était
@@ -196,11 +257,11 @@ copiés sans modifications ; aucun identifiant ou détail de compte n’est visi
 
 ### Captures d’écran de flux de données, 2026-10-19
 
-Ajout de `guide-analytics/datastream-analytics-service.png`,
-`datastream-platform-service.png` et `datastream-services.png` à partir de
+`guide-analytics/datastream-analytics-service.png` ajouté,
+`datastream-platform-service.png` et `datastream-services.png` à partir d’un existant
 Captures de la collecte de données interne (2026-07-29 et 2026-10-19). Identifiant de suite de rapports
 et l’identifiant du flux de données ont été remplacés par des superpositions de texte factices (`demo.aem.llm` et
-`00000000-0000-0000-0000-000000000000`) ; la police de recouvrement est San Francisco, donc
+`00000000-0000-0000-0000-000000000000`) ; la police de recouvrement est San Francisco, donc elle
 diffère légèrement de la police du produit. L’image du service de plateforme avait besoin de
 modifications. L’image du service Analytics affiche toujours le pointeur de la souris à partir de l’
 capture originale. Un passage OCR sur les images finales n&#39;a trouvé aucun identifiant original.

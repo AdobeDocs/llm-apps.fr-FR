@@ -1,9 +1,9 @@
 ---
 title: Développement et test des gestionnaires locaux
 description: Structure de projet de gestionnaire, commandes de serveur local, tests MCP et tests unitaires pour les applications Adobe LLM.
-source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '664'
+source-wordcount: '677'
 ht-degree: 0%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps] est actuellement dans Beta.
->
->Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
+>Les applications LLM sont disponibles pour tous les clients AEM Sites Cloud Service afin qu’ils puissent développer et gérer leurs propres applications. Une fois le comptage commencé, chaque appel d’application est comptabilisé dans les demandes de contenu AEM Sites du client. Adobe annoncera le taux de contrôle et la date de début avant que le contrôle ne prenne effet.
 
 Utilisez cette référence lors du développement local de gestionnaires. Pour le contrat de résultat du gestionnaire, voir [Personnaliser un gestionnaire généré](/help/guides/customize-handler.md).
 
@@ -23,7 +21,7 @@ Utilisez cette référence lors du développement local de gestionnaires. Pour l
 - npm.
 - Un clone local du référentiel du gestionnaire lié.
 
-Pour l’infrastructure gérée par Adobe, demandez l’accès au référentiel avant de suivre cette référence. L’exécution du gestionnaire local ne nécessite pas d’informations d’identification Adobe, mais les services en amont protégés nécessitent toujours leur propre accès autorisé.
+Pour l’infrastructure gérée [!DNL LLM Apps], demandez l’accès au référentiel avant de suivre cette référence. L’exécution du gestionnaire local ne nécessite pas d’informations d’identification Adobe, mais les services en amont protégés nécessitent toujours leur propre accès autorisé.
 
 ## Structure du projet
 
@@ -53,11 +51,11 @@ your-llm-app/
 
 Points clés :
 
-- **`entry.js`** est le point d’entrée du webpack. Au moment de la création, il détecte chaque fichier `actions/*/index.js` et les regroupe dans un seul `dist/index.js`. Ne modifiez pas le point d’entrée.
-- **`actions.json`** est ignoré. Le pipeline de déploiement l’écrit automatiquement à partir des métadonnées d’action dans [!DNL LLM Apps].
-- **Tests** vivent sous `test/actions/`, **pas** à l’intérieur du `actions/`. Le build détecte les points d’entrée de gestionnaire et regroupe leurs importations ; conservez les tests en dehors de cette arborescence de détection.
-- **Chemins d’action** utilisez l’identifiant de code ou sa forme avec traits d’union. Par exemple, `search_products` est résolu sur `actions/search_products/index.js` ou, pour le code généré, sur `actions/search-products/index.js`. Le nom d’affichage n’est pas la clé de recherche.
-- **Les données de prise en charge** telles qu’un `data.json` généré, sont regroupées lorsque le gestionnaire les importe.
+- **`entry.js`** est le point d’entrée du webpack. Au moment de la création, il détecte chaque fichier `actions/*/index.js` et les regroupe dans un seul fichier `dist/index.js`. Ne modifiez pas le point d’entrée.
+- **`actions.json`** est ignoré. Le pipeline de déploiement l&#39;écrit automatiquement à partir des métadonnées d&#39;action dans [!DNL LLM Apps].
+- **Tests** actifs sous `test/actions/`, **non** dans `actions/`. Le build détecte les points d’entrée de gestionnaire et regroupe leurs importations ; conservez les tests en dehors de cette arborescence de détection.
+- **Les chemins d’action** utilisent l’identifiant de code ou sa forme avec traits d’union. Par exemple, `search_products` est résolu sur `actions/search_products/index.js` ou, pour le code généré, `actions/search-products/index.js`. Le nom d’affichage n’est pas la clé de recherche.
+- **Les données de prise en charge** telles qu’un `data.json` généré sont regroupées lorsque le gestionnaire les importe.
 
 ## Développement local
 
@@ -68,7 +66,7 @@ npm install
 npm run dev:local
 ```
 
-La commande de développement crée le projet avec webpack et démarre un serveur HTTP Node.js simple sur `http://localhost:9080`. Arrêtez et réexécutez `npm run dev:local` après modification des métadonnées locales ou du gestionnaire ; la commande ne regarde pas les fichiers.
+La commande de développement crée le projet avec webpack et démarre un serveur HTTP Node.js simple sur `http://localhost:9080`. Arrêtez et réexécutez `npm run dev:local` après les modifications des métadonnées locales ou du gestionnaire ; la commande ne regarde pas les fichiers.
 
 Pour utiliser un autre port :
 
@@ -78,11 +76,11 @@ PORT=9081 npm run dev:local
 
 ### Comportement des métadonnées locales
 
-L’interface utilisateur actuelle ne fournit pas de téléchargement `actions.json`, même si les bannières standard README et de démarrage d’exécution en mentionnent un. Le serveur local démarre également sans fichier renseigné : la version crée des `{"actions":[]}` lorsque le fichier est manquant et l’exécution retourne à la découverte du gestionnaire.
+L’interface utilisateur actuelle ne fournit pas de téléchargement `actions.json`, même si les bannières standard LISEZ-MOI et Démarrage de l’exécution en mentionnent un. Le serveur local démarre également sans fichier renseigné : la version crée `{"actions":[]}` lorsque le fichier est manquant et l’exécution retourne à la découverte du gestionnaire.
 
 La découverte est utile pour les gestionnaires de liste, mais il ne s’agit pas d’un mode de test d’arguments complet. Sans schéma d’entrée, le SDK MCP appelle le gestionnaire avec le contexte d’exécution comme premier argument au lieu d’utiliser la signature `(args, extra)` normale. Le SDK ne transfère pas les arguments d’action fournis.
 
-Pour les appels MCP avec arguments , créez un `actions.json` **local uniquement** avec des métadonnées représentatives correspondant à l’éditeur d’action. Pour le gestionnaire de `echo` standard :
+Pour les appels MCP avec arguments, créez un **local-uniquement** `actions.json` avec des métadonnées représentatives correspondant à l’éditeur d’action. Pour le gestionnaire standard `echo` :
 
 ```json
 {
@@ -102,13 +100,13 @@ Pour les appels MCP avec arguments , créez un `actions.json` **local uniquement
 }
 ```
 
-Lorsque le tableau `actions` n’est pas vide, le runtime enregistre uniquement les actions nommées dans le tableau. Utilisez l’identifiant de code de chaque action comme `name`. Même une action sans paramètre a besoin d’un schéma d’objet avec `"properties": {}` pour conserver la signature normale du gestionnaire.
+Lorsque le tableau `actions` n’est pas vide, le runtime enregistre uniquement les actions nommées dans le tableau. Utilisez l’identifiant de code de chaque action comme `name`. Même une action sans paramètre a besoin d&#39;un schéma d&#39;objet avec `"properties": {}` pour conserver la signature normale du gestionnaire.
 
-Les métadonnées locales ne mettent pas à jour la configuration de l’interface utilisateur ou du déploiement. Le runtime valide les types pris en charge, les champs obligatoires, les énumérations et les éléments de tableau, mais pas toutes les contraintes de schéma JSON. Il valide les longueurs, les plages, les objets imbriqués et les règles métier dans le gestionnaire . Les tests d’intégration standard utilisent `test/fixtures/actions.json` comme métadonnées représentatives.
+Les métadonnées locales ne mettent pas à jour la configuration de l’interface utilisateur ou du déploiement. Le runtime valide les types pris en charge, les champs obligatoires, les énumérations et les éléments de tableau, mais pas toutes les contraintes de schéma JSON. Il valide les longueurs, les plages, les objets imbriqués et les règles métier dans le gestionnaire . Les tests d&#39;intégration standard utilisent `test/fixtures/actions.json` comme métadonnées représentatives.
 
 ### Variables d’application locale
 
-Les variables d’application atteignent le gestionnaire par `extra.variables`, et non par `process.env`. Lisez-les avec les `getVariable(extra, name)` de `@adobe/llm-apps-runtime`. Pour simuler un paramètre non sensible après la création :
+Les variables d’application atteignent le gestionnaire via `extra.variables`, et non `process.env`. Lisez-les avec `getVariable(extra, name)` de `@adobe/llm-apps-runtime`. Pour simuler un paramètre non sensible après la création :
 
 ```bash
 npm run build
@@ -117,11 +115,11 @@ node server/local.js \
   --param GREETING_PREFIX=Howdy
 ```
 
-Fournissez le manifeste JSON et la valeur nommée . Incluez le gestionnaire dans le `actions.json` local avec un schéma d’entrée lors du test de son contrat de `(args, extra)` normal. Les indicateurs de ligne de commande ne chargent pas les paramètres de l’application à partir de la plateforme. Voir [Configurer les variables et secrets d’application](/help/guides/app-variables.md) pour les paramètres de déploiement spécifiques à un environnement.
+Fournissez le manifeste JSON et la valeur nommée . Incluez le gestionnaire dans le `actions.json` local avec un schéma d’entrée lors du test de son contrat `(args, extra)` normal. Les indicateurs de ligne de commande ne chargent pas les paramètres de l’application à partir de la plateforme. Voir [Configurer les variables et secrets d’application](/help/guides/app-variables.md) pour les paramètres de déploiement spécifiques à un environnement.
 
 ### Test avec curl
 
-Après avoir ajouté les métadonnées de `echo` locales ci-dessus, créez et démarrez le serveur, puis exécutez :
+Après avoir ajouté les métadonnées locales `echo` ci-dessus, créez et démarrez le serveur, puis exécutez :
 
 ```bash
 # List all registered tools
@@ -171,8 +169,8 @@ npm test                                 # configured Jest suite
 npm test -- --runInBand test/actions/echo.test.js  # one boilerplate action
 ```
 
-Certains tests générés utilisent l’exécuteur de test intégré de Node au lieu de Jest. Vérifiez les imports de test et utilisez l’exécuteur correspondant, par exemple `node --test test/actions/search-products.test.js` pour un `node:test` d’import de fichier. Vérifiez les imports relatifs générés après avoir placé le fichier sous `test/actions/`.
+Certains tests générés utilisent l’exécuteur de test intégré de Node au lieu de Jest. Vérifiez les imports de test et utilisez l’exécuteur correspondant, par exemple `node --test test/actions/search-products.test.js` pour un fichier important `node:test`. Vérifiez les imports relatifs générés après avoir placé le fichier sous `test/actions/`.
 
 Les tests unitaires seuls ne vérifient pas les métadonnées, la validation MCP, le chargement des widgets ou le comportement de l’hôte. Testez le point d’entrée local avec des métadonnées représentatives, puis testez l’application déployée sur une plateforme LLM prise en charge.
 
-Une fois les tests locaux réussis, envoyez les modifications et suivez [Déployer les modifications](/help/guides/deploy-your-app.md).
+Une fois les tests locaux réussis, envoyez les modifications et suivez les [Déployer les modifications](/help/guides/deploy-your-app.md).

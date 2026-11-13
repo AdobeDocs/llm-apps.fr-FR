@@ -1,9 +1,9 @@
 ---
 title: Dépannage des applications Adobe LLM
 description: Résolvez les problèmes courants d’infrastructure, de génération d’actions, de gestionnaire, de widget, de déploiement, d’authentification et de connexion à la plateforme LLM.
-source-git-commit: 2afae0696de15ec4d0a6596e413dd4851761439e
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '1503'
+source-wordcount: '1602'
 ht-degree: 0%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps] est actuellement dans Beta.
->
->Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
+>Les applications LLM sont disponibles pour tous les clients AEM Sites Cloud Service afin qu’ils puissent développer et gérer leurs propres applications. Une fois le comptage commencé, chaque appel d’application est comptabilisé dans les demandes de contenu AEM Sites du client. Adobe annoncera le taux de contrôle et la date de début avant que le contrôle ne prenne effet.
 
 Commencez par le symptôme observable. Ne partagez pas les informations d’identification, les jetons, les URL MCP privées ou les résultats de gestionnaires sensibles lors de la résolution des problèmes.
 
@@ -21,16 +19,17 @@ Commencez par le symptôme observable. Ne partagez pas les informations d’iden
 
 | Symptôme | Quoi essayer |
 |---------|-------------|
-| Échec de la configuration de l’infrastructure gérée par Adobe | Lisez l’erreur sous **Échec de l’installation**, puis sélectionnez **Réessayer**. Si la page ne peut pas vérifier la progression, sélectionnez **Vérifier à nouveau** ; l’installation se poursuit en arrière-plan |
+| La configuration de l&#39;infrastructure gérée [!DNL LLM Apps] échoue | Lisez l’erreur sous **Échec de l’installation**, puis sélectionnez **Réessayer**. Si la page ne peut pas vérifier la progression, sélectionnez **Vérifier à nouveau** ; l’installation se poursuit en arrière-plan |
 | Aucun programme AEM n’est disponible. | Demandez à votre administrateur l’accès au programme. Si le chargement a échoué, sélectionnez **Réessayer de charger les programmes** |
-| Les nouveaux référentiels n’apparaissent pas | Utilisez **Connecter un autre référentiel** pour accorder l’accès à l’application GitHub des applications LLM Adobe, revenir à l’assistant et sélectionner **Actualiser les organisations et les référentiels** |
+| Les nouveaux référentiels n’apparaissent pas | Ajoutez le référentiel au programme Cloud Manager en tant que référentiel privé et attendez que son statut soit **Prêt**, puis rouvrez la liste des référentiels. Les référentiels hébergés par Adobe dans Cloud Manager ne sont pas pris en charge |
+| Aucun site Edge Delivery Services lié | Un référentiel de widgets qui ne figure pas sur GitHub doit être lié à un site EDS dans Cloud Manager avec l’option Apporter votre propre Git. Liez-le, puis sélectionnez à nouveau **Valider le référentiel**. Voir [Apporter votre propre Git](https://www.aem.live/developer/byo-git) |
 | Échec de la validation du référentiel d’action ou de widget | Utilisez un projet existant compatible ou un référentiel vide. Utilisez des référentiels distincts pour les actions et les widgets, puis sélectionnez à nouveau **Valider le référentiel** |
-| Échec de la configuration du site AEM ou de la validation de l’accès | Suivez [Configurer l’accès au site AEM](/help/guides/create-app.md#aem-site-access). Pour une nouvelle installation de synchronisation du code, terminez son assistant de page de confirmation. Pour un site existant, conservez l’installation et demandez à un administrateur du site d’accorder à votre compte Adobe l’accès `admin` par l’intermédiaire de l’administration des utilisateurs d’AEM. Vérifiez que la synchronisation du code couvre le référentiel de widgets, puis sélectionnez **Valider la configuration AEM** |
+| Échec de la configuration du site AEM ou de la validation de l’accès (référentiel de widgets GitHub) | Suivez [Configurer l’accès au site AEM](/help/guides/create-app.md#aem-site-access). Pour une nouvelle installation de synchronisation du code, terminez son assistant de page de confirmation. Pour un site existant, conservez l’installation et demandez à un administrateur du site d’accorder à votre compte Adobe l’accès `admin` par l’intermédiaire de l’administration des utilisateurs d’AEM. Vérifiez que la synchronisation du code couvre le référentiel de widgets, puis sélectionnez **Valider la configuration AEM** |
 | Un accès en écriture aux données est requis. | Demandez à un administrateur d’organisation DA d’accorder au compte Adobe utilisé dans les applications LLM l’accès en écriture à tout le contenu du site. Suivez [Accorder l’accès en écriture à DA](/help/guides/create-app.md#da-write-access), connectez-vous avec ce compte, puis sélectionnez **Valider la configuration d’AEM**. Les rôles de site AEM n’accordent pas d’autorisations DA |
 | L’accès à AEM ou à DA n’a pas pu être vérifié | Réessayez **Valider la configuration d’AEM** pour un échec de vérification temporaire. Si le message signale plutôt un refus d’accès, corrigez les autorisations AEM ou DA à l’aide des instructions ci-dessus avant de réessayer |
 | La création de l’application n’a pas généré d’actions | La création d’applications ne configure l’infrastructure que . Sur la page de l’application, sélectionnez **Créer automatiquement des actions**, saisissez **Votre site web**, puis sélectionnez **Créer mes actions**. Voir [Création d’actions](/help/guides/creating-actions.md) |
 | Actions en cours de génération | L’interface utilisateur estime jusqu’à 30 minutes pour la génération. Suivez la progression sur la page Actions ou quittez la page et revenez plus tard |
-| Échec de la génération des rapports d’action | Vérifiez que le site web est public via HTTPS et que, pour vos propres référentiels, cet accès au référentiel est toujours valide. Si le problème persiste, contactez l’équipe Beta en indiquant le message d’erreur visible |
+| Échec de la génération des rapports d’action | Vérifiez que le site web est public via HTTPS et que, pour vos propres référentiels, cet accès au référentiel est toujours valide. Contactez l’équipe en charge des applications LLM en indiquant le message d’erreur visible si le problème persiste |
 
 ## Actions et gestionnaires
 
@@ -39,7 +38,7 @@ Commencez par le symptôme observable. Ne partagez pas les informations d’iden
 | Action non appelée | Activez le plug-in ou le connecteur de l’application dans la conversation. Confirmez **Exposer au modèle d’IA** dans les paramètres d’action et le commutateur **Visibilité** de l’action sur la page de l’application est activé. Amélioration de la description et redéploiement des modifications apportées aux métadonnées |
 | Réponse vide ou d’erreur | Exécutez `npm test`, puis appelez le gestionnaire avec MCP Inspector ou `curl`. Voir [Développement et test des gestionnaires locaux](/help/reference/development.md) |
 | Le gestionnaire fonctionne localement, mais pas après le déploiement | Vérifiez la dernière validation push, confirmez la configuration de l’exécution et vérifiez que l’identifiant du code d’action correspond à `actions/<code-identifier>/index.js` |
-| L’action générée ne peut pas être marquée comme révisée. | La génération du gestionnaire et du widget de confirmation a réussi. Vérifiez les demandes d’extraction générées à la recherche de conflits de fusion, rechargez l’action et sélectionnez à nouveau **Marquer comme révisé** |
+| L’action générée ne peut pas être marquée comme révisée. | La génération du gestionnaire et du widget de confirmation a réussi. Vérifiez les demandes d’extraction ou les branches générées à la recherche de conflits de fusion, rechargez l’action et sélectionnez à nouveau **Marquer comme révisé**. Avec vos propres référentiels, si la révision vous demande de fusionner une branche vous-même, fusionnez-la avec votre processus habituel en premier |
 
 ## Widgets
 
@@ -100,4 +99,4 @@ Ne collez pas de jetons d’accès, de jeux de réclamations ou de secrets clien
 | Le plug-in utilise un environnement incorrect. | Modifiez ou recréez le module externe avec l’URL du serveur MCP d’évaluation ou de production prévue |
 | Le plug-in affiche toujours les anciennes métadonnées d’action. | Déployez les modifications, sélectionnez **Actualiser** sur la connexion ChatGPT, puis démarrez une nouvelle conversation |
 
-Si le problème persiste, enregistrez le nom de l’application, l’environnement, l’étape d’échec, l’heure et le message d’erreur visible avant de contacter l’équipe Beta. N’incluez pas de secrets ou de données client sensibles.
+Si le problème persiste, enregistrez le nom de l’application, l’environnement, l’étape d’échec, l’heure et le message d’erreur visible avant de contacter l’équipe des applications LLM. N’incluez pas de secrets ou de données client sensibles.

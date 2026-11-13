@@ -1,7 +1,7 @@
 ---
-source-git-commit: fa80b7b68e1b905eb22d4789a74b2f0de886d70c
+source-git-commit: 0276ae4e4627e49157911ad579a42c0e77045eee
 workflow-type: tm+mt
-source-wordcount: '1963'
+source-wordcount: '2314'
 ht-degree: 1%
 ---
 # Manifeste de capture d’écran
@@ -23,10 +23,19 @@ Répertoire de sortie : `help/assets/guide-infrastructure/`
 
 | Nom de fichier | État et contexte utile | Texte de remplacement suggéré |
 |---|---|---|
-| `setup-choice.png` | Prise en main des deux options d’infrastructure visibles | Création de votre application LLM : choisissez l’infrastructure gérée par Adobe ou vos propres référentiels. |
-| `app-details.png` | Nom de l’application, programme AEM, zone géographique Analytics et avertissement de paramètre non modifiable | Détails de l’application : saisissez un nom, sélectionnez un programme AEM, puis choisissez une région Analytics |
-| `action-repository.png` | Chemin d’accès au référentiel avec GitHub sélectionné et instructions de connexion au référentiel | Configuration de l’infrastructure d’action : connectez un référentiel d’action vide ou compatible. |
-| `provisioning.png` | Configuration gérée d’Adobe approuvée en cours | Configuration de l’application - Adobe prépare l’infrastructure |
+| `setup-choice.png` | Commencez avec **Laissez-nous le gérer** et **Utilisez ma configuration Cloud Manager**, légende sur l’option de référentiel personnel | Création de votre application LLM - Prise en main Laissez-nous la gérer et utiliser ma configuration Cloud Manager |
+| `action-repository.png` | Programme et référentiel Cloud Manager sélectionnés, **Référentiel validé** | Configuration de l’infrastructure d’action - Programme et référentiel Cloud Manager sélectionnés |
+| `widget-source.png` | Source du widget avec **Sélectionner manuellement le référentiel de widgets** (Cloud Manager EDS marqué Bientôt) | Configuration de l’infrastructure des widgets - Source des widgets |
+| `widget-repository.png` | Référentiel de widgets non GitHub validé, **site Edge Delivery Services** remarque | Configuration de l’infrastructure des widgets : référentiel de widgets validé et son site EDS lié |
+| `app-details.png` | Nom de l’application, jeu de programmes AEM du référentiel, région de données Informations sur l’application | Détails de l’application : nom, programme AEM et région de données Informations sur l’application |
+| `settings-repositories.png` | Paramètres > Référentiel avec les cartes de référentiel Cloud Manager et le site lié | Paramètres de l’application - Section Référentiel |
+| `provisioning.png` | Configuration gérée des applications LLM approuvées en cours | Configuration de l’application - Adobe prépare l’infrastructure |
+
+Dernière capture (toutes sauf `provisioning.png` et `da-write-permissions.png`) : 2026-11-13, étape
+(`experience-stage.adobe.com/llm-apps`), Référentiels d’actions et de widgets GitLab avec Bring Your
+Propre Git. Les valeurs de programme, de référentiel, de site et d’origine sont masquées ; les contours rouges sont des légendes.
+Non capturé : chemin d’accès du widget GitHub (installation de la synchronisation du code AEM, validation de la configuration d’AEM). Pas encore
+vérifié en production.
 
 Exclure les détails du compte, les ID d’organisation, les noms de programme réels, le référentiel
 identifiants et ID d’application. Utilisez des champs vides ou un nom d&#39;appareil neutre où
@@ -44,7 +53,7 @@ Répertoire de sortie : `help/assets/guide-creating-actions/`
 | `build-choice.png` | Les actions de build sont automatiquement sélectionnées, un site web public est entré et une commande de démarrage stable est incluse, le cas échéant | Actions : choisissez la génération automatique et saisissez un site web public. |
 | `generating.png` | Génération en cours, estimation du temps et Accéder aux actions | Actions - La génération est en cours |
 | `actions-ready-for-review.png` | Noms des actions de correction, badges de révision et contrôles de révision | Actions : les actions générées sont prêtes pour la révision et ne sont pas déployées. |
-| `generated-action-review.png` | Détails du widget LLM, détails de l’action, Analytics, avis de demande d’extraction générée et Marquer comme révisé | Action générée : inspectez le widget et le gestionnaire avant l’approbation |
+| `generated-action-review.png` | Détails d’action, détails du widget LLM, informations sur l’application, extensions ChatGPT, notification **Branch push** (propres référentiels) et marquer comme révisé. Dernière capture : 2026-11-13, Phase, application GitLab ; nom de l’application masqué | Révision de l’action générée - Branche envoyée et Marquer comme révisée |
 
 Masquez le référentiel privé et extrayez les liens de requête. Supprimer les données personnelles ou
 coordonnées lorsque l’article n’a besoin que du statut de révision. Ne pas sélectionner
@@ -62,19 +71,16 @@ Répertoire de sortie : `help/assets/guide-create-action/`
 
 | Nom de fichier | État et contexte utile | Texte de remplacement suggéré |
 |---|---|---|
-| `action-basic-info.png` | Rechercher des produits, son identifiant dérivé, une description utile et des annotations en lecture seule | Créer une action : informations de base et annotations |
-| `action-analytics-user-intent.png` | Collecter l’intention de l’utilisateur et les instructions de résumé anonymisé par défaut | Créer une action - vérifier la collection d’intentions de l’utilisateur |
-| `widget-metadata.png` | Type de bloc Edge Delivery Services et exemple d’origine sandbox sécurisée | Création d’une action - Type de widget et domaine de sandbox |
-| `widget-template-urls.png` | Exemples d’URL de script et de widget | Créer une action - URL de script et de widget |
-| `widget-permissions.png` | Autorisations de navigateur facultatives, avec autorisations inutilisées désactivées | Création d’une action - Autorisations du navigateur |
-| `widget-csp.png` | Contrôles de domaine URI de ressource, de connexion, de trame, de redirection et de base | Créer une action - domaines de la politique de sécurité du contenu |
+| `action-basic-info.png` | Détails de l’action : rechercher des produits, son identifiant de code, sa description et les paramètres `category` et `query` | Créer une action : détails de l’action avec des informations sur l’action et des paramètres d’entrée |
+| `action-llm-settings.png` | Paramètres LLM étendus : lecture seule, idempotent, annotations de monde ouvert, textes de statut, visibilité | Créer une action - Paramètres LLM |
+| `action-analytics-user-intent.png` | Application Insights : collectez l’intention de l’utilisateur et les instructions par défaut | Créer une action - Informations sur l’application |
+| `widget-metadata.png` | Détails du widget LLM : bloc Edge Delivery Services, exemple de domaine de widget, description du widget et URL du modèle | Créer une action - Détails du widget LLM |
+| `widget-csp.png` | Listes des URL de modèles et des domaines de configuration CSP | Création d’une action - Configuration de CSP |
 
-Les captures existantes affichent **Action** et **Métadonnées de widget** dans la création
-, et **Détails du widget LLM**, **Détails de l’action** et **Analytics** dans le
-éditeur enregistré. L’implémentation actuelle comporte également **Extensions ChatGPT** dans les deux
-flux ; vérifiez que l’onglet dans l’interface utilisateur en cours d’exécution lors de l’actualisation des images. Capturer le
-disposition que la procédure utilise réellement. Remplissez les champs d’exemple sans enregistrer, puis
-ignorez les modifications.
+Dernière capture : 2026-11-13, Phase, après la refactorisation de la boîte de dialogue (mêmes onglets que l’éditeur d’actions :
+Détails d’action, détails du widget LLM, informations sur l’application, extensions ChatGPT ; autorisations,
+Préfère une bordure et la section Paramètres de fichier (supprimée). Exemples de valeurs uniquement ; la boîte de dialogue
+a été annulé sans enregistrement. Les contours rouges sont des légendes.
 
 ## Authentification
 
@@ -217,6 +223,28 @@ noms, identifiants de suite de rapports, identifiants de flux de données, ident
 avec ces valeurs factices : `example-org`, `demo.<suffix>` suites de rapports,
 `00000000-0000-0000-0000-000000000000`, `0000…0001`, `user@example.com` et
 `Example User`.
+
+## Préparer la soumission
+
+Article : `/help/guides/prepare-submission.md`
+
+Répertoire de sortie : `help/assets/guide-submission/`
+
+| Nom de fichier | État et contexte utile | Texte de remplacement suggéré |
+|---|---|---|
+| `submission-card.png` | Page d’application après un déploiement en production, Préparer la carte d’envoi avec Configuration | Préparer pour l’envoi - Statut et configuration de la préparation en production |
+| `submission-setup.png` | Boîte de dialogue Préparer pour l’envoi, Configurer et préparer, exemples de détails de l’éditeur et les deux icônes enregistrées | Configurer et préparer - Éditeur et informations juridiques, icônes approuvées et Enregistrer les modifications |
+| `submission-prepare.png` | La même boîte de dialogue a défilé pour Préparer votre package, Préparation indique Prêt pour la préparation, case à cocher désactivée | Préparer le package - Prêt pour la préparation, la case à cocher de confirmation et Préparer le package |
+| `submission-progress.png` | Même boîte de dialogue lorsqu’une exécution est en cours | Préparation en cours - barre de progression et heure de début |
+| `submission-results.png` | Résultats après une exécution terminée avec des liens légaux d’espace réservé : la préparation requiert une attention particulière, le package de téléchargement est désactivé. | Résultats : résumé de la préparation, rapport de téléchargement, package de téléchargement et enregistrement de téléchargement. |
+| `submission-test-cases.png` | Résultats, cas de test, description du premier cas | Cas de test : cas de révision avec sa demande, son comportement attendu et son statut Enregistré |
+| `submission-before-submit.png` | Résultats, avant d’envoyer la liste et les contrôles de réussite/avertissement/échec ; exécutez l’ID sous le recadrage | Avant envoi : détails restants, mise à jour des détails et vérifications du package. |
+
+Capturé à l’étape 2026-11-13 à partir d’une application déployée en production. Utiliser uniquement
+exemples de valeurs d’éditeur (`Frescopa Coffee (example)`, `https://www.example.com/...`)
+et les icônes d’espace réservé. Chaque exécution de préparation appelle l’application déployée et prend environ
+20 minutes ; démarrez-en une uniquement lorsque les écrans Résultats doivent être actualisés. Masquer les URL MCP,
+ID d’exécution et noms d’application dans les captures de résultats.
 
 ## Provenance de capture existante
 

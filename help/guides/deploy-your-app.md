@@ -1,9 +1,9 @@
 ---
 title: Déploiement de l’application
 description: Découvrez comment déployer votre application LLM Adobe vers les environnements d’évaluation et de production à l’aide de l’interface utilisateur des applications LLM.
-source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '444'
+source-wordcount: '458'
 ht-degree: 0%
 ---
 
@@ -11,13 +11,11 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps] est actuellement dans Beta.
->
->Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
+>Les applications LLM sont disponibles pour tous les clients AEM Sites Cloud Service afin qu’ils puissent développer et gérer leurs propres applications. Une fois le comptage commencé, chaque appel d’application est comptabilisé dans les demandes de contenu AEM Sites du client. Adobe annoncera le taux de contrôle et la date de début avant que le contrôle ne prenne effet.
 
 Une fois que vous avez révisé les actions générées ou envoyé votre propre code de gestionnaire au référentiel lié, déployez l’application à partir de [!DNL LLM Apps]. Pour les actions générées, examinez et fusionnez le travail généré avant le déploiement.
 
-**Dans ce guide :** découvrez comment déployer votre application dans l’environnement intermédiaire, vérifier le résultat du déploiement et copier l’URL de son serveur MCP pour le test. Déploiement en production une fois le test terminé.
+**Dans ce guide :** Découvrez comment déployer votre application dans l’environnement intermédiaire, vérifier le résultat du déploiement et copier son URL de serveur MCP pour le test. Déploiement en production une fois le test terminé.
 
 ## Démarrer le déploiement
 
@@ -25,7 +23,7 @@ Ouvrez la page Détails de l’application et sélectionnez **[!UICONTROL Déplo
 
 Sélectionnez l’environnement cible, puis sélectionnez **[!UICONTROL Déployer]**.
 
-Si vos gestionnaires utilisent des [variables d’application](/help/guides/app-variables.md), configurez-les pour l’environnement cible avant de procéder au déploiement. Les variables ajoutées, mises à jour ou supprimées prennent effet dans ce déploiement. Les variables d’évaluation et de production ont des valeurs indépendantes.
+Si vos gestionnaires utilisent [des variables d’application](/help/guides/app-variables.md), configurez-les pour l’environnement cible avant de procéder au déploiement. Les variables ajoutées, mises à jour ou supprimées prennent effet dans ce déploiement. Les variables d’évaluation et de production ont des valeurs indépendantes.
 
 ![Déployer — sélectionner l&#39;environnement cible](/help/assets/guide-onboarding-agent/deploy-stage.png)
 
@@ -33,7 +31,7 @@ Le déploiement s’exécute en quatre étapes :
 
 1. **Préparation** — récupère la configuration requise pour déployer l&#39;application.
 2. **Démarrer le déploiement** — lance le processus de déploiement en arrière-plan.
-3. **Générer une application** — installe les dépendances et génère le code de référentiel le plus récent.
+3. **Créer l&#39;application** — installe les dépendances et crée le code de référentiel le plus récent.
 4. **Publier** — publie l&#39;application sur [!DNL Adobe I/O Runtime].
 
 >[!NOTE]
@@ -44,7 +42,7 @@ Le déploiement s’exécute en quatre étapes :
 
 Une fois toutes les étapes terminées, la boîte de dialogue affiche **Déploiement réussi**.
 
-Pour fermer la boîte de dialogue, sélectionnez **Fermer**. Sur la page Détails de l’application, faites défiler l’écran pour **[!UICONTROL Tester l’application]** :
+Pour fermer la boîte de dialogue, sélectionnez **Fermer**. Sur la page Détails de l’application, faites défiler l’écran jusqu’à **[!UICONTROL Tester l’application]** :
 
 ![Détails de l&#39;application — Copiez l&#39;URL du serveur MCP](/help/assets/guide-onboarding-agent/app-mcp-url.png)
 
@@ -54,18 +52,18 @@ La section **Historique de déploiement** affiche les 10 derniers déploiements 
 
 ![Historique de déploiement](/help/assets/guide-deploy/deployment-history.png)
 
-Chaque ligne affiche la date cible **Environnement** (évaluation ou production), **Statut** (Succès ou Échec) et **Déployé à**. Utilisez le tableau pour suivre les dates de déploiement et vérifier que le dernier déploiement a réussi.
+Chaque ligne affiche l’**environnement** cible (d’évaluation ou de production), le **statut** (de réussite ou d’échec) et le **Déployé à la date**. Utilisez le tableau pour suivre les dates de déploiement et vérifier que le dernier déploiement a réussi.
 
 ## Déployer les modifications de configuration
 
-Les modifications apportées aux métadonnées d’action, aux commutateurs **[!UICONTROL Visibilité]**, à l’authentification, aux variables d’application et aux paramètres Analytics de la page d’application prennent effet lors du prochain déploiement dans cet environnement. L’enregistrement d’un paramètre ne met pas à jour le serveur MCP déployé en lui-même.
+Les modifications apportées aux métadonnées d’action, aux commutateurs **[!UICONTROL Visibilité]** de la page d’application, à l’authentification, aux variables d’application et aux paramètres Analytics prennent effet lors du prochain déploiement dans cet environnement. L’enregistrement d’un paramètre ne met pas à jour le serveur MCP déployé en lui-même.
 
 Vérifiez l’environnement cible à chaque fois. Le déploiement dans l’environnement intermédiaire ne déploie pas les mêmes modifications dans la production.
 
-Si votre application ne répond pas aux exigences d’exécution d’Analytics ou de SDK, suivez la section [Mettre à niveau une application existante](/help/guides/upgrade-existing-app.md) avant de procéder à un redéploiement.
+Si votre application ne répond pas aux exigences d’exécution d’Analytics ou de SDK, [Mettez à niveau une application existante](/help/guides/upgrade-existing-app.md) avant de la redéployer.
 
 ## Étape suivante
 
-- [Testez l’application déployée en tant que plug-in ChatGPT](/help/guides/test-in-chatgpt.md).
+- [Testez l&#39;application déployée en tant que plug-in ChatGPT](/help/guides/test-in-chatgpt.md).
 - [Testez l’application déployée en tant que connecteur Claude](/help/guides/test-in-claude.md).
 - [Envoyez les événements de votre application à Adobe Analytics ou Customer Journey Analytics](/help/guides/analytics-setup.md).

@@ -1,9 +1,9 @@
 ---
 title: Personnaliser un gestionnaire d’actions généré
 description: Comprenez le contrat du gestionnaire d’applications Adobe LLM, remplacez les données d’exemple générées et assurez-vous que la sortie du gestionnaire est alignée sur son widget.
-source-git-commit: 0f9dd0a5b1008e183eb8ab5a4c2eae34a78923bb
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '880'
+source-wordcount: '895'
 ht-degree: 0%
 ---
 
@@ -11,17 +11,15 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps] est actuellement dans Beta.
->
->Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
+>Les applications LLM sont disponibles pour tous les clients AEM Sites Cloud Service afin qu’ils puissent développer et gérer leurs propres applications. Une fois le comptage commencé, chaque appel d’application est comptabilisé dans les demandes de contenu AEM Sites du client. Adobe annoncera le taux de contrôle et la date de début avant que le contrôle ne prenne effet.
 
 La plateforme crée un gestionnaire fonctionnel pour chaque action générée. Le gestionnaire renvoie initialement des données d’exemple pour tester l’expérience complète.
 
-**Dans ce guide :** découvrez comment trouver le gestionnaire généré, remplacer ses exemples de données par des appels à vos systèmes et conserver sa réponse compatible avec le widget. Ensuite, testez et déployez vos modifications.
+**Dans ce guide :** Découvrez comment trouver le gestionnaire généré, remplacer ses exemples de données par des appels à vos systèmes et conserver sa réponse compatible avec le widget. Ensuite, testez et déployez vos modifications.
 
 ## Rechercher le gestionnaire généré
 
-Ouvrez le référentiel du gestionnaire connecté lors de la [configuration de l’infrastructure](/help/guides/create-app.md). Si vous utilisez l’infrastructure gérée par Adobe, demandez l’accès au code avant de continuer.
+Ouvrez le référentiel du gestionnaire connecté lors de la [configuration de l’infrastructure](/help/guides/create-app.md). Si vous utilisez l&#39;infrastructure gérée [!DNL LLM Apps], demandez l&#39;accès au code avant de continuer.
 
 ```text
 actions/
@@ -38,7 +36,7 @@ test/
     └── <action-slug>.test.js
 ```
 
-Utilisez la requête de tirage générée pour localiser les fichiers exacts. Le slug du dossier utilise des tirets : la plateforme génère une action avec l’identifiant de code `search_products` sous `actions/search-products/`. Le runtime reconnaît le formulaire avec trait d’union ainsi qu’un dossier correspondant exactement à l’identifiant.
+Utilisez la requête de tirage générée ou la branche pour localiser les fichiers exacts. Le slug du dossier utilise des tirets : la plateforme génère une action avec l&#39;identifiant de code `search_products` sous `actions/search-products/`. Le runtime reconnaît le formulaire avec trait d’union ainsi qu’un dossier correspondant exactement à l’identifiant.
 
 Modifiez le `index.js` généré et les données d’exemple associées. Ne modifiez pas les fichiers d’exécution tels que `entry.js`.
 
@@ -59,11 +57,11 @@ module.exports = async (args, extra) => {
 };
 ```
 
-Pour une action avec un schéma d’entrée, la fonction reçoit un objet `args` et un contexte d’exécution facultatif, `extra`, et renvoie un objet de résultat. Utilisez des `extra` pour les assistants d’exécution tels que `getVariable(extra, 'PRODUCT_API_ORIGIN')` ; les variables d’application ne sont pas automatiquement exposées par le biais de `process.env`. Voir [Configurer les variables et secrets d’application](/help/guides/app-variables.md).
+Pour une action avec un schéma d’entrée, la fonction reçoit un objet `args` et un contexte d’exécution facultatif, `extra`, et renvoie un objet de résultat. Utilisez `extra` pour les assistants d’exécution tels que `getVariable(extra, 'PRODUCT_API_ORIGIN')` ; les variables d’application ne sont pas automatiquement exposées via `process.env`. Consultez la section [Configurer les variables et secrets d’application](/help/guides/app-variables.md).
 
 ### Entrée : `args`
 
-`args` contient les paramètres définis pour l’action dans [!DNL LLM Apps].
+`args` contient les paramètres définis pour l&#39;action dans [!DNL LLM Apps].
 
 Pour une action avec des paramètres `category` et `query` :
 
@@ -75,7 +73,7 @@ module.exports = async ({ category = '', query = '' } = {}, extra) => {
 
 Avec les métadonnées d’action, l’exécution convertit le schéma d’entrée déclaré en validation pour les règles prises en charge, y compris les champs obligatoires, les types primitifs, les énumérations et les éléments de tableau. Le runtime n’effectue pas de validation complète du schéma JSON. Vérifiez les contraintes telles que les longueurs de chaîne, les plages numériques et les propriétés d’objet imbriqué dans le gestionnaire.
 
-La découverte locale sans métadonnées de schéma n’est pas équivalente au déploiement : le runtime ne transmet pas d’arguments d’action dans le formulaire `(args, extra)` normal. Utilisez des tests de gestionnaire direct ou des métadonnées de `actions.json` locales représentatives pour tester les arguments. Voir [Développement et test des gestionnaires locaux](/help/reference/development.md).
+La découverte locale sans métadonnées de schéma n&#39;est pas équivalente au déploiement : le runtime ne transmet pas d&#39;arguments d&#39;action sous la forme `(args, extra)` normale. Utilisez des tests de gestionnaire direct ou des métadonnées `actions.json` locales représentatives pour tester les arguments. Voir [Développement et test des gestionnaires locaux](/help/reference/development.md).
 
 ### Sortie : `content`
 
@@ -94,7 +92,7 @@ Veillez à ce que la réponse du texte soit concise. N’incluez pas d’informa
 
 ### Sortie : `structuredContent`
 
-Renvoie `structuredContent` lorsque l’action comporte un widget. Il doit s’agir d’un objet simple, et non d’un tableau nu.
+Renvoyer `structuredContent` lorsque l’action comporte un widget. Il doit s’agir d’un objet simple, et non d’un tableau nu.
 
 ```javascript
 structuredContent: {
@@ -141,7 +139,7 @@ Les gestionnaires générés actuels utilisent un objet contenant `arguments` et
 
 ## Remplacer les exemples de données
 
-Les gestionnaires générés chargent des enregistrements représentatifs à partir de `data.json`. Remplacez la recherche de données d’exemple par un appel côté serveur à votre système. L’exemple suivant utilise une API de catalogue HTTPS publique et lit son origine non sensible à partir d’une variable d’application. Adaptez la validation de la réponse à votre API.
+Les gestionnaires générés chargent des enregistrements représentatifs depuis `data.json`. Remplacez la recherche de données d’exemple par un appel côté serveur à votre système. L’exemple suivant utilise une API de catalogue HTTPS publique et lit son origine non sensible à partir d’une variable d’application. Adaptez la validation de la réponse à votre API.
 
 ```javascript
 const { getVariable } = require('@adobe/llm-apps-runtime');
@@ -207,9 +205,9 @@ module.exports = async ({ query = '' } = {}, extra) => {
 };
 ```
 
-Conserver l’accès réseau protégé dans le gestionnaire. Ne placez jamais les informations d’identification d’API dans le JavaScript de widget ou le contrôle de code source. Pour les demandes effectuées pour le compte d&#39;un utilisateur connecté, voir [Authentifier les utilisateurs finaux](/help/guides/authentication.md).
+Conserver l’accès réseau protégé dans le gestionnaire. Ne placez jamais les informations d’identification d’API dans le JavaScript de widget ou le contrôle de code source. Pour les demandes effectuées au nom d&#39;un utilisateur connecté, voir [Authentifier les utilisateurs finaux](/help/guides/authentication.md).
 
-Pour les paramètres non sensibles dont votre gestionnaire a besoin, tels qu’une URL de service, voir [Configurer les variables et secrets d’application](/help/guides/app-variables.md). Configurez les variables séparément pour chaque environnement. Les modifications apportées aux variables prennent effet lors du prochain déploiement. L’interface utilisateur actuelle prend uniquement en charge l’ajout de variables. N’utilisez pas de variables pour stocker les informations d’identification d’API.
+Pour les paramètres non sensibles dont votre gestionnaire a besoin, tels qu’une URL de service, consultez [Configurer les variables et secrets d’application](/help/guides/app-variables.md). Configurez les variables séparément pour chaque environnement. Les modifications apportées aux variables prennent effet lors du prochain déploiement. L’interface utilisateur actuelle prend uniquement en charge l’ajout de variables. N’utilisez pas de variables pour stocker les informations d’identification d’API.
 
 ## Gérer les états attendus
 
@@ -233,7 +231,7 @@ Conserver une forme de sortie prévisible pour chaque résultat.
 }
 ```
 
-Une forme de résultat prévisible permet au widget de rendre un état vide sans deviner s’`records` existe.
+Une forme de résultat prévisible permet au widget de rendre un état vide sans deviner si `records` existe.
 
 Pour les échecs de service, renvoyez un résultat d’erreur sécurisé avec `isError: true`, comme dans l’exemple. Vérifiez `result.isError` dans le widget afin qu’une requête ayant échoué ne soit pas présentée comme une recherche vide réussie. N’exposez pas les traces de pile, les informations d’identification, les hôtes internes ou les corps de réponse en amont.
 
@@ -246,7 +244,7 @@ Mettez à jour les tests générés chaque fois que le gestionnaire change. Couv
 - Échecs d’API et délais d’expiration.
 - Réponses API incorrectes.
 - Présence de `content` dans chaque résultat.
-- Un objet brut pour `structuredContent`.
+- Un objet simple pour `structuredContent`.
 - Forme attendue par le widget.
 
 Exécutez la suite de tests configurée du référentiel :
@@ -255,9 +253,9 @@ Exécutez la suite de tests configurée du référentiel :
 npm test
 ```
 
-Si un test généré importe du `node:test` plutôt que du Jest, exécutez-le avec `node --test test/actions/<action-slug>.test.js` et vérifiez que son chemin d’importation est résolu à partir de `test/actions/`. Utilisez l’exécuteur de test approprié au fichier ; la commande `npm test` du modèle standard exécute Jest.
+Si un test généré importe `node:test` plutôt que Jest, exécutez-le avec `node --test test/actions/<action-slug>.test.js` et vérifiez que son chemin d’importation est résolu à partir de `test/actions/`. Utilisez l’exécuteur de test approprié au fichier ; la commande standard `npm test` exécute Jest.
 
-Pour les tests MCP locaux, voir [Développement et test des gestionnaires locaux](/help/reference/development.md).
+Pour les tests MCP locaux, consultez [Développement et test de gestionnaires locaux](/help/reference/development.md).
 
 ## Déployer la modification
 

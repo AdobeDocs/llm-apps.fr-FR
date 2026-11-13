@@ -2,10 +2,10 @@
 user-guide-title: Guide des applications LLM
 breadcrumb-title: Applications LLM
 user-guide-description: Créez, personnalisez, déployez et testez des expériences interactives sur les plateformes LLM prises en charge, telles que ChatGPT avec les applications Adobe LLM.
-source-git-commit: 74769d0b2eb2d9323a39ae645dc5359404450164
+source-git-commit: 34bcdff7db515bf74dae8243b084e439ea2f67a5
 workflow-type: tm+mt
-source-wordcount: '127'
-ht-degree: 6%
+source-wordcount: '136'
+ht-degree: 5%
 ---
 
 # Guide d’[!DNL LLM Apps] {#using}
@@ -29,6 +29,8 @@ ht-degree: 6%
   + [Tester votre application LLM en tant que plug-in ChatGPT](/help/guides/test-in-chatgpt.md)
   + [Tester votre application LLM en tant que connecteur Claude](/help/guides/test-in-claude.md)
   + [Mettre à niveau une application existante](/help/guides/upgrade-existing-app.md)
++ Envoyer votre application {#submit-your-app}
+  + [Préparez votre application pour l&#39;envoi ChatGPT](/help/guides/prepare-submission.md)
 + Mesurer votre application {#measure-your-app}
   + [Configurer Adobe Analytics et Customer Journey Analytics](/help/guides/analytics-setup.md)
 + Référence {#reference}

@@ -1,9 +1,9 @@
 ---
 title: Champs d’action et de widget
 description: Définitions de champ pour les métadonnées d’action, les paramètres, les widgets, les CSP et les autorisations dans les applications Adobe LLM.
-source-git-commit: 2892acf4b3042c296203377a06bc3ff80fd375a5
+source-git-commit: 0276ae4e4627e49157911ad579a42c0e77045eee
 workflow-type: tm+mt
-source-wordcount: '1257'
+source-wordcount: '1173'
 ht-degree: 3%
 ---
 
@@ -11,26 +11,22 @@ ht-degree: 3%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps] est actuellement dans Beta.
->
->Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
+>Les applications LLM sont disponibles pour tous les clients AEM Sites Cloud Service afin qu’ils puissent développer et gérer leurs propres applications. Une fois le comptage commencé, chaque appel d’application est comptabilisé dans les demandes de contenu AEM Sites du client. Adobe annoncera le taux de contrôle et la date de début avant que le contrôle ne prenne effet.
 
 Utilisez cette page pour rechercher des champs dans l’éditeur d’actions. Pour connaître les étapes de création, voir [Créer une action à partir de zéro](/help/guides/create-action.md).
 
 ## Rechercher les paramètres
 
-La boîte de dialogue **[!UICONTROL Créer une action]** comporte les onglets **[!UICONTROL Action]**, **[!UICONTROL Métadonnées de widget]** et **[!UICONTROL Extensions de ChatGPT]**.
-
-Après sa création, l’éditeur d’action enregistrée utilise quatre onglets :
+La boîte de dialogue **[!UICONTROL Créer une action]** et l’éditeur d’actions enregistrées utilisent les quatre mêmes onglets :
 
 | Tabulation | Paramètres |
 |---|---|
+| **[!UICONTROL Détails de l&#39;action]** | Nom de l’action, identifiant de code, description, paramètres d’entrée et **[!UICONTROL paramètres LLM]**, y compris les annotations, le texte du statut d’appel et la visibilité |
 | **[!UICONTROL Détails du widget LLM]** | Type de widget, domaine de sandbox, description du widget, URL du modèle et CSP |
-| **[!UICONTROL Détails de l&#39;action]** | Identifiant du code, description, paramètres d’entrée et **[!UICONTROL paramètres LLM]**, y compris les annotations, le texte du statut d’appel et la visibilité |
-| **[!UICONTROL Analytics]** | Collecte des intentions des utilisateurs et instructions |
+| **[!UICONTROL Informations sur l’application]** | Collecte des intentions des utilisateurs et instructions |
 | **[!UICONTROL Extensions ChatGPT]** | Points d’entrée à ouverture directe, icônes d’action, préférences d’affichage et mentions du compositeur |
 
-Pour enregistrer vos modifications, sélectionnez **[!UICONTROL Enregistrer les modifications]**. Les actions générées en attente de révision affichent plutôt **[!UICONTROL Marquer comme révisée]**, qui gère également leurs demandes d’extraction générées.
+Pour enregistrer vos modifications, sélectionnez **[!UICONTROL Enregistrer les modifications]**. Les actions générées en attente de révision affichent plutôt **[!UICONTROL Marquer comme révisée]**, ce qui fusionne également leurs demandes ou branches d’extraction générées.
 
 ## Paramètres de l&#39;action
 
@@ -39,13 +35,13 @@ Les paramètres d’entrée sont les valeurs que la plateforme LLM envoie à vot
 | Propriété | Description |
 |----------|-------------|
 | **Nom** | Identifiant du paramètre (par exemple, `category`, `query`) |
-| **Type** | `String`, `Number`, `Integer`, `Boolean` ou `Object` ; l’éditeur enregistré propose également `File` pour les paramètres de fichier chargé |
+| **Type** | `String`, `Number`, `Integer`, `Boolean`, `Object` ou `File` pour les paramètres de fichier chargé |
 | **Description** | Une explication lisible par l’utilisateur : la plateforme LLM utilise l’explication pour extraire la valeur appropriée |
 | **Requis** | Si cette case est cochée, le modèle doit fournir ce paramètre avant d’appeler l’action |
 
 ### Paramètres de fichier
 
-Les paramètres de fichier sont des noms de champ d’entrée configurés dans l’éditeur d’actions. Lorsqu’un utilisateur charge un fichier, l’hôte fournit un objet de fichier pour ces arguments, comprenant généralement `download_url` et `file_id`.
+Les paramètres de fichier sont des paramètres d’entrée de type `File`. Lorsqu’un utilisateur charge un fichier, l’hôte fournit un objet de fichier pour ces arguments, comprenant généralement `download_url` et `file_id`.
 
 Les paramètres du fichier chargé sont différents des [points d&#39;entrée de fichier](/help/guides/chatgpt-extensions.md#file-entrypoint). Un point d’entrée de fichier utilise un paramètre d’objet nommé `file`, contenant les éléments `name` et `resourceUri` du fichier ouvert.
 
@@ -77,9 +73,6 @@ Conseils facultatifs qui décrivent le comportement de l’action :
 |-------|------------|-------------|
 | **Appeler le texte du statut** | 64 caractères | Message affiché dans la plateforme LLM pendant l’exécution de l’action (par exemple, *Chargement des produits ...*) |
 | **Texte du statut appelé** | 64 caractères | Message affiché une fois l’action terminée (par exemple, *Produits chargés ...*) |
-| **Description du widget** | 512 caractères | Mappe sur `_meta["openai/widgetDescription"]` ; résume le composant rendu pour le modèle et réduit la narration répétée. |
-
-La description de l’action détermine à quel moment le modèle sélectionne l’action. La description du widget explique ce que le composant affiche après son rendu.
 
 ### Visibilité
 
@@ -107,9 +100,9 @@ Les paramètres d’exposition du modèle et du widget ne remplacent pas le choi
 
 | Champ | Description |
 |-------|-------------|
-| **Type / Type de widget** | Dans la boîte de dialogue de création, sélectionnez **[!UICONTROL Bloc Edge Delivery Services]** ou **[!UICONTROL Aucun widget]**. L’éditeur enregistré étiquette le choix texte uniquement **[!UICONTROL Aucune interface utilisateur interactive]** |
+| **Type de widget** | **[!UICONTROL Bloc Edge Delivery Services]** pour un widget interactif ou **[!UICONTROL Pas d’IU interactive]** pour une action en texte seul |
 | **Domaine du widget** | Origine du sandbox utilisé par l’hôte. L’interface utilisateur l’identifie comme requis pour l’envoi de l’application et comme unique par application. Ceci est distinct de l’URL du **widget** de la page EDS |
-| **Bordure préférée** | Demande un conteneur bordé ; le rendu dépend de l’hôte. Disponible dans la boîte de dialogue de création |
+| **Description du widget** | Jusqu’à 512 caractères. Mappe sur `_meta["openai/widgetDescription"]` ; résume le composant rendu pour le modèle et réduit la narration répétée. La description de l’action détermine à quel moment le modèle sélectionne l’action ; la description du widget explique ce que le composant affiche après son rendu |
 
 ### URL du modèle
 
@@ -159,16 +152,3 @@ Ces paramètres de widget sont distincts des points d’entrée. L’hôte chois
 ### Mentions du compositeur
 
 **Activer les mentions du compositeur** désigne l&#39;action de recherche de ressources de l&#39;application. Une seule action par application peut fournir la recherche de mention. L’action doit être en lecture seule et visible par l’application, avec un paramètre de chaîne nommé `query` qui accepte du texte vide et aucune autre entrée requise. Un fournisseur peut être en mode texte uniquement ; l’activation de la visibilité de l’application ne nécessite pas la configuration d’un widget pour le fournisseur de recherche.
-
-## Autorisations
-
-Les autorisations de widget régissent l’accès aux API matérielles et de navigateur. Les autorisations sont mappées à la politique d’autorisation de l’iframe.
-
-Les contrôles des autorisations apparaissent sous **[!UICONTROL Autorisations (spécifiques au MCP)]** dans la boîte de dialogue de création. N’accordez que les fonctionnalités requises par le widget ; la prise en charge de l’hôte et le consentement de l’utilisateur s’appliquent également.
-
-| Autorisation | Description |
-|------------|-------------|
-| **Appareil Photo** | Accéder à la caméra de l’appareil |
-| **Microphone** | Accéder au microphone de l’appareil |
-| **Géolocalisation** | Accéder à l’emplacement de l’utilisateur |
-| **Presse-papiers** | Lecture ou écriture dans le presse-papiers |

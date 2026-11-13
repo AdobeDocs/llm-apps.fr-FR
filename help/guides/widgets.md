@@ -1,9 +1,9 @@
 ---
 title: Personnaliser un widget EDS généré
 description: Découvrez et personnalisez le widget Edge Delivery Services créé automatiquement par les applications Adobe LLM.
-source-git-commit: 74769d0b2eb2d9323a39ae645dc5359404450164
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '1148'
+source-wordcount: '1163'
 ht-degree: 0%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps] est actuellement dans Beta.
->
->Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
+>Les applications LLM sont disponibles pour tous les clients AEM Sites Cloud Service afin qu’ils puissent développer et gérer leurs propres applications. Une fois le comptage commencé, chaque appel d’application est comptabilisé dans les demandes de contenu AEM Sites du client. Adobe annoncera le taux de contrôle et la date de début avant que le contrôle ne prenne effet.
 
 >[!NOTE]
 >
@@ -27,7 +25,7 @@ Commencez par tester le widget généré. Personnalisez ensuite son contrat de d
 
 ## Recherche du widget généré
 
-Ouvrez le référentiel EDS connecté lors de la [configuration de l’infrastructure](/help/guides/create-app.md). Si vous utilisez l’infrastructure gérée par Adobe, demandez l’accès au code avant de continuer. Chaque widget généré est un bloc EDS :
+Ouvrez le référentiel EDS connecté lors de la [configuration de l’infrastructure](/help/guides/create-app.md). Si vous utilisez l&#39;infrastructure gérée [!DNL LLM Apps], demandez l&#39;accès au code avant de continuer. Chaque widget généré est un bloc EDS :
 
 ```text
 blocks/
@@ -38,7 +36,7 @@ blocks/
 
 - Le fichier JavaScript lit le résultat de l’action et crée l’interface.
 - Le fichier CSS contrôle la disposition, le comportement réactif et la conception visuelle.
-- La requête de tirage générée affiche les fichiers exacts créés pour l’action.
+- La requête de tirage générée ou la branche affiche les fichiers exacts créés pour l’action.
 
 Le slug utilise des tirets : une action avec un identifiant de code `search_products` utilise un bloc tel que `blocks/search-products/`. La page du widget généré est généralement `/eds-widgets/search-products-demo` ; utilisez l’**[!UICONTROL URL du widget]** dans les métadonnées d’action.
 

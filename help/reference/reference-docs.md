@@ -1,9 +1,9 @@
 ---
 title: Champs d’action et de widget
 description: Définitions de champ pour les métadonnées d’action, les paramètres, les widgets, les CSP et les autorisations dans les applications Adobe LLM.
-source-git-commit: 2892acf4b3042c296203377a06bc3ff80fd375a5
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '1257'
+source-wordcount: '1273'
 ht-degree: 3%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 3%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps] est actuellement dans Beta.
->
->Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
+>Les applications LLM sont disponibles pour tous les clients AEM Sites Cloud Service afin qu’ils puissent développer et gérer leurs propres applications. Une fois le comptage commencé, chaque appel d’application est comptabilisé dans les demandes de contenu AEM Sites du client. Adobe annoncera le taux de contrôle et la date de début avant que le contrôle ne prenne effet.
 
 Utilisez cette page pour rechercher des champs dans l’éditeur d’actions. Pour connaître les étapes de création, voir [Créer une action à partir de zéro](/help/guides/create-action.md).
 
@@ -30,7 +28,7 @@ Après sa création, l’éditeur d’action enregistrée utilise quatre onglets
 | **[!UICONTROL Analytics]** | Collecte des intentions des utilisateurs et instructions |
 | **[!UICONTROL Extensions ChatGPT]** | Points d’entrée à ouverture directe, icônes d’action, préférences d’affichage et mentions du compositeur |
 
-Pour enregistrer vos modifications, sélectionnez **[!UICONTROL Enregistrer les modifications]**. Les actions générées en attente de révision affichent plutôt **[!UICONTROL Marquer comme révisée]**, qui gère également leurs demandes d’extraction générées.
+Pour enregistrer vos modifications, sélectionnez **[!UICONTROL Enregistrer les modifications]**. Les actions générées en attente de révision affichent plutôt **[!UICONTROL Marquer comme révisée]**, ce qui fusionne également leurs demandes ou branches d’extraction générées.
 
 ## Paramètres de l&#39;action
 

@@ -1,7 +1,7 @@
 ---
-source-git-commit: fa80b7b68e1b905eb22d4789a74b2f0de886d70c
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '1179'
+source-wordcount: '1180'
 ht-degree: 0%
 ---
 # Procédure de capture d’écran pilotée par l’agent
@@ -68,7 +68,7 @@ Capturez les états accessibles et signalez l’état manquant.
 
 Lorsque de nouvelles ressources sont nécessaires, confirmez l’organisation cible, le site web,
 option d&#39;infrastructure, programme AEM et nom de l&#39;appareil avant de les créer. Pour
-Infrastructure gérée par Adobe, laissez la plateforme créer les référentiels. Pour le
+Infrastructure gérée des applications LLM. Laissez la plateforme créer les référentiels. Pour le
 Chemin d’accès à votre propre référentiel, utilisez deux référentiels vides et obtenez une approbation avant
 la validation les initialise.
 

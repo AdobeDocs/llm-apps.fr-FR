@@ -2,36 +2,34 @@
 title: Apporter votre propre projet Edge Delivery Services
 description: Connecter un projet Adobe Edge Delivery Services existant à une action Adobe LLM Apps.
 hidefromtoc: true
-source-git-commit: 557173e8d95325b980efac4d72c06bb3d90dcd72
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '866'
-ht-degree: 1%
+source-wordcount: '900'
+ht-degree: 2%
 ---
 
 # Apportez votre propre projet EDS {#bring-your-own-eds}
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps] est actuellement dans Beta.
->
->Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
+>Les applications LLM sont disponibles pour tous les clients AEM Sites Cloud Service afin qu’ils puissent développer et gérer leurs propres applications. Une fois le comptage commencé, chaque appel d’application est comptabilisé dans les demandes de contenu AEM Sites du client. Adobe annoncera le taux de contrôle et la date de début avant que le contrôle ne prenne effet.
 
-Utilisez ce guide pour connecter un projet Edge Delivery Services (EDS) compatible ou pour ajouter un widget à une action que vous avez vous-même créée. Un projet existant est facultatif. Si vous configurez votre propre infrastructure, le chemin d’accès par défaut commence par deux référentiels vides que la plateforme initialise lors de la [&#x200B; configuration de l’infrastructure &#x200B;](/help/guides/create-app.md).
+Utilisez ce guide pour connecter un projet Edge Delivery Services (EDS) compatible ou pour ajouter un widget à une action que vous avez vous-même créée. Un projet existant est facultatif. Si vous configurez votre propre infrastructure, le chemin par défaut commence par deux référentiels vides que la plateforme initialise lors de la [configuration de l’infrastructure](/help/guides/create-app.md).
 
 Si la plateforme a créé votre widget automatiquement, suivez [Personnaliser un widget généré](/help/guides/widgets.md) à la place. Le projet généré inclut déjà la configuration des fichiers, blocs, contenus et actions SDK décrite ici.
 
-**Dans ce guide :** découvrez comment préparer votre projet EDS, installer le SDK, et créer et publier un widget. Connectez ensuite le widget à une action et testez-le dans votre application déployée.
+**Dans ce guide :** Découvrez comment préparer votre projet EDS, installer le SDK et créer et publier un widget. Connectez ensuite le widget à une action et testez-le dans votre application déployée.
 
 ## Avant de commencer
 
 Vous avez besoin des éléments suivants :
 
-- Référentiel EDS AEM compatible standard avec [la synchronisation de code AEM](https://github.com/apps/aem-code-sync) installé et une source de contenu configurée.
+- Référentiel EDS AEM compatible standard avec une source de contenu configurée, dont le code atteint le site via [la synchronisation du code AEM](https://github.com/apps/aem-code-sync) (GitHub) ou via [!DNL Cloud Manager] avec [Apportez votre propre Git](https://www.aem.live/developer/byo-git) (autres fournisseurs Git).
 - Autorisation d’ajouter des dépendances et de créer des blocs dans ce référentiel.
 - Autorisation de configurer les en-têtes de réponse pour le site EDS.
-- Action en [!DNL LLM Apps] avec un gestionnaire qui renvoie des `structuredContent`.
+- Une action dans [!DNL LLM Apps] avec un gestionnaire qui renvoie `structuredContent`.
 
-Lorsque vous liez un référentiel existant, la plateforme vérifie les `scripts/aem.js`, les `blocks/`, les `styles/styles.css` et les `head.html`. L’incorporation importe également des `scripts/scripts.js` et appelle sa fonction `decorateMain` exportée pour préparer les blocs. Gardez intact le contrat de chargement des blocs EDS. Les fichiers requis seuls ne confirment pas qu’un projet fortement personnalisé s’affiche correctement.
+Lorsque vous liez un référentiel existant, la plateforme recherche `scripts/aem.js`, `blocks/`, `styles/styles.css` et `head.html`. L’incorporation importe également `scripts/scripts.js` et appelle sa fonction `decorateMain` exportée pour préparer les blocs. Gardez intact le contrat de chargement des blocs EDS. Les fichiers requis seuls ne confirment pas qu’un projet fortement personnalisé s’affiche correctement.
 
 ## Installation de LLM Apps SDK {#install-the-llm-apps-sdk}
 
@@ -51,7 +49,7 @@ scripts/
 └── alloy-standalone.min.js
 ```
 
-L’URL du script de l’action pointe vers `scripts/aem-embed.js`, et non `scripts/llmapps-sdk.js`. Vérifiez que l’installation a copié les fichiers SDK, puis validez et poussez-les avec le projet. Le hook remplace les fichiers copiés lors de l’installation ou de la mise à jour du SDK ; ne personnalisez pas les fichiers SDK copiés.
+L&#39;URL du script de l&#39;action pointe vers `scripts/aem-embed.js`, et non `scripts/llmapps-sdk.js`. Vérifiez que l’installation a copié les fichiers SDK, puis validez et poussez-les avec le projet. Le hook remplace les fichiers copiés lors de l’installation ou de la mise à jour du SDK ; ne personnalisez pas les fichiers SDK copiés.
 
 ## Création du bloc de widget
 
@@ -64,7 +62,7 @@ blocks/
     └── search-products.css
 ```
 
-Exportez la fonction `decorate` EDS standard avec le pont connecté comme deuxième argument :
+Exportez la fonction EDS `decorate` standard avec le pont connecté comme deuxième argument :
 
 ```javascript
 const PREVIEW_RESULT = {
@@ -111,7 +109,7 @@ export default async function decorate(block, bridge) {
 
 Utilisez des API DOM qui codent des valeurs de texte. Ne concaténez pas de données externes dans HTML.
 
-L’exemple exige `structuredContent.records`. Faites correspondre les noms de propriété et les champs d’enregistrement renvoyés par votre gestionnaire. Vérifiez `bridge.isConnected`, pas seulement si un pont existe : `toolResult` ne se résout jamais en mode autonome. Dans l’aperçu des applications LLM, utilisez les exemples de données du bloc lorsque `bridge.hostContext.preview` indique le mode d’aperçu.
+L’exemple attend `structuredContent.records`. Faites correspondre les noms de propriété et les champs d’enregistrement renvoyés par votre gestionnaire. Vérifiez `bridge.isConnected`, et pas seulement s&#39;il existe un pont : `toolResult` ne se résout jamais en mode autonome. Dans l’aperçu des applications LLM, utilisez les données d’exemple du bloc lorsque `bridge.hostContext.preview` indique le mode d’aperçu.
 
 ## Créer et publier la page du widget
 
@@ -125,7 +123,7 @@ https://main--<repo>--<owner>.aem.page/eds-widgets/search-products-demo
 
 Une origine dynamique EDS telle que `https://main--<repo>--<owner>.aem.live` fonctionne également lorsque la page et les ressources y sont publiées. Utilisez l’origine réelle du site. Les sites EDS configurés peuvent avoir des noms de site et d’organisation différents du référentiel et du propriétaire GitHub.
 
-Vérifiez que l’ajout de `.plain.html` à l’URL du widget renvoie le fragment de page et que la page contient le bloc de `search-products`. Le chemin d’accès à la page ne doit pas nécessairement correspondre à l’identifiant d’action, mais une convention cohérente facilite la gestion du projet.
+Vérifiez que l’ajout de `.plain.html` à l’URL du widget renvoie le fragment de page et que la page contient le bloc `search-products`. Le chemin d’accès à la page ne doit pas nécessairement correspondre à l’identifiant d’action, mais une convention cohérente facilite la gestion du projet.
 
 ## Configurer CORS
 
@@ -144,9 +142,9 @@ Le widget charge la page EDS, les scripts, les styles, les blocs et les médias 
 
 Utilisez l’origine réelle du sandbox de widget requise par la plateforme LLM prise en charge, et pas seulement l’origine du site web de conversation. Vérifiez la norme CORS sur la réponse `.plain.html` et sur les JavaScript, styles, polices et médias importés.
 
-La configuration automatique d’EDS de la plateforme configure `access-control-allow-origin: *` pour la diffusion de widgets publics et peut remplacer une valeur existante plus étroite. Utilisez cette politique uniquement pour les ressources publiques délibérément sans demandes d’origine croisée authentifiées et lorsque vos exigences de sécurité le permettent. Si vous gérez un site existant limité, passez en revue sa politique avant de le connecter ; n’exposez pas le contenu d’un site privé pour permettre à un widget de fonctionner.
+La configuration EDS automatique de la plateforme configure `access-control-allow-origin: *` pour la diffusion de widgets publics et peut remplacer une valeur existante plus étroite. Utilisez cette politique uniquement pour les ressources publiques délibérément sans demandes d’origine croisée authentifiées et lorsque vos exigences de sécurité le permettent. Si vous gérez un site existant limité, passez en revue sa politique avant de le connecter ; n’exposez pas le contenu d’un site privé pour permettre à un widget de fonctionner.
 
-Pour plus d’informations sur la configuration EDS, voir [Service de configuration](https://aem.live/docs/config-service-setup).
+Pour plus d’informations sur la configuration EDS, consultez le [Service de configuration](https://aem.live/docs/config-service-setup).
 
 ## Configuration de l’action
 
@@ -168,9 +166,9 @@ Enter :
 
 Remplacez les exemples par l’origine et la page du site de travail que vous avez vérifiées ci-dessus. Configurez les domaines CSP et les autorisations de navigateur avec le privilège minimum. L’origine EDS doit être autorisée pour les deux connexions, telles que la récupération page-fragment, et les ressources, telles que les scripts et les styles de bloc. Ajoutez d’autres origines uniquement lorsque le widget l’exige.
 
-Sélectionnez **[!UICONTROL Enregistrer les modifications]**, puis redéployez l’environnement que vous testez. La configuration de widget enregistrée ne met pas à jour le serveur MCP en cours d’exécution avant le déploiement.
+Sélectionnez **[!UICONTROL Enregistrer les modifications]**, puis redéployer sur l’environnement que vous testez. La configuration de widget enregistrée ne met pas à jour le serveur MCP en cours d’exécution avant le déploiement.
 
-Pour les définitions de champ, voir [Champs d’action et de widget](/help/reference/reference-docs.md).
+Pour les définitions de champ, voir [Champs d&#39;action et de widget](/help/reference/reference-docs.md).
 
 ## Test de l’intégration
 

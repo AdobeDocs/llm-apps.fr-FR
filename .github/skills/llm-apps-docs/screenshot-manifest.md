@@ -1,7 +1,7 @@
 ---
-source-git-commit: fa80b7b68e1b905eb22d4789a74b2f0de886d70c
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '1963'
+source-wordcount: '2090'
 ht-degree: 1%
 ---
 # Manifeste de capture d’écran
@@ -23,10 +23,19 @@ Répertoire de sortie : `help/assets/guide-infrastructure/`
 
 | Nom de fichier | État et contexte utile | Texte de remplacement suggéré |
 |---|---|---|
-| `setup-choice.png` | Prise en main des deux options d’infrastructure visibles | Création de votre application LLM : choisissez l’infrastructure gérée par Adobe ou vos propres référentiels. |
-| `app-details.png` | Nom de l’application, programme AEM, zone géographique Analytics et avertissement de paramètre non modifiable | Détails de l’application : saisissez un nom, sélectionnez un programme AEM, puis choisissez une région Analytics |
-| `action-repository.png` | Chemin d’accès au référentiel avec GitHub sélectionné et instructions de connexion au référentiel | Configuration de l’infrastructure d’action : connectez un référentiel d’action vide ou compatible. |
-| `provisioning.png` | Configuration gérée d’Adobe approuvée en cours | Configuration de l’application - Adobe prépare l’infrastructure |
+| `setup-choice.png` | Commencez avec **Laissez-nous le gérer** et **Utilisez ma configuration Cloud Manager**, légende sur l’option de référentiel personnel | Création de votre application LLM - Prise en main Laissez-nous la gérer et utiliser ma configuration Cloud Manager |
+| `action-repository.png` | Programme et référentiel Cloud Manager sélectionnés, **Référentiel validé** | Configuration de l’infrastructure d’action - Programme et référentiel Cloud Manager sélectionnés |
+| `widget-source.png` | Source du widget avec **Sélectionner manuellement le référentiel de widgets** (Cloud Manager EDS marqué Bientôt) | Configuration de l’infrastructure des widgets - Source des widgets |
+| `widget-repository.png` | Référentiel de widgets non GitHub validé, **site Edge Delivery Services** remarque | Configuration de l’infrastructure des widgets : référentiel de widgets validé et son site EDS lié |
+| `app-details.png` | Nom de l’application, jeu de programmes AEM du référentiel, région de données Informations sur l’application | Détails de l’application : nom, programme AEM et région de données Informations sur l’application |
+| `settings-repositories.png` | Paramètres > Référentiel avec les cartes de référentiel Cloud Manager et le site lié | Paramètres de l’application - Section Référentiel |
+| `provisioning.png` | Configuration gérée des applications LLM approuvées en cours | Configuration de l’application - Adobe prépare l’infrastructure |
+
+Dernière capture (toutes sauf `provisioning.png` et `da-write-permissions.png`) : 2026-11-13, étape
+(`experience-stage.adobe.com/llm-apps`), Référentiels d’actions et de widgets GitLab avec Bring Your
+Propre Git. Les valeurs de programme, de référentiel, de site et d’origine sont masquées ; les contours rouges sont des légendes.
+Non capturé : chemin d’accès du widget GitHub (installation de la synchronisation du code AEM, validation de la configuration d’AEM). Pas encore
+vérifié en production.
 
 Exclure les détails du compte, les ID d’organisation, les noms de programme réels, le référentiel
 identifiants et ID d’application. Utilisez des champs vides ou un nom d&#39;appareil neutre où

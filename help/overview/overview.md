@@ -1,9 +1,9 @@
 ---
 title: Présentation des applications Adobe LLM
 description: Découvrez ce qu’est une application Adobe LLM, son fonctionnement et comment commencer à la créer.
-source-git-commit: d37cb1f4e199d77c94def7a034a55598bd3d8d83
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '624'
+source-wordcount: '642'
 ht-degree: 1%
 ---
 
@@ -11,41 +11,39 @@ ht-degree: 1%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps] est actuellement dans Beta.
->
->Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
+>Les applications LLM sont disponibles pour tous les clients AEM Sites Cloud Service afin qu’ils puissent développer et gérer leurs propres applications. Une fois le comptage commencé, chaque appel d’application est comptabilisé dans les demandes de contenu AEM Sites du client. Adobe annoncera le taux de contrôle et la date de début avant que le contrôle ne prenne effet.
 
-## Qu’est-ce qu’[!DNL Adobe LLM Apps] ?
+## Qu&#39;est-ce que [!DNL Adobe LLM Apps] ?
 
 [!DNL Adobe LLM Apps] permet à votre marque de proposer des actions utiles, telles que la découverte de produits, les contrôles de disponibilité ou les réservations de services, dans les assistants d’IA pris en charge, tels que [!DNL ChatGPT] et [!DNL Claude].
 
->[!VIDEO](https://video.tv.adobe.com/v/3504877/?captions=fre_fr&learn=on&enablevpops)
+>[!VIDEO](https://video.tv.adobe.com/v/3504875/?learn=on&enablevpops)
 
 [!DNL LLM Apps] est disponible à l’adresse [experience.adobe.com/llm-apps](https://experience.adobe.com/llm-apps).
 
 
 ## Ce que vous pouvez faire avec [!DNL LLM Apps]
 
-- **Créer des actions LLM de marque** — Définissez les flux métier spécifiques que vous souhaitez activer dans les assistants d’IA (par exemple, *Planifier un essai routier*, *Comparer des produits*, *Réserver un service*).
-- **Créer des widgets LLM interactifs** — Créez des composants visuels d’interface utilisateur (cartes produit, formulaires de réservation, localisateurs de magasin) gérés en tant que composants AEM dans votre référentiel de [!DNL GitHub].
+- **Créer des actions LLM de marque** — Définir les flux commerciaux spécifiques que vous souhaitez activer dans les assistants d’IA (par exemple, *Planifier un essai routier*, *Comparer des produits*, *Réserver un service*).
+- **Créer des widgets LLM interactifs** — Créez des composants visuels d’interface utilisateur (cartes produit, formulaires de réservation, localisateurs de magasin) gérés en tant que composants AEM dans votre référentiel Git, sur toute plateforme Git prise en charge.
 - **Maintenir une gouvernance de marque centralisée** — Les auteurs et les développeurs conservent un contrôle total sur l’ensemble du contenu, des copies et des visuels exposés dans la plateforme LLM, les approbations étant gérées via AEM.
-- **Déploiement vers l’environnement d’évaluation et de production** — Un pipeline de déploiement contrôlé vous permet de tester l’expérience dans un environnement d’évaluation avant de passer à la production.
-- **Contrôler la visibilité au niveau des actions** — Activez ou désactivez les actions individuelles, puis déployez l&#39;application pour appliquer la modification.
-- **Mesurer ce qui motive les décisions** — Analyses intégrées (optimisées par Adobe Customer Journey Analytics) le nombre de déclencheurs d’action de surface, les taux de succès, les taux d’abandon, les principales invites d’utilisateur et les scores de visibilité.
+- **Déploiement en évaluation et en production** — Un pipeline de déploiement contrôlé vous permet de tester l’expérience dans un environnement d’évaluation avant de passer en production.
+- **Contrôler la visibilité au niveau des actions** — Activer ou désactiver des actions individuelles, puis déployer l&#39;application pour appliquer la modification.
+- **Mesurez les facteurs qui motivent les décisions** — Analyses intégrées (optimisées par Adobe Customer Journey Analytics) le nombre de déclencheurs d’action de surface, les taux de succès, les taux d’abandon, les principales invites utilisateur et les scores de visibilité.
 
-## Pourquoi [!DNL LLM Apps] important
+## Pourquoi [!DNL LLM Apps] est important
 
-Les interactions LLM sont fondamentalement différentes de la recherche traditionnelle. La durée moyenne d’une session LLM est quatre fois plus longue qu’une session de recherche traditionnelle. Plus de 40 % des consommateurs utilisent des outils d’IA pour prendre des décisions d’achat complexes. Sans [!DNL LLM Apps], vous pourriez gagner la mention mais perdre le client. [!DNL LLM Apps] garantit que votre marque est non seulement visible, mais aussi exploitable au moment précis où un utilisateur est prêt à prendre une décision.
+Les interactions LLM sont fondamentalement différentes de la recherche traditionnelle. La durée moyenne d’une session LLM est quatre fois plus longue qu’une session de recherche traditionnelle. Plus de 40 % des consommateurs utilisent des outils d’IA pour prendre des décisions d’achat complexes. Sans [!DNL LLM Apps], vous pourriez gagner la mention mais perdre le client. [!DNL LLM Apps] garantit que votre marque n&#39;est pas seulement visible, mais qu&#39;elle est exploitable au moment précis où un utilisateur est prêt à prendre une décision.
 
 ## Concepts clés {#key-concepts}
 
 ### Application LLM
 
-Votre assistant de marque avec lequel les utilisateurs interagissent au sein de [!DNL ChatGPT] ou d’autres plateformes LLM. Il regroupe toutes vos actions et déploie en une seule unité.
+Votre assistant de marque avec lequel les utilisateurs interagissent dans [!DNL ChatGPT] ou d&#39;autres plateformes LLM. Il regroupe toutes vos actions et déploie en une seule unité.
 
 ### Action {#actions}
 
-Une fonctionnalité proposée par votre application, telle que *Trouver un distributeur* ou *Parcourir les produits*. La plateforme LLM appelle une action lorsqu’une requête correspond à sa description. [!DNL LLM Apps] gère les métadonnées d’action et le référentiel [!DNL GitHub] stocke le code du gestionnaire.
+Une fonctionnalité que votre application offre, telle que *Trouver un distributeur* ou *Parcourir les produits*. La plateforme LLM appelle une action lorsqu’une requête correspond à sa description. [!DNL LLM Apps] gère les métadonnées d’action et le référentiel [!DNL GitHub] stocke le code du gestionnaire.
 
 ### Gestionnaire d’actions
 
@@ -53,7 +51,7 @@ Fonction côté serveur qui s’exécute lorsque la plateforme LLM appelle une a
 
 ### Widget {#widgets-eds}
 
-Réponse visuelle affichée avec la réponse du LLM, telle qu’une carte, un carrousel ou un tableau. Les widgets générés sont des blocs dans un référentiel [!DNL Edge Delivery Services] (EDS). Avec l’infrastructure gérée par Adobe, Adobe prépare et héberge le référentiel pour vous. Vous pouvez également connecter votre propre référentiel.
+Réponse visuelle affichée avec la réponse du LLM, telle qu’une carte, un carrousel ou un tableau. Les widgets générés sont des blocs dans un référentiel [!DNL Edge Delivery Services] (EDS). Avec l’infrastructure gérée [!DNL LLM Apps], Adobe prépare et héberge le référentiel pour vous. Vous pouvez également connecter votre propre référentiel.
 
 ### Serveur MCP
 
@@ -73,14 +71,14 @@ Vous définissez les fonctionnalités de votre marque dans [!DNL LLM Apps]. La p
 └────────────────────┘          └────────────────────┘          └────────────────────┘
 ```
 
-Pour plus d’informations sur les éléments à créer et le fonctionnement des composants, voir [Comment une application est connectée](/help/guides/app-architecture.md).
+Pour obtenir des détails techniques sur ce qu&#39;il faut créer et sur la façon dont les composants fonctionnent ensemble, consultez [Comment une application est connectée ensemble](/help/guides/app-architecture.md).
 
 ## Commencer {#choose-your-journey}
 
 La création d’une application et la création de ses actions sont des étapes distinctes :
 
-1. [Configurer l’infrastructure](/help/guides/create-app.md). Utilisez l’infrastructure gérée par Adobe pour une configuration rapide ou choisissez d’utiliser vos propres référentiels [!DNL GitHub].
-2. [Créer vos actions](/help/guides/creating-actions.md). Demandez à la plateforme d’analyser votre site web et de générer des actions, ou créez-les vous-même.
+1. [Configurer l’infrastructure](/help/guides/create-app.md). Utilisez l’infrastructure gérée [!DNL LLM Apps] pour une configuration rapide ou utilisez vos propres référentiels ajoutés à [!DNL Cloud Manager].
+2. [Créez vos actions](/help/guides/creating-actions.md). Demandez à la plateforme d’analyser votre site web et de générer des actions, ou créez-les vous-même.
 3. [Déployez et testez l’application](/help/guides/deploy-your-app.md). Examinez le travail généré, déployez-le dans l’environnement d’évaluation et testez-le dans une plateforme LLM prise en charge.
 
 La génération automatique vous donne un point de départ avec un exemple de comportement. Avant de mettre l’application à la disposition des clients, [connectez vos gestionnaires à vos systèmes](/help/guides/customize-handler.md) et [personnalisez les widgets](/help/guides/widgets.md).

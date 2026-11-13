@@ -1,9 +1,9 @@
 ---
 title: Configurer les extensions de ChatGPT
 description: Configurez les points d’entrée de conversation GPT uniquement, les icônes d’action, les préférences d’affichage et les mentions du compositeur, avec les exigences et la résolution des problèmes.
-source-git-commit: caf0a247e481e1b6e833ade63c5b243a5b7b22ec
+source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
 workflow-type: tm+mt
-source-wordcount: '1710'
+source-wordcount: '1724'
 ht-degree: 0%
 ---
 
@@ -11,9 +11,7 @@ ht-degree: 0%
 
 >[!IMPORTANT]
 >
->[!DNL Adobe LLM Apps] est actuellement dans Beta.
->
->Les fonctionnalités, les workflows et l’interface utilisateur affichés ici ne représentent pas nécessairement l’état final du produit. Pour rejoindre le Beta, envoyez un e-mail à llm-apps-beta@adobe.com.
+>Les applications LLM sont disponibles pour tous les clients AEM Sites Cloud Service afin qu’ils puissent développer et gérer leurs propres applications. Une fois le comptage commencé, chaque appel d’application est comptabilisé dans les demandes de contenu AEM Sites du client. Adobe annoncera le taux de contrôle et la date de début avant que le contrôle ne prenne effet.
 
 **Il s’agit d’extensions ChatGPT uniquement.** Ils ne configurent pas de fonctionnalités dans [!DNL Claude] ou d&#39;autres plateformes LLM. Votre application peut toujours fonctionner sur ces plateformes par le biais de ses actions et widgets standard.
 
@@ -61,7 +59,7 @@ Un **point d’entrée** est un endroit où les utilisateurs ouvrent votre appli
 1. Sous **[!UICONTROL Points d’entrée]**, vous pouvez éventuellement saisir une URL d’image HTTPS publique dans **[!UICONTROL URL de l’icône]**. L’icône est partagée par les points d’entrée de cette action. Utilisez une image que vous êtes autorisé à publier.
 1. Sous **[!UICONTROL Où les utilisateurs peuvent ouvrir cette application]**, cochez n&#39;importe quelle combinaison des cases suivantes pour le même widget. Ne cochez pas toutes les cases si l’action ne nécessite pas d’ouverture directe.
 
-   | Type&nbsp; | Résultat |
+   | Type&amp;nbsp; | Résultat |
    |---|---|
    | **[!UICONTROL Global]** | Ouvrir le catalogue en mode plein écran à partir de la navigation |
    | **[!UICONTROL Thread]** | Ouvrez le catalogue sous la forme d’un onglet en regard d’une conversation |
@@ -168,7 +166,7 @@ La suppression d’un point d’entrée ne supprime pas les fichiers d’action 
 
 | Ce que vous voyez | Que faire |
 |---|---|
-| Fonctionnalité ou commandes manquantes | Vérifiez la prise en charge du client [1. &#x200B;](#before-you-begin)Pour les points d’entrée, vérifiez qu’un widget est configuré. Ces extensions ne s&#39;appliquent pas à Claude ou aux autres hôtes |
+| Fonctionnalité ou commandes manquantes | Vérifiez la prise en charge du client [1. ](#before-you-begin)Pour les points d’entrée, vérifiez qu’un widget est configuré. Ces extensions ne s&#39;appliquent pas à Claude ou aux autres hôtes |
 | Enregistrement des rapports avec une entrée requise incompatible | Approvisionnement global/de thread sans entrées, le fichier fournit `file` et mentionne l’approvisionnement `query`. Demandez au responsable de résoudre l’incohérence ; ne supprimez pas une entrée dont l’action a besoin |
 | Échec de la configuration ou de l’affichage des fichiers | Ajoutez une extension prise en charge, confirmez l’entrée Objet `file` et utilisez un client de bureau compatible. Le widget doit implémenter ce format de fichier |
 | Échec de l’enregistrement du fichier | Confirmez la prise en charge de la modification et l’autorisation d’écriture. Réconcilier les conflits au lieu de remplacer le contenu plus récent ; réduire le contenu surdimensionné |

@@ -77,7 +77,7 @@ Sélectionnez **[!UICONTROL Utiliser ma configuration Cloud Manager]**, puis **[
 
 - Accès au programme [!DNL Cloud Manager] auquel l&#39;application appartiendra.
 - Deux référentiels, l’un pour les gestionnaires d’action et l’autre pour les widgets. Les référentiels vides conviennent, y compris un référentiel contenant uniquement le fichier LISEZ-MOI et son hôte Git créés.
-- Les deux référentiels [&#x200B; ont été ajoutés à Cloud Manager](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-manager/content/managing-code/external-repositories) en tant que référentiels privés, avec la propriété validée et le statut **Prêt**. [!DNL Cloud Manager] doit pouvoir y écrire ; un jeton d&#39;accès en lecture seule ne suffit pas.
+- Les deux référentiels [&#x200B; ont été ajoutés à Cloud Manager](https://experienceleague.adobe.com/fr/docs/experience-manager-cloud-manager/content/managing-code/external-repositories) en tant que référentiels privés, avec la propriété validée et le statut **Prêt**. [!DNL Cloud Manager] doit pouvoir y écrire ; un jeton d&#39;accès en lecture seule ne suffit pas.
 
 Seuls les référentiels que vous hébergez sont répertoriés. Les référentiels hébergés par Adobe dans [!DNL Cloud Manager] ne sont pas pris en charge.
 

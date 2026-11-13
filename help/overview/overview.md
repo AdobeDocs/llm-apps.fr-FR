@@ -1,17 +1,13 @@
 ---
 title: Présentation des applications Adobe LLM
 description: Découvrez ce qu’est une application Adobe LLM, son fonctionnement et comment commencer à la créer.
-source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
+source-git-commit: 07bcd58b3aab70b03f62523b5b25f30f4b6d7004
 workflow-type: tm+mt
-source-wordcount: '642'
+source-wordcount: '596'
 ht-degree: 1%
 ---
 
 # Applications Adobe LLM - Aperçu {#adobe-llm-apps-an-overview}
-
->[!IMPORTANT]
->
->Les applications LLM sont disponibles pour tous les clients AEM Sites Cloud Service afin qu’ils puissent développer et gérer leurs propres applications. Une fois le comptage commencé, chaque appel d’application est comptabilisé dans les demandes de contenu AEM Sites du client. Adobe annoncera le taux de contrôle et la date de début avant que le contrôle ne prenne effet.
 
 ## Qu&#39;est-ce que [!DNL Adobe LLM Apps] ?
 

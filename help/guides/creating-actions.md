@@ -1,9 +1,9 @@
 ---
 title: Création d’actions
 description: Générez des actions de l’application LLM Adobe à partir d’un site web public, suivez la progression de la génération, passez en revue le travail généré ou choisissez une création d’action manuelle.
-source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
+source-git-commit: 0276ae4e4627e49157911ad579a42c0e77045eee
 workflow-type: tm+mt
-source-wordcount: '1039'
+source-wordcount: '1047'
 ht-degree: 0%
 ---
 
@@ -81,9 +81,9 @@ Examinez chaque action suggérée avant le déploiement. Vérifiez qu’elle rep
 5. Lorsque l’action est prête, sélectionnez **[!UICONTROL Marquer comme révisé]**.
 6. Revenez à la liste d’actions et répétez l’opération pour les actions restantes.
 
-L’éditeur d’actions enregistrées sépare les **[!UICONTROL détails du widget LLM]**, les **[!UICONTROL détails de l’action]** et les **[!UICONTROL analyses]**. Examinez les modifications apportées au widget et au gestionnaire générés dans leurs onglets respectifs.
+L’éditeur d’actions enregistrées sépare **[!UICONTROL Détails de l’action]**, **[!UICONTROL Détails du widget LLM]**, **[!UICONTROL Informations sur l’application]** et **[!UICONTROL Extensions ChatGPT]**. Examinez les modifications apportées au widget et au gestionnaire générés dans leurs onglets respectifs.
 
-![Action générée : onglets actuels de l’éditeur et Marquer comme révisé, avec le lien du référentiel masqué](/help/assets/guide-creating-actions/generated-action-review.png)
+![Révision d&#39;action générée — Branche envoyée explique comment la branche est fusionnée, avec les onglets d&#39;éditeur et Marquer comme révisée](/help/assets/guide-creating-actions/generated-action-review.png)
 
 Sélectionner **[!UICONTROL Marquer comme révisé]** fusionne les modifications générées s’il ne reste aucun bloqueur de fusion : extrayez les requêtes avec l’infrastructure gérée [!DNL LLM Apps], les branches avec vos propres référentiels. Si une demande d’extraction ouverte bloque la révision, résolvez le bloqueur et réessayez. N’approuvez pas une implémentation présentant des échecs de génération de code ou de fusion non résolus.
 

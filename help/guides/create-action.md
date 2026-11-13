@@ -1,9 +1,9 @@
 ---
 title: Création d’une action à partir de zéro
 description: Définissez des métadonnées d’action, implémentez son gestionnaire, connectez un widget EDS, testez-le et déployez-le avec les applications Adobe LLM.
-source-git-commit: 9b2ec369baba5d533088d2dd4adefcb80f5c9727
+source-git-commit: 0276ae4e4627e49157911ad579a42c0e77045eee
 workflow-type: tm+mt
-source-wordcount: '1532'
+source-wordcount: '1582'
 ht-degree: 0%
 ---
 
@@ -64,15 +64,15 @@ Gardez les tâches liées mais différentes séparées. Utilisez des actions dis
 
 Ouvrez l’application et sélectionnez **[!UICONTROL Actions]**, puis **[!UICONTROL Créer une action]**.
 
-La boîte de dialogue de création contient les onglets **[!UICONTROL Action]**, **[!UICONTROL Métadonnées de widget]** et **[!UICONTROL Extensions ChatGPT]**. Développez chaque section pour configurer ses champs.
+La boîte de dialogue **[!UICONTROL Créer une action]** comporte quatre onglets : **[!UICONTROL Détails de l’action]**, **[!UICONTROL Détails du widget LLM]**, **[!UICONTROL Informations sur l’application]** et **[!UICONTROL Extensions ChatGPT]**. La boîte de dialogue s’ouvre sur **[!UICONTROL Détails de l’action]**. L’éditeur d’action enregistrée utilise les mêmes onglets.
 
 Les paramètres facultatifs **[!UICONTROL Extensions ChatGPT]** permettent aux utilisateurs d&#39;ouvrir l&#39;application directement, d&#39;utiliser une visionneuse de fichiers personnalisée ou de trouver des ressources dans le compositeur sur les clients pris en charge. Configurez-les une fois que l’action et le comportement de widget correspondants sont prêts. Voir [Configurer les extensions de ChatGPT](/help/guides/chatgpt-extensions.md).
 
-### Saisir des informations de base
+### Saisir les informations d’action et les paramètres d’entrée
 
-![Créer une action — informations de base](/help/assets/guide-create-action/action-basic-info.png)
+![Créer une action — Détails de l&#39;action avec le nom de l&#39;action, l&#39;identifiant du code, la description et deux paramètres d&#39;entrée](/help/assets/guide-create-action/action-basic-info.png)
 
-Enter :
+Sous **[!UICONTROL Informations sur l&#39;action]**, saisissez :
 
 - **[!UICONTROL Nom de l&#39;action]** — un nom de tâche court, tel que *Rechercher des produits*.
 - **[!UICONTROL Description]** — expliquez quand utiliser l&#39;action et ce qu&#39;elle renvoie.
@@ -88,48 +88,12 @@ products with their names, prices, categories, and image URLs.
 
 Évitez les descriptions vagues telles que *Obtient des informations sur le produit*. La plateforme LLM utilise la description pour choisir entre les actions.
 
-### Sélectionner des annotations
+Sous **[!UICONTROL Paramètres d’entrée]**, sélectionnez **[!UICONTROL Ajouter un paramètre]** une fois pour chaque valeur acceptée par le gestionnaire. Pour chaque paramètre, saisissez :
 
-Les annotations décrivent le comportement de l’action :
-
-- **Indice destructeur** — l&#39;action peut supprimer ou modifier définitivement des données.
-- **Idempotent (mêmes arguments = aucun effet supplémentaire)** — la répétition de la même requête a le même effet.
-- **Indicateur de monde ouvert** — l&#39;action communique avec des systèmes externes.
-- **Conseil en lecture seule** — l&#39;action ne modifie pas les données.
-
-Sélectionnez uniquement les annotations vraies. Par exemple, la recherche de produits est normalement en lecture seule, idempotent et open-world.
-
-### Ajout de métadonnées OpenAI
-
-Saisissez des messages courts affichés pendant l’exécution de l’action et une fois celle-ci terminée :
-
-```text
-Invoking: Searching products...
-Invoked: Products found
-```
-
-Pour les actions avec des widgets, ajoutez **[!UICONTROL Description du widget]**. La description du widget diffère de la description de l’action :
-
-- **Description de l’action** aide le modèle à décider quand appeler l’action.
-- **Description du widget** mappée à `_meta["openai/widgetDescription"]` et résume ce que le composant rendu affiche, réduisant la narration répétée.
-
-[!DNL LLM Apps] applique la description du widget en tant que métadonnées de composant. Ne renvoyez pas la description à partir du gestionnaire .
-
-### Configuration de la visibilité
-
-- **[!UICONTROL Exposer au modèle d’IA]** permet au modèle de sélectionner l’action.
-- **[!UICONTROL Afficher comme widget dans la surface d’application]** affiche le widget configuré.
-
-Pour une action en texte uniquement, sélectionnez également **[!UICONTROL Aucun widget]** sous **[!UICONTROL Métadonnées de widget]** > **[!UICONTROL Type]**. Les contrôles de visibilité ne choisissent pas le type de widget de l’action.
-
-### Ajouter des paramètres d’entrée
-
-Ajoutez un paramètre pour chaque valeur acceptée par le gestionnaire. Chaque paramètre nécessite :
-
-- **Name** : clé que le gestionnaire reçoit.
-- **Type** — Chaîne, Nombre, Entier ou Booléen.
-- **Description** — Comment extraire la valeur.
-- **Obligatoire** — si l&#39;action requiert la valeur.
+- **[!UICONTROL Nom du paramètre]** : clé que le gestionnaire reçoit.
+- **[!UICONTROL Type]** — Chaîne, Nombre, Entier, Booléen, Objet ou Fichier.
+- **[!UICONTROL Obligatoire]** — si l&#39;action requiert la valeur.
+- **[!UICONTROL Description]** — Comment extraire la valeur.
 
 Pour **Rechercher Des Produits** :
 
@@ -147,38 +111,70 @@ query
 
 Utilisez des noms de paramètres stables. La modification d’un nom nécessite également la modification du gestionnaire et de ses tests.
 
-### Configuration d’Analytics {#configure-analytics}
+### Configurer les paramètres LLM
 
-Activez **[!UICONTROL Collecter l’intention de l’utilisateur]** lorsque vous souhaitez que les analyses incluent un résumé de la conversation qui a conduit à l’action.
+Développez les **[!UICONTROL paramètres LLM]**. La section est réduite par défaut.
+
+![Créer une action : paramètres LLM avec annotations, textes de statut des métadonnées OpenAI et visibilité](/help/assets/guide-create-action/action-llm-settings.png)
+
+Sous **[!UICONTROL Annotations]**, sélectionnez uniquement les indications vraies pour l’action :
+
+- **[!UICONTROL Indice destructeur]** — l&#39;action peut supprimer ou modifier définitivement des données.
+- **[!UICONTROL Idempotent (mêmes arguments = aucun effet supplémentaire)]** — la répétition de la même requête a le même effet.
+- **[!UICONTROL Indicateur de monde ouvert]** — l&#39;action communique avec des systèmes externes.
+- **[!UICONTROL Conseil en lecture seule]** — l&#39;action ne modifie pas les données.
+
+Par exemple, la recherche de produits est normalement en lecture seule, idempotent et open-world.
+
+Sous **[!UICONTROL Métadonnées OpenAI]**, saisissez des messages courts affichés pendant l’exécution de l’action et une fois celle-ci terminée, jusqu’à 64 caractères chacun :
+
+```text
+Invoking status text: Searching products...
+Invoked status text: Products found
+```
+
+Sous **[!UICONTROL Visibilité]** :
+
+- **[!UICONTROL Exposer au modèle d’IA]** permet au modèle de sélectionner l’action.
+- **[!UICONTROL Afficher comme widget dans la surface d’application]** affiche le widget configuré.
+
+Visibility ne choisit pas le type de widget. Pour une action en mode texte uniquement, sélectionnez **[!UICONTROL Aucune interface utilisateur interactive]** sous **[!UICONTROL Détails du widget LLM]** > **[!UICONTROL Type de widget]**.
+
+### Configurer les informations sur l’application {#configure-analytics}
+
+Ouvrez **[!UICONTROL Application Insights]**. **[!UICONTROL L’option Collecter l’intention de l’utilisateur]** est sélectionnée par défaut : la plateforme LLM crée un résumé court et anonyme de ce que l’utilisateur tentait d’accomplir lors de l’exécution de l’action.
 
 Si vous configurez votre propre [!DNL Adobe Analytics] ou [!DNL Customer Journey Analytics], l’intention de l’utilisateur y est également envoyée. Voir [Configurer Adobe Analytics et Customer Journey Analytics](/help/guides/analytics-setup.md).
 
-La collecte d’intention utilisateur est activée par défaut. Consultez la **[!UICONTROL description de l’intention de l’utilisateur]**, qui contient les instructions pour demander le résumé. Limitez les instructions à une intention non sensible et anonymisée et décrivez votre collecte de données dans votre politique de confidentialité. La description accepte jusqu’à 2 000 caractères.
+Consultez les instructions situées sous la case à cocher, qui guident le résumé. Limitez-les à des intentions non sensibles et anonymes et décrivez votre collecte de données dans votre politique de confidentialité. Les instructions acceptent jusqu’à 2 000 caractères. Effacez **[!UICONTROL L&#39;intention de l&#39;utilisateur]** pour ne collecter aucun résumé.
 
-![Créer une action — analyse de l’intention de l’utilisateur](/help/assets/guide-create-action/action-analytics-user-intent.png)
+![Créer une action — Informations sur l&#39;application avec l&#39;intention de collecter l&#39;utilisateur et les instructions par défaut](/help/assets/guide-create-action/action-analytics-user-intent.png)
 
 Pour obtenir des définitions de champ complètes, voir [Champs d&#39;action et de widget](/help/reference/reference-docs.md).
 
 ## Configuration du widget
 
-Pour une action en mode texte uniquement, ouvrez **[!UICONTROL Métadonnées de widget]** et définissez **[!UICONTROL Type]** sur **[!UICONTROL Aucun widget]**. Ignorez ensuite les paramètres de widget restants.
+Ouvrez **[!UICONTROL Détails du widget LLM]**. Pour une action en texte uniquement, sélectionnez **[!UICONTROL Pas d’interface utilisateur interactive]** sous **[!UICONTROL Type de widget]** et ignorez les paramètres de widget restants.
 
-Ouvrez **[!UICONTROL Métadonnées De Widget]**.
+![Créer une action — Détails du widget LLM avec le bloc Edge Delivery Services sélectionné et exemples d&#39;URL de modèle](/help/assets/guide-create-action/widget-metadata.png)
 
-![Créer une action — métadonnées de widget](/help/assets/guide-create-action/widget-metadata.png)
+Sous **[!UICONTROL Informations sur le widget]**, configurez :
 
-Configurer :
-
-- **[!UICONTROL Type]** — sélectionnez **[!UICONTROL Bloc Edge Delivery Services]** pour un widget interactif.
+- **[!UICONTROL Type de widget]** — sélectionnez **[!UICONTROL Bloc Edge Delivery Services]** pour un widget interactif.
 - **[!UICONTROL Domaine du widget]** : origine du sandbox du widget. L’interface utilisateur l’identifie comme requise pour l’envoi de l’application et comme unique par application ; elle n’est pas identique à l’URL de la page EDS.
-- **Bordure préférée** — demande un conteneur bordé dans l&#39;hôte.
+- **[!UICONTROL Description du widget]** : ce que dit le modèle après le rendu du widget, jusqu’à 512 caractères.
+
+La description du widget diffère de la description de l’action :
+
+- **Description de l’action** aide le modèle à décider quand appeler l’action.
+- **Description du widget** mappée à `_meta["openai/widgetDescription"]` et résume ce que le composant rendu affiche, réduisant la narration répétée.
+
+[!DNL LLM Apps] applique la description du widget en tant que métadonnées de composant. Ne renvoyez pas la description à partir du gestionnaire .
 
 Développez les **[!UICONTROL URL de modèle]** et saisissez :
 
 - **[!UICONTROL URL du script]** : point d’entrée du widget EDS.
 - **[!UICONTROL URL du widget]** : page EDS publiée pour cette action.
-
-![Créer une action — URL de script et de widget pour un widget EDS](/help/assets/guide-create-action/widget-template-urls.png)
 
 Les URL standard sont les suivantes :
 
@@ -190,15 +186,9 @@ Widget URL:
 https://main--<repo>--<owner>.aem.live/<widget-page>
 ```
 
-Octroyez uniquement les autorisations de navigateur et les domaines CSP requis.
+Dans la configuration **[!UICONTROL CSP]**, ajoutez uniquement les origines dont le widget a besoin pour les ressources et les requêtes réseau. Un widget qui charge des ressources externes peut ne pas s’afficher si sa CSP est incomplète.
 
-Développez les **[!UICONTROL autorisations (spécifiques au MCP)]** uniquement si le widget a besoin de fonctionnalités de navigateur telles que la géolocalisation. Laissez les autorisations inutilisées désactivées.
-
-![Créer une action — autorisations de navigateur facultatives](/help/assets/guide-create-action/widget-permissions.png)
-
-Dans la configuration **[!UICONTROL CSP]**, ajoutez les origines requises pour les ressources et les requêtes réseau. Un widget qui charge des ressources externes peut ne pas s’afficher si sa CSP est incomplète.
-
-![Créer une action — listes de domaines de la politique de sécurité du contenu](/help/assets/guide-create-action/widget-csp.png)
+![Créer une action — Configuration CSP avec des listes de ressources, de connexions, de trames, de redirections et de domaines URI de base](/help/assets/guide-create-action/widget-csp.png)
 
 Si le projet EDS ou la page de widget n’existe pas encore, effectuez [Apportez votre propre projet EDS](/help/guides/bring-your-own-eds.md), puis revenez à l’action.
 
@@ -208,7 +198,7 @@ Sélectionnez **[!UICONTROL Créer une action]**. L’action s’affiche sur la 
 
 L’enregistrement crée les métadonnées, mais l’action a toujours besoin d’un gestionnaire.
 
-Lorsque vous rouvrez l’action enregistrée, l’éditeur dispose de **[!UICONTROL Détails du widget LLM]**, **[!UICONTROL Détails de l’action]** et **[!UICONTROL Analytics]**. Pour enregistrer les modifications ultérieures, sélectionnez **[!UICONTROL Enregistrer les modifications]**. La boîte de dialogue de création et l’éditeur d’action enregistrée ont des dispositions différentes.
+Lorsque vous rouvrez l’action enregistrée, l’éditeur affiche les mêmes onglets. Pour enregistrer les modifications ultérieures, sélectionnez **[!UICONTROL Enregistrer les modifications]**.
 
 ## Mettre en œuvre le gestionnaire
 

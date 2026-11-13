@@ -59,7 +59,7 @@ Un **point d’entrée** est un endroit où les utilisateurs ouvrent votre appli
 1. Sous **[!UICONTROL Points d’entrée]**, vous pouvez éventuellement saisir une URL d’image HTTPS publique dans **[!UICONTROL URL de l’icône]**. L’icône est partagée par les points d’entrée de cette action. Utilisez une image que vous êtes autorisé à publier.
 1. Sous **[!UICONTROL Où les utilisateurs peuvent ouvrir cette application]**, cochez n&#39;importe quelle combinaison des cases suivantes pour le même widget. Ne cochez pas toutes les cases si l’action ne nécessite pas d’ouverture directe.
 
-   | Type&amp;nbsp; | Résultat |
+   | Type&nbsp; | Résultat |
    |---|---|
    | **[!UICONTROL Global]** | Ouvrir le catalogue en mode plein écran à partir de la navigation |
    | **[!UICONTROL Thread]** | Ouvrez le catalogue sous la forme d’un onglet en regard d’une conversation |
@@ -166,7 +166,7 @@ La suppression d’un point d’entrée ne supprime pas les fichiers d’action 
 
 | Ce que vous voyez | Que faire |
 |---|---|
-| Fonctionnalité ou commandes manquantes | Vérifiez la prise en charge du client [1. ](#before-you-begin)Pour les points d’entrée, vérifiez qu’un widget est configuré. Ces extensions ne s&#39;appliquent pas à Claude ou aux autres hôtes |
+| Fonctionnalité ou commandes manquantes | Vérifiez la prise en charge du client [1. &#x200B;](#before-you-begin)Pour les points d’entrée, vérifiez qu’un widget est configuré. Ces extensions ne s&#39;appliquent pas à Claude ou aux autres hôtes |
 | Enregistrement des rapports avec une entrée requise incompatible | Approvisionnement global/de thread sans entrées, le fichier fournit `file` et mentionne l’approvisionnement `query`. Demandez au responsable de résoudre l’incohérence ; ne supprimez pas une entrée dont l’action a besoin |
 | Échec de la configuration ou de l’affichage des fichiers | Ajoutez une extension prise en charge, confirmez l’entrée Objet `file` et utilisez un client de bureau compatible. Le widget doit implémenter ce format de fichier |
 | Échec de l’enregistrement du fichier | Confirmez la prise en charge de la modification et l’autorisation d’écriture. Réconcilier les conflits au lieu de remplacer le contenu plus récent ; réduire le contenu surdimensionné |

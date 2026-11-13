@@ -30,12 +30,12 @@ Terminez chaque étape marquée **Requise** pour les services que vous utilisez.
 |---|---|---|
 | [1. Créer l&#39;espace de noms d&#39;identité](#identity-namespace) | Requis | Requis |
 | [2. Créer le schéma](#schema) | Requis | Requis |
-| [3. Créer le jeu de données ](#dataset) | Pas nécessaire | Requis |
+| [3. Créer le jeu de données &#x200B;](#dataset) | Pas nécessaire | Requis |
 | [4. Préparer la suite de rapports](#report-suite) | Requis | Pas nécessaire |
-| [5. Créer le flux de données ](#datastream) | Requis | Requis |
+| [5. Créer le flux de données &#x200B;](#datastream) | Requis | Requis |
 | [6. Activer Analytics et déployer dans l’environnement intermédiaire](#enable-analytics) | Requis | Requis |
-| [7. Créer la connexion et la vue de données ](#cja) | Pas nécessaire | Requis |
-| [8. Vérifier les données et les déployer en production ](#verify) | Requis | Requis |
+| [7. Créer la connexion et la vue de données &#x200B;](#cja) | Pas nécessaire | Requis |
+| [8. Vérifier les données et les déployer en production &#x200B;](#verify) | Requis | Requis |
 
 Créez l’espace de noms, le schéma, le jeu de données et le flux de données dans le même sandbox [!DNL Experience Platform]. Utilisez le sandbox et le flux de données à partir desquels vous prévoyez de créer des rapports en production. Après avoir enregistré le flux de données dans votre application, contactez l’équipe applications LLM pour le modifier.
 

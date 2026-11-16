@@ -1,9 +1,9 @@
 ---
 title: Présentation des applications Adobe LLM
 description: Découvrez ce qu’est une application Adobe LLM, son fonctionnement et comment commencer à la créer.
-source-git-commit: 07bcd58b3aab70b03f62523b5b25f30f4b6d7004
+source-git-commit: 5a0959012e11cc46850cb5efd6e48e5258e54b0f
 workflow-type: tm+mt
-source-wordcount: '596'
+source-wordcount: '604'
 ht-degree: 1%
 ---
 
@@ -15,7 +15,7 @@ ht-degree: 1%
 
 >[!VIDEO](https://video.tv.adobe.com/v/3504877/?captions=fre_fr&learn=on&enablevpops)
 
-[!DNL LLM Apps] est disponible à l’adresse [experience.adobe.com/llm-apps](https://experience.adobe.com/llm-apps).
+Vous pouvez ouvrir [!DNL LLM Apps] depuis [[!DNL AEM Experience Hub]](https://experience.adobe.com/experiencemanager/) ou accéder directement à [experience.adobe.com/llm-apps](https://experience.adobe.com/llm-apps).
 
 
 ## Ce que vous pouvez faire avec [!DNL LLM Apps]
